@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var removed: UILabel!
     @IBOutlet weak var cup1: UIButton!
     @IBOutlet weak var missedButton: UIButton!
+    @IBOutlet weak var statusBar: UIView!
     
     
     //Actions
