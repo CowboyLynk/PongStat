@@ -12,12 +12,11 @@ class ViewController: UIViewController {
     // Variables
     var madeCounter = 1
     var missedCounter = 1
-    var cup = UIImageView()
-    var cups = [UIImageView]()
+    var cup = Cup()
+    var cups = [Cup]()
     let screenSize: CGRect = UIScreen.main.bounds
     
     // Outlets
-    @IBOutlet weak var cup1: UIButton!
     @IBOutlet weak var missedButton: UIButton!
     @IBOutlet weak var statusBar: UIView!
     @IBOutlet weak var currentScore: UILabel!
@@ -55,7 +54,7 @@ class ViewController: UIViewController {
         // Adds cups
         var xValue = 0
         for i in 0..<5 {
-            cup = UIImageView(image: UIImage(named: "Cup")!)
+            cup = Cup(image: UIImage(named: "Cup")!)
             cup.isUserInteractionEnabled = true
             cup.contentMode = UIViewContentMode.scaleAspectFit
             cup.frame = CGRect(x: xValue, y: 100, width: 60, height: 60)
