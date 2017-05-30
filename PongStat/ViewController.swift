@@ -15,33 +15,33 @@ class ViewController: UIViewController {
     var missedCounter = 1
     
     // Outlets
-    @IBOutlet weak var made: UILabel!
-    @IBOutlet weak var removed: UILabel!
     @IBOutlet weak var cup1: UIButton!
     @IBOutlet weak var missedButton: UIButton!
     @IBOutlet weak var statusBar: UIView!
     
     
-    //Actions
+    // Actions
     @IBAction func missed(_ sender: Any) {
         missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
         missedCounter += 1
     }
     
     func normalTap(_ sender: UIGestureRecognizer){
-        made.text = String(madeCounter)
-        madeCounter += 1
     }
     
     func longTap(_ sender: UIGestureRecognizer){
         if sender.state == .began {
-            removed.text = String(removedCounter)
-            removedCounter += 1
         }
     }
     
+    // Functions
+    func removeCup(cup: Cup)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Starts a game
+        var activeGame = PongGame()
+        
         // Custon missed button appearance
         missedButton.layer.shadowColor = UIColor(red:0.80, green:0.20, blue:0.10, alpha:1.0).cgColor
         missedButton.layer.shadowOpacity = 1
@@ -60,6 +60,10 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 
