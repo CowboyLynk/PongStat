@@ -13,7 +13,7 @@ class PongGame {
     var success: Double
     var total: Double
     var score: Double
-    var nodes: Array<(Double, Int, Bool)>
+    var nodes: Array<(Double, Int, Bool)>  // used to graph the scores over time
     
     var startTime: Double
     var endTime: Double

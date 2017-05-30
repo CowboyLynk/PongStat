@@ -2,7 +2,7 @@
 //  Cup.swift
 //  PongStat
 //
-//  Created by Cowboy Lynk on 5/29/17.
+//  Created by Cowboy Lynk on 5/30/17.
 //  Copyright © 2017 Cowboy Lynk. All rights reserved.
 //
 

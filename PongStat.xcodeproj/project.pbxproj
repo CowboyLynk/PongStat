@@ -14,9 +14,9 @@
 		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
 		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
 		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
-		852E1D671EDC5DE200EB49CA /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D651EDC5DE200EB49CA /* Cup.swift */; };
-		852E1D681EDC5DE200EB49CA /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D661EDC5DE200EB49CA /* Cup.xib */; };
 		85C7DBC91EDDD72400F937FE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBC81EDDD72400F937FE /* Utils.swift */; };
+		85C7DBCC1EDDF64400F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBCA1EDDF64400F937FE /* Cup.swift */; };
+		85C7DBCD1EDDF64400F937FE /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7DBCB1EDDF64400F937FE /* Cup.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +50,9 @@
 		852E1D531EDC445500EB49CA /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D571EDC445500EB49CA /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
 		852E1D591EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		852E1D651EDC5DE200EB49CA /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
-		852E1D661EDC5DE200EB49CA /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
 		85C7DBC81EDDD72400F937FE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		85C7DBCA1EDDF64400F937FE /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
+		85C7DBCB1EDDF64400F937FE /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,8 @@
 				852E1D371EDC445500EB49CA /* AppDelegate.swift */,
 				852E1D391EDC445500EB49CA /* ViewController.swift */,
 				852E1D3B1EDC445500EB49CA /* Main.storyboard */,
-				852E1D651EDC5DE200EB49CA /* Cup.swift */,
-				852E1D661EDC5DE200EB49CA /* Cup.xib */,
+				85C7DBCA1EDDF64400F937FE /* Cup.swift */,
+				85C7DBCB1EDDF64400F937FE /* Cup.xib */,
 				852E1D3E1EDC445500EB49CA /* Assets.xcassets */,
 				852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */,
 				852E1D431EDC445500EB49CA /* Info.plist */,
@@ -242,7 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852E1D681EDC5DE200EB49CA /* Cup.xib in Resources */,
+				85C7DBCD1EDDF64400F937FE /* Cup.xib in Resources */,
 				852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */,
 				852E1D3F1EDC445500EB49CA /* Assets.xcassets in Resources */,
 				852E1D3D1EDC445500EB49CA /* Main.storyboard in Resources */,
@@ -270,8 +270,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85C7DBCC1EDDF64400F937FE /* Cup.swift in Sources */,
 				852E1D3A1EDC445500EB49CA /* ViewController.swift in Sources */,
-				852E1D671EDC5DE200EB49CA /* Cup.swift in Sources */,
 				852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */,
 				85C7DBC91EDDD72400F937FE /* Utils.swift in Sources */,
 			);
