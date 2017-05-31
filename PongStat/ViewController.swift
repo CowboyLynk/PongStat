@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     func removeCup(sender: UIGestureRecognizer){
         let index = sender.view?.tag
         cup = cups[index!]
-        cup.isHidden = true
+        cup.clear()
     }
     
     override func viewDidLoad() {
@@ -51,23 +51,24 @@ class ViewController: UIViewController {
         // Starts a game
         // let activeGame = PongGame()
         
-        // Adds cups
-        var xValue = 0
+        // Adds cups and shadows
+        var xValue = Int(screenSize.width/5/2)
+        let yValue = 100
+        let dimension = 60
         for i in 0..<5 {
-            cup = Cup(image: UIImage(named: "Cup")!)
-            cup.isUserInteractionEnabled = true
-            cup.contentMode = UIViewContentMode.scaleAspectFit
-            cup.frame = CGRect(x: xValue, y: 100, width: 60, height: 60)
-            cup.tag = i
+            cup = Cup()
+            cup.view.contentMode = UIViewContentMode.scaleAspectFit
+            cup.view.frame = CGRect(x: xValue, y: yValue, width: dimension, height: dimension)
+            cup.view.tag = i
             
             // Adds gestures
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap(_: )))
             let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_: )))
-            cup.addGestureRecognizer(tapGesture)
-            cup.addGestureRecognizer(longGesture)
+            cup.view.addGestureRecognizer(tapGesture)
+            cup.view.addGestureRecognizer(longGesture)
             tapGesture.numberOfTapsRequired = 1
             
-            self.table.addSubview(cup)
+            self.table.addSubview(cup.view)
             cups.append(cup)
             xValue += Int(screenSize.width/5);
         }
