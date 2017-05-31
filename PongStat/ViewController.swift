@@ -50,14 +50,7 @@ class ViewController: UIViewController {
         cup.clear()
         print(cupConfig)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Initial code to run
-        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
-        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase) as [[AnyObject]]
-        
+    func setTable(){
         // Adds cups and shadows
         let screenSize: CGRect = self.table.bounds
         var xValue = 0
@@ -79,7 +72,7 @@ class ViewController: UIViewController {
                 cup.view.addGestureRecognizer(tapGesture)
                 cup.view.addGestureRecognizer(longGesture)
                 tapGesture.numberOfTapsRequired = 1
-            
+                
                 self.table.addSubview(cup.view)
                 cupTags.append(cup)
                 cupConfig[i][j] = cup
@@ -88,6 +81,17 @@ class ViewController: UIViewController {
             }
             yValue += Int(Double(dimension)*0.85)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Initial code to run
+        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
+        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase) as [[AnyObject]]
+        
+        // Set table
+        setTable()
         
         // Custon missed button appearance
         missedButton.layer.shadowColor = UIColor(red:0.80, green:0.20, blue:0.10, alpha:1.0).cgColor
