@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     // Variables
-    let numCups = 10.0
+    let numCups = 15.0
     var numBase: Int!
     var madeCounter = 1
     var missedCounter = 1
     var cup = Cup()
     var cupTags = [Cup]()
-    //var cupConfig: [[Cup]]
+    var cupConfig = [[AnyObject]]()
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -44,18 +44,19 @@ class ViewController: UIViewController {
     // Functions
     func removeCup(sender: UIGestureRecognizer){
         cup = cupTags[(sender.view?.tag)!]
+        let location = cup.location
+        cupConfig[(location?.0)!][(location?.1)!] = false as AnyObject
         cup.view.isUserInteractionEnabled = false
         cup.clear()
-    }
-    func getLocation(tag: Int) -> (Int, Int){
-        return (0, 0)
+        print(cupConfig)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Initial code to run
         numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
-        // cupConfig = Array(repeating: Array(repeating: 0, count: numBase), count: numBase) as [[AnyObject]]
+        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase) as [[AnyObject]]
         
         // Adds cups and shadows
         let screenSize: CGRect = self.table.bounds
@@ -65,11 +66,12 @@ class ViewController: UIViewController {
         var tagCounter = 0
         for i in 0..<numBase {
             xValue = dimension*i/2
-            for _ in 0..<numBase-i {
+            for j in 0..<numBase-i {
                 cup = Cup()
                 cup.view.contentMode = UIViewContentMode.scaleAspectFit
                 cup.view.frame = CGRect(x: xValue, y: yValue, width: dimension, height: dimension)
                 cup.view.tag = tagCounter
+                cup.location = (i, j)
                 
                 // Adds gestures
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap(_: )))
@@ -80,6 +82,7 @@ class ViewController: UIViewController {
             
                 self.table.addSubview(cup.view)
                 cupTags.append(cup)
+                cupConfig[i][j] = cup
                 xValue += dimension;
                 tagCounter += 1
             }

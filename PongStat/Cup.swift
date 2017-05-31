@@ -8,7 +8,10 @@
 
 import UIKit
 
-class Cup: UIViewController {    
+class Cup: UIViewController {
+    // Variables
+    var location: (Int, Int)!
+    
     // Outlets
     @IBOutlet weak var Cup: UIImageView!
     @IBOutlet weak var Shadow: UIImageView!
