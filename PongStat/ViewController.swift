@@ -43,6 +43,7 @@ class ViewController: UIViewController {
     func removeCup(sender: UIGestureRecognizer){
         let index = sender.view?.tag
         cup = cups[index!]
+        cup.view.isUserInteractionEnabled = false
         cup.clear()
     }
     
