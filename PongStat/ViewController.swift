@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     var madeCounter = 1
     var missedCounter = 1
     var cup = Cup()
-    var cups = [Cup]()
+    var cupTags = [Cup]()
+    //var cupConfig: [[Cup]]
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -42,38 +43,47 @@ class ViewController: UIViewController {
     
     // Functions
     func removeCup(sender: UIGestureRecognizer){
-        let index = sender.view?.tag
-        cup = cups[index!]
+        cup = cupTags[(sender.view?.tag)!]
         cup.view.isUserInteractionEnabled = false
         cup.clear()
+    }
+    func getLocation(tag: Int) -> (Int, Int){
+        return (0, 0)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Initial code to run
         numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
+        // cupConfig = Array(repeating: Array(repeating: 0, count: numBase), count: numBase) as [[AnyObject]]
         
         // Adds cups and shadows
         let screenSize: CGRect = self.table.bounds
         var xValue = 0
-        let yValue = 0
+        var yValue = 0
         let dimension = Int(Int(screenSize.width)/numBase)
-        print(screenSize.width)
+        var tagCounter = 0
         for i in 0..<numBase {
-            cup = Cup()
-            cup.view.contentMode = UIViewContentMode.scaleAspectFit
-            cup.view.frame = CGRect(x: xValue, y: yValue, width: dimension, height: dimension)
-            cup.view.tag = i
+            xValue = dimension*i/2
+            for _ in 0..<numBase-i {
+                cup = Cup()
+                cup.view.contentMode = UIViewContentMode.scaleAspectFit
+                cup.view.frame = CGRect(x: xValue, y: yValue, width: dimension, height: dimension)
+                cup.view.tag = tagCounter
+                
+                // Adds gestures
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap(_: )))
+                let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_: )))
+                cup.view.addGestureRecognizer(tapGesture)
+                cup.view.addGestureRecognizer(longGesture)
+                tapGesture.numberOfTapsRequired = 1
             
-            // Adds gestures
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap(_: )))
-            let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_: )))
-            cup.view.addGestureRecognizer(tapGesture)
-            cup.view.addGestureRecognizer(longGesture)
-            tapGesture.numberOfTapsRequired = 1
-            
-            self.table.addSubview(cup.view)
-            cups.append(cup)
-            xValue += dimension;
+                self.table.addSubview(cup.view)
+                cupTags.append(cup)
+                xValue += dimension;
+                tagCounter += 1
+            }
+            yValue += Int(Double(dimension)*0.85)
         }
         
         // Custon missed button appearance

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Cup: UIViewController {
+class Cup: UIViewController {    
     // Outlets
     @IBOutlet weak var Cup: UIImageView!
     @IBOutlet weak var Shadow: UIImageView!
@@ -20,7 +20,6 @@ class Cup: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
