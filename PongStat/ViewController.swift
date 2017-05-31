@@ -10,11 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     // Variables
+    let numCups = 10.0
+    var numBase: Int!
     var madeCounter = 1
     var missedCounter = 1
     var cup = Cup()
     var cups = [Cup]()
-    let screenSize: CGRect = UIScreen.main.bounds
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -49,14 +50,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Starts a game
-        // let activeGame = PongGame()
+        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
         
         // Adds cups and shadows
-        var xValue = Int(screenSize.width/5/2)
-        let yValue = 100
-        let dimension = 60
-        for i in 0..<5 {
+        let screenSize: CGRect = self.table.bounds
+        var xValue = 0
+        let yValue = 0
+        let dimension = Int(Int(screenSize.width)/numBase)
+        print(screenSize.width)
+        for i in 0..<numBase {
             cup = Cup()
             cup.view.contentMode = UIViewContentMode.scaleAspectFit
             cup.view.frame = CGRect(x: xValue, y: yValue, width: dimension, height: dimension)
@@ -71,7 +73,7 @@ class ViewController: UIViewController {
             
             self.table.addSubview(cup.view)
             cups.append(cup)
-            xValue += Int(screenSize.width/5);
+            xValue += dimension;
         }
         
         // Custon missed button appearance
