@@ -104,9 +104,9 @@ class ViewController: UIViewController {
         }
     }
     func clearTable(){
-        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
         missedCounter = 0
         madeCounter = 0.0
+        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
         for view in table.subviews{
             view.removeFromSuperview()
         }
