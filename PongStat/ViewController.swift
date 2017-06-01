@@ -10,13 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
     // Variables
-    var numCups = 6.0
+    var numCups = 10.0
     var numBase: Int!
-    var madeCounter = 1
-    var missedCounter = 1
+    var madeCounter = 0.0
+    var missedCounter = 0
     var cup: Cup!
     var cupTags = [Cup]()
     var cupConfig = [[Bool]]()
+    var cupsAround = 0
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -38,13 +39,16 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     @IBAction func missed(_ sender: Any) {
-        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
         missedCounter += 1
+        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
+        updateScore()
     }
     func normalTap(_ sender: UIGestureRecognizer){  // Made the cup
         print("Normal")
         removeCup(sender: sender)
-        madeCounter += 1
+        madeCounter += 1 + 0.1 * Double(5 - cupsAround)
+        updateScore()
+        
     }
     func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
         if sender.state == .began {
@@ -60,6 +64,7 @@ class ViewController: UIViewController {
         cupConfig[(location?.0)!][(location?.1)!] = false
         cup.view.isUserInteractionEnabled = false
         cup.clear()
+        cupsAround = calcCupsAround(cup: cup)
         print(cupConfig)
     }
     func setTable(){
@@ -99,10 +104,40 @@ class ViewController: UIViewController {
         }
     }
     func clearTable(){
+        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
+        missedCounter = 0
+        madeCounter = 0.0
         for view in table.subviews{
             view.removeFromSuperview()
         }
         cupTags.removeAll()
+        updateScore()
+    }
+    func calcCupsAround(cup: Cup) -> Int {
+        var cupsAround = 0
+        let maxIndex = cupConfig.count
+        let perms = [(1, 0), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, -1)]
+        let row = cup.location.0
+        let col = cup.location.1
+        // check above
+        for perm in perms{
+            if row + perm.0 < maxIndex && row + perm.0 > 0 {
+                if col + perm.0 < maxIndex && col + perm.0 > 0 {
+                    let check = self.cupConfig[row + perm.0][col + perm.1]
+                    if check == true {
+                        cupsAround += 1
+                    }
+                }
+            }
+        }
+        return cupsAround
+    }
+    func updateScore() {
+        var score = 0
+        if madeCounter + Double(missedCounter) != 0{
+            score = Int(madeCounter/(madeCounter+Double(missedCounter))*100)
+        }
+        currentScore.text = "WEIGHTED SCORE: \(score)"
     }
     
     override func viewDidLoad() {

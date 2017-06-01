@@ -79,7 +79,7 @@
                                     <action selector="missed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6D1-ef-iRU"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CURRENT SCORE:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEc-0p-cqM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WEIGHTED SCORE:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEc-0p-cqM">
                                 <rect key="frame" x="58" y="202" width="259" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
@@ -96,7 +96,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="currentScore" destination="ZEc-0p-cqM" id="gWF-Qa-F95"/>
+                        <outlet property="currentScore" destination="ZEc-0p-cqM" id="e2Q-xP-sc0"/>
                         <outlet property="missedButton" destination="NPh-YM-MUA" id="LYC-8f-ICb"/>
                         <outlet property="statusBar" destination="TbC-gI-RgB" id="wkS-3z-l63"/>
                         <outlet property="table" destination="aRR-Gw-Cvg" id="th1-N8-3NE"/>
