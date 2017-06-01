@@ -16,6 +16,7 @@ class PongGame {
     var missedCounter: Int
     var cupTags: [Cup]
     var cupConfig: [[Bool]]
+    var turns: [(String, AnyObject, AnyObject)]
     
     
     init(cups: Double){
@@ -25,11 +26,12 @@ class PongGame {
         missedCounter = 0
         cupTags = [Cup]()
         cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
+        turns = []
     }
     
     func getScore() -> String {
         var score = 0
-        if madeCounter + Double(missedCounter) != 0{
+        if madeCounter + Double(missedCounter) > 0{
             score = Int(madeCounter/(madeCounter+Double(missedCounter))*100)
         }
         return "WEIGHTED SCORE: \(score)"

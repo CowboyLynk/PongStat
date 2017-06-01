@@ -22,7 +22,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var table: UIView!
     
     // Actions
+    @IBAction func undo(_ sender: Any) {
+        if activeGame.turns.count > 0{
+            let lastTurn = activeGame.turns.last
+            let turnType = lastTurn?.0
+            if turnType != "miss"{
+                let cup = lastTurn?.1 as! Cup
+                replaceCup(cup: cup)
+                if turnType == "make"{
+                    activeGame.madeCounter -= lastTurn?.2 as! Double
+                }
+            } else { // if its a miss
+                activeGame.missedCounter -= 1
+        }
+        updateVisuals()
+        activeGame.turns.removeLast()
+        }
+    }
     @IBAction func reset(_ sender: Any) {
+        // Are you SUUUURE you want to reset
         let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
             // Resets table
@@ -37,17 +55,21 @@ class ViewController: UIViewController {
     @IBAction func missed(_ sender: Any) {  // User missed the cup
         activeGame.missedCounter += 1
         updateVisuals()
+        activeGame.turns.append(("miss", false as AnyObject, 1 as AnyObject))
     }
     func normalTap(_ sender: UIGestureRecognizer){  // User made the cup
         setCurrentCup(sender: sender)
         removeCup(sender: sender)
-        activeGame.madeCounter += 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
+        let multiplier = 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
+        activeGame.madeCounter += multiplier
         updateVisuals()
+        activeGame.turns.append(("make", currentCup, multiplier as AnyObject))
     }
     func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
         if sender.state == .began {
             setCurrentCup(sender: sender)
             removeCup(sender: sender)
+            activeGame.turns.append(("remove", currentCup, false as AnyObject))
         }
     }
     
@@ -60,10 +82,16 @@ class ViewController: UIViewController {
         currentCup = activeGame.cupTags[(sender.view?.tag)!]
     }
     func removeCup(sender: UIGestureRecognizer){
-        let location = cup.location
+        let location = currentCup.location
         activeGame.cupConfig[(location?.0)!][(location?.1)!] = false
         currentCup.view.isUserInteractionEnabled = false
         currentCup.clear()
+    }
+    func replaceCup(cup: Cup){
+        let location = cup.location
+        activeGame.cupConfig[(location?.0)!][(location?.1)!] = true
+        cup.view.isUserInteractionEnabled = true
+        cup.putBack()
     }
     func setTable(){
         let numBase = activeGame.numBase

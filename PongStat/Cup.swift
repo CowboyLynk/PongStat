@@ -20,6 +20,9 @@ class Cup: UIViewController {
     func clear(){
         self.Cup.isHidden = true
     }
+    func putBack(){
+        self.Cup.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
