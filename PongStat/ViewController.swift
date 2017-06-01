@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     // Variables
-    var numCups = 10.0
+    var numCups = 6.0
     var numBase: Int!
     var madeCounter = 1
     var missedCounter = 1
-    var cup = Cup()
+    var cup: Cup!
     var cupTags = [Cup]()
-    var cupConfig = [[AnyObject]]()
+    var cupConfig = [[Bool]]()
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     func removeCup(sender: UIGestureRecognizer){
         cup = cupTags[(sender.view?.tag)!]
         let location = cup.location
-        cupConfig[(location?.0)!][(location?.1)!] = false as AnyObject
+        cupConfig[(location?.0)!][(location?.1)!] = false
         cup.view.isUserInteractionEnabled = false
         cup.clear()
         print(cupConfig)
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     func setTable(){
         // Calculations
         numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
-        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase) as [[AnyObject]]
+        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
         
         // Adds cups and shadows
         let screenSize: CGRect = self.table.bounds
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
                 
                 self.table.addSubview(cup.view)
                 cupTags.append(cup)
-                cupConfig[i][j] = cup
+                cupConfig[i][j] = true
                 xValue += dimension;
                 tagCounter += 1
             }
