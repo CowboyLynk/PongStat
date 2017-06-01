@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     // Variables
-    let numCups = 15.0
+    var numCups = 10.0
     var numBase: Int!
     var madeCounter = 1
     var missedCounter = 1
@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var table: UIView!
     
     // Actions
+    @IBAction func reset(_ sender: Any) {
+        clearTable()
+        setTable()
+    }
     @IBAction func missed(_ sender: Any) {
         missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
         missedCounter += 1
@@ -51,6 +55,10 @@ class ViewController: UIViewController {
         print(cupConfig)
     }
     func setTable(){
+        // Calculations
+        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
+        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase) as [[AnyObject]]
+        
         // Adds cups and shadows
         let screenSize: CGRect = self.table.bounds
         var xValue = 0
@@ -82,13 +90,15 @@ class ViewController: UIViewController {
             yValue += Int(Double(dimension)*0.85)
         }
     }
+    func clearTable(){
+        for view in table.subviews{
+            view.removeFromSuperview()
+        }
+        cupTags.removeAll()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Initial code to run
-        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
-        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase) as [[AnyObject]]
         
         // Set table
         setTable()
