@@ -26,8 +26,16 @@ class ViewController: UIViewController {
     
     // Actions
     @IBAction func reset(_ sender: Any) {
-        clearTable()
-        setTable()
+        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            
+            // Resets table
+            self.clearTable()
+            self.setTable()
+            
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func missed(_ sender: Any) {
         missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
