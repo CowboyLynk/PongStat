@@ -11,13 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     // Variables
     var numCups = 10.0
-    var numBase: Int!
-    var madeCounter = 0.0
-    var missedCounter = 0
     var cup: Cup!
-    var cupTags = [Cup]()
-    var cupConfig = [[Bool]]()
-    var cupsAround = 0
+    var currentCup: Cup!
+    var activeGame: PongGame!
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -38,15 +34,15 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    @IBAction func missed(_ sender: Any) {
-        missedCounter += 1
-        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
+    @IBAction func missed(_ sender: Any) {  // User missed the cup
+        activeGame.missedCounter += 1
+        missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
         updateScore()
     }
-    func normalTap(_ sender: UIGestureRecognizer){  // Made the cup
+    func normalTap(_ sender: UIGestureRecognizer){  // User made the cup
         print("Normal")
         removeCup(sender: sender)
-        madeCounter += 1 + 0.1 * Double(5 - cupsAround)
+        activeGame.madeCounter += 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
         updateScore()
         
     }
@@ -59,20 +55,15 @@ class ViewController: UIViewController {
     
     // Functions
     func removeCup(sender: UIGestureRecognizer){
-        cup = cupTags[(sender.view?.tag)!]
+        cup = activeGame.cupTags[(sender.view?.tag)!]
+        currentCup = cup
         let location = cup.location
-        cupConfig[(location?.0)!][(location?.1)!] = false
+        activeGame.cupConfig[(location?.0)!][(location?.1)!] = false
         cup.view.isUserInteractionEnabled = false
         cup.clear()
-        cupsAround = calcCupsAround(cup: cup)
-        print(cupConfig)
     }
     func setTable(){
-        // Calculations
-        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
-        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
-        
-        // Adds cups and shadows
+        let numBase = activeGame.numBase
         let screenSize: CGRect = self.table.bounds
         var xValue = 0
         var yValue = 0
@@ -95,8 +86,8 @@ class ViewController: UIViewController {
                 tapGesture.numberOfTapsRequired = 1
                 
                 self.table.addSubview(cup.view)
-                cupTags.append(cup)
-                cupConfig[i][j] = true
+                activeGame.cupTags.append(cup)
+                activeGame.cupConfig[i][j] = true
                 xValue += dimension;
                 tagCounter += 1
             }
@@ -104,46 +95,21 @@ class ViewController: UIViewController {
         }
     }
     func clearTable(){
-        missedCounter = 0
-        madeCounter = 0.0
-        missedButton.setTitle("MISSED: \(missedCounter)", for: .normal)
+        activeGame = PongGame(cups: numCups)
+        missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
+        updateScore()
         for view in table.subviews{
             view.removeFromSuperview()
         }
-        cupTags.removeAll()
-        updateScore()
-    }
-    func calcCupsAround(cup: Cup) -> Int {
-        var cupsAround = 0
-        let maxIndex = cupConfig.count - 1
-        let perms = [(1, 0), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, -1)]
-        let row = cup.location.0
-        let col = cup.location.1
-        // check above
-        for perm in perms{
-            if row + perm.0 <= maxIndex && row + perm.0 >= 0 {
-                if col + perm.1 <= maxIndex && col + perm.1 >= 0 {
-                    let check = self.cupConfig[row + perm.0][col + perm.1]
-                    if check == true {
-                        cupsAround += 1
-                    }
-                }
-            }
-        }
-        return cupsAround
     }
     func updateScore() {
-        var score = 0
-        if madeCounter + Double(missedCounter) != 0{
-            score = Int(madeCounter/(madeCounter+Double(missedCounter))*100)
-        }
-        currentScore.text = "WEIGHTED SCORE: \(score)"
+        currentScore.text = activeGame.getScore()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set table
+        activeGame = PongGame(cups: numCups)
         setTable()
         
         // Custon missed button appearance

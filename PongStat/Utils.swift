@@ -2,109 +2,56 @@
 //  Utils.swift
 //  PongStat
 //
-//  Created by Cowboy Lynk on 5/30/17.
+//  Created by Cowboy Lynk on 6/1/17.
 //  Copyright © 2017 Cowboy Lynk. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
 class PongGame {
-    var cups: Array<Bool>
-    var success: Double
-    var total: Double
-    var score: Double
-    var nodes: Array<(Double, Int, Bool)>  // used to graph the scores over time
+    var numCups: Double
+    var numBase: Int
+    var madeCounter: Double
+    var missedCounter: Int
+    var cupTags: [Cup]
+    var cupConfig: [[Bool]]
     
-    var startTime: Double
-    var endTime: Double
     
-    init() {
-        cups = Array(repeating: true, count: 10)
-        success = 0
-        total = 0
-        score = 0
-        nodes = [(Double, Int, Bool)]()
-        
-        startTime = Date().timeIntervalSinceReferenceDate
-        endTime = -1
+    init(cups: Double){
+        numCups = cups
+        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
+        madeCounter = 0.0
+        missedCounter = 0
+        cupTags = [Cup]()
+        cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
     }
     
-    func getScoreAt(index i: Int) -> Double {
-        return nodes[i].0
-    }
-    
-    func madeCup(cup i: Int) -> Void {
-        if !cups[i] {
-            return
+    func getScore() -> String {
+        var score = 0
+        if madeCounter + Double(missedCounter) != 0{
+            score = Int(madeCounter/(madeCounter+Double(missedCounter))*100)
         }
-        cups[i] = false
-        let potentialCupsAround = PongGame.cupsAround(cup: i)
-        var cupCount = 0
-        for x in potentialCupsAround {
-            if cups[x] {
-                cupCount += 1
+        return "WEIGHTED SCORE: \(score)"
+    }
+    
+    func calcCupsAround(cup: Cup) -> Int {
+        var cupsAround = 0
+        let maxIndex = cupConfig.count - 1
+        let perms = [(1, 0), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, -1)]
+        let row = cup.location.0
+        let col = cup.location.1
+        // check above
+        for perm in perms{
+            if row + perm.0 <= maxIndex && row + perm.0 >= 0 {
+                if col + perm.1 <= maxIndex && col + perm.1 >= 0 {
+                    let check = self.cupConfig[row + perm.0][col + perm.1]
+                    if check == true {
+                        cupsAround += 1
+                    }
+                }
             }
         }
-        let modifier = 1 + 0.1 * Double(5 - cupCount)
-        success += modifier
-        total += modifier
-        updateGame(make: true)
-    }
-    
-    func missedCup() {
-        total += 1
-        updateGame(make: false)
-    }
-    
-    func updateGame(make: Bool) {
-        score = success / total
-        let time = 1 // This will be changed
-        nodes.append((score, time, make))
-    }
-    
-    func endGame() {
-        endTime = Date().timeIntervalSinceReferenceDate
-    }
-    
-    class func cupsAround(cup i: Int) -> Array<Int> {
-        var cups = [Int]()
-        switch i {
-        case 0:
-            cups = [1, 2]
-        case 1:
-            cups = [0, 2, 3, 4]
-        case 2:
-            cups = [0, 1, 4, 5]
-        case 3:
-            cups = [1, 4, 6, 7]
-        case 4:
-            cups = [1, 2, 3, 5, 7, 8]
-        case 5:
-            cups = [2, 4, 8, 9]
-        case 6:
-            cups = [3, 7]
-        case 7:
-            cups = [3, 4, 6, 8]
-        case 8:
-            cups = [4, 5, 7, 9]
-        case 9:
-            cups = [5, 8]
-        default:
-            break
-        }
-        return cups
-    }
-}
-
-class Night {
-    var games = [PongGame]()
-    let startTime: Double
-    
-    init() {
-        startTime = Date().timeIntervalSinceReferenceDate
-    }
-    
-    func addGame(game: PongGame) {
-        games.append(game)
+        return cupsAround
     }
 }
