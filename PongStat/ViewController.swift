@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     // Variables
     var numCups = 10.0
+    var cupsMade = 0.0
     var cup: Cup!
     var currentCup: Cup!
     var activeGame: PongGame!
@@ -25,11 +26,9 @@ class ViewController: UIViewController {
     @IBAction func reset(_ sender: Any) {
         let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-            
             // Resets table
             self.clearTable()
             self.setTable()
-            
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -44,6 +43,17 @@ class ViewController: UIViewController {
         removeCup(sender: sender)
         activeGame.madeCounter += 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
         updateScore()
+        cupsMade += 1.0
+        if cupsMade == numCups{
+            let alert = UIAlertController(title: "You won!", message: "Would you like to play again", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+                // Resets table
+                self.clearTable()
+                self.setTable()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
         
     }
     func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
@@ -98,6 +108,7 @@ class ViewController: UIViewController {
         activeGame = PongGame(cups: numCups)
         missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
         updateScore()
+        cupsMade = 0.0
         for view in table.subviews{
             view.removeFromSuperview()
         }
