@@ -14,6 +14,7 @@
 		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
 		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
 		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
+		858AAC181EE0B624000ADD7F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
 		85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBD61EDE5E5E00F937FE /* Cup.swift */; };
 		85C7DBD91EDE5E5E00F937FE /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7DBD71EDE5E5E00F937FE /* Cup.xib */; };
 		85F671471EE044530002F76F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F671461EE044530002F76F /* Utils.swift */; };
@@ -34,6 +35,20 @@
 			remoteGlobalIDString = 852E1D331EDC445500EB49CA;
 			remoteInfo = PongStat;
 		};
+		858AAC141EE0B5D3000ADD7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		858AAC161EE0B5D3000ADD7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +65,7 @@
 		852E1D531EDC445500EB49CA /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D571EDC445500EB49CA /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
 		852E1D591EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		85C7DBD61EDE5E5E00F937FE /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
 		85C7DBD71EDE5E5E00F937FE /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
 		85F671461EE044530002F76F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -60,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858AAC181EE0B624000ADD7F /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +100,7 @@
 		852E1D2B1EDC445500EB49CA = {
 			isa = PBXGroup;
 			children = (
+				858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */,
 				852E1D361EDC445500EB49CA /* PongStat */,
 				852E1D4B1EDC445500EB49CA /* PongStatTests */,
 				852E1D561EDC445500EB49CA /* PongStatUITests */,
@@ -132,6 +150,15 @@
 				852E1D591EDC445500EB49CA /* Info.plist */,
 			);
 			path = PongStatUITests;
+			sourceTree = "<group>";
+		};
+		858AAC101EE0B5D3000ADD7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				858AAC151EE0B5D3000ADD7F /* Charts.framework */,
+				858AAC171EE0B5D3000ADD7F /* ChartsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +255,12 @@
 			mainGroup = 852E1D2B1EDC445500EB49CA;
 			productRefGroup = 852E1D351EDC445500EB49CA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 858AAC101EE0B5D3000ADD7F /* Products */;
+					ProjectRef = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				852E1D331EDC445500EB49CA /* PongStat */,
@@ -236,6 +269,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		858AAC151EE0B5D3000ADD7F /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 858AAC141EE0B5D3000ADD7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		858AAC171EE0B5D3000ADD7F /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 858AAC161EE0B5D3000ADD7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		852E1D321EDC445500EB49CA /* Resources */ = {

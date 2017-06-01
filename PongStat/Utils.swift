@@ -43,7 +43,6 @@ class PongGame {
         let perms = [(1, 0), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, -1)]
         let row = cup.location.0
         let col = cup.location.1
-        // check above
         for perm in perms{
             if row + perm.0 <= maxIndex && row + perm.0 >= 0 {
                 if col + perm.1 <= maxIndex && col + perm.1 >= 0 {
