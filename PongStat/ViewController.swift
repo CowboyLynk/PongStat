@@ -115,14 +115,14 @@ class ViewController: UIViewController {
     }
     func calcCupsAround(cup: Cup) -> Int {
         var cupsAround = 0
-        let maxIndex = cupConfig.count
+        let maxIndex = cupConfig.count - 1
         let perms = [(1, 0), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, -1)]
         let row = cup.location.0
         let col = cup.location.1
         // check above
         for perm in perms{
             if row + perm.0 <= maxIndex && row + perm.0 >= 0 {
-                if col + perm.0 <= maxIndex && col + perm.0 >= 0 {
+                if col + perm.1 <= maxIndex && col + perm.1 >= 0 {
                     let check = self.cupConfig[row + perm.0][col + perm.1]
                     if check == true {
                         cupsAround += 1
