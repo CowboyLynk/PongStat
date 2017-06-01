@@ -121,8 +121,8 @@ class ViewController: UIViewController {
         let col = cup.location.1
         // check above
         for perm in perms{
-            if row + perm.0 < maxIndex && row + perm.0 > 0 {
-                if col + perm.0 < maxIndex && col + perm.0 > 0 {
+            if row + perm.0 <= maxIndex && row + perm.0 >= 0 {
+                if col + perm.0 <= maxIndex && col + perm.0 >= 0 {
                     let check = self.cupConfig[row + perm.0][col + perm.1]
                     if check == true {
                         cupsAround += 1
