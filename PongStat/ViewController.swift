@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     // Variables
     var numCups = 10.0
-    var cupsMade = 0.0
     var cup: Cup!
     var currentCup: Cup!
     var activeGame: PongGame!
@@ -33,44 +32,38 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    // Cup interactions
     @IBAction func missed(_ sender: Any) {  // User missed the cup
         activeGame.missedCounter += 1
-        missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
-        updateScore()
+        updateVisuals()
     }
     func normalTap(_ sender: UIGestureRecognizer){  // User made the cup
-        print("Normal")
+        setCurrentCup(sender: sender)
         removeCup(sender: sender)
         activeGame.madeCounter += 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
-        updateScore()
-        cupsMade += 1.0
-        if cupsMade == numCups{
-            let alert = UIAlertController(title: "You won!", message: "Would you like to play again", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
-                // Resets table
-                self.clearTable()
-                self.setTable()
-            }))
-            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.destructive, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-        
+        updateVisuals()
     }
     func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
         if sender.state == .began {
-            print("Long")
+            setCurrentCup(sender: sender)
             removeCup(sender: sender)
         }
     }
     
     // Functions
+    func updateVisuals() {
+        missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
+        currentScore.text = activeGame.getScore()
+    }
+    func setCurrentCup(sender: UIGestureRecognizer){
+        currentCup = activeGame.cupTags[(sender.view?.tag)!]
+    }
     func removeCup(sender: UIGestureRecognizer){
-        cup = activeGame.cupTags[(sender.view?.tag)!]
-        currentCup = cup
         let location = cup.location
         activeGame.cupConfig[(location?.0)!][(location?.1)!] = false
-        cup.view.isUserInteractionEnabled = false
-        cup.clear()
+        currentCup.view.isUserInteractionEnabled = false
+        currentCup.clear()
     }
     func setTable(){
         let numBase = activeGame.numBase
@@ -106,15 +99,10 @@ class ViewController: UIViewController {
     }
     func clearTable(){
         activeGame = PongGame(cups: numCups)
-        missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
-        updateScore()
-        cupsMade = 0.0
+        updateVisuals()
         for view in table.subviews{
             view.removeFromSuperview()
         }
-    }
-    func updateScore() {
-        currentScore.text = activeGame.getScore()
     }
     
     override func viewDidLoad() {
