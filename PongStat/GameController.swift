@@ -15,7 +15,6 @@ class GameController: UIViewController {
     var cup: Cup!
     var currentCup: Cup!
     var activeGame: PongGame!
-    var chartCounter = 0
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -38,8 +37,6 @@ class GameController: UIViewController {
             } else { // if its a miss
                 activeGame.missedCounter -= 1
             }
-            chartCounter -= 2
-            print(chartCounter)
             activeGame.nodes.removeLast()
             activeGame.turns.removeLast()
             updateVisuals()
@@ -135,7 +132,6 @@ class GameController: UIViewController {
         }
     }
     func clearTable(){
-        chartCounter = 0
         activeGame = PongGame(cups: numCups)
         updateVisuals()
         for view in table.subviews{
@@ -184,11 +180,10 @@ class GameController: UIViewController {
         }
         let chartDataSet = LineChartDataSet(values: scores, label: "Efficiency")
 
-        chartView.xAxis.axisMaximum = Double(chartCounter + 1)
-        chartView.setVisibleXRangeMaximum(5)
-        chartView.xAxis.xOffset = 5
-        chartView.moveViewToX(Double(chartCounter))
-        chartCounter += 1
+        //chartView.xAxis.axisMaximum = Double(chartCounter + 1)
+        //chartView.setVisibleXRangeMaximum(5)
+        //chartView.xAxis.xOffset = 5
+        //chartView.moveViewToX(Double(chartCounter))
         
         // Styling
         chartDataSet.setColors(UIColor.white)
