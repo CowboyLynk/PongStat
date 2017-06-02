@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		852BA9261EE1B737001FF424 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
+		852BA9271EE1B737001FF424 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D371EDC445500EB49CA /* AppDelegate.swift */; };
 		852E1D3A1EDC445500EB49CA /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D391EDC445500EB49CA /* GameController.swift */; };
 		852E1D3D1EDC445500EB49CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D3B1EDC445500EB49CA /* Main.storyboard */; };
@@ -14,13 +16,19 @@
 		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
 		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
 		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
-		858AAC181EE0B624000ADD7F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
 		85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBD61EDE5E5E00F937FE /* Cup.swift */; };
 		85C7DBD91EDE5E5E00F937FE /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7DBD71EDE5E5E00F937FE /* Cup.xib */; };
 		85F671471EE044530002F76F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F671461EE044530002F76F /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		852BA9281EE1B737001FF424 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
 		852E1D491EDC445500EB49CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 852E1D2C1EDC445500EB49CA /* Project object */;
@@ -51,6 +59,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		852BA92A1EE1B737001FF424 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				852BA9271EE1B737001FF424 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		852E1D341EDC445500EB49CA /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D371EDC445500EB49CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				858AAC181EE0B624000ADD7F /* Charts.framework in Frameworks */,
+				852BA9261EE1B737001FF424 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,10 +193,12 @@
 				852E1D301EDC445500EB49CA /* Sources */,
 				852E1D311EDC445500EB49CA /* Frameworks */,
 				852E1D321EDC445500EB49CA /* Resources */,
+				852BA92A1EE1B737001FF424 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				852BA9291EE1B737001FF424 /* PBXTargetDependency */,
 			);
 			name = PongStat;
 			productName = PongStat;
@@ -346,6 +370,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		852BA9291EE1B737001FF424 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 852BA9281EE1B737001FF424 /* PBXContainerItemProxy */;
+		};
 		852E1D4A1EDC445500EB49CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 852E1D331EDC445500EB49CA /* PongStat */;
@@ -381,6 +410,7 @@
 		852E1D5A1EDC445500EB49CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -402,6 +432,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -431,6 +462,7 @@
 		852E1D5B1EDC445500EB49CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -452,6 +484,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -474,6 +507,7 @@
 		852E1D5D1EDC445500EB49CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStat/Info.plist;
@@ -488,6 +522,7 @@
 		852E1D5E1EDC445500EB49CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStat/Info.plist;

@@ -29,16 +29,17 @@ class GameController: UIViewController {
         if activeGame.turns.count > 0{
             let lastTurn = activeGame.turns.last
             let turnType = lastTurn?.0
-            if turnType != "miss"{
+            if turnType != "miss"{  // if its a make or a remove
                 let cup = lastTurn?.1 as! Cup
                 replaceCup(cup: cup)
-                if turnType == "make"{
+                if turnType == "make"{  // if its a make
                     activeGame.madeCounter -= lastTurn?.2 as! Double
+                    activeGame.nodes.removeLast()
                 }
             } else { // if its a miss
                 activeGame.missedCounter -= 1
+                activeGame.nodes.removeLast()
             }
-            activeGame.nodes.removeLast()
             activeGame.turns.removeLast()
             updateVisuals()
         }
