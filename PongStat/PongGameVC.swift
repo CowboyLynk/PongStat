@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+// Make class name more Discriptive
+class PongGameVC: UIViewController {
     // Variables
-    var numCups = 10.0
-    var cup: Cup!
-    var currentCup: Cup!
+    var numCups = 10 // This should be an Int, not a double
     var activeGame: PongGame!
+    var cup: Cup!
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -23,7 +23,8 @@ class ViewController: UIViewController {
     
     // Actions
     @IBAction func undo(_ sender: Any) {
-        if activeGame.turns.count > 0{
+        // this is messy, don't force unwrap the optionals
+        if activeGame.turns.count > 0 {
             let lastTurn = activeGame.turns.last
             let turnType = lastTurn?.0
             if turnType != "miss"{
@@ -39,15 +40,18 @@ class ViewController: UIViewController {
         activeGame.turns.removeLast()
         }
     }
+
+    // this needs a better name (resetButtonTapped)
     @IBAction func reset(_ sender: Any) {
-        // Are you SUUUURE you want to reset
+        // Actions should be on the right side, cancel should be on left
         let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
             // Resets table
             self.clearTable()
             self.setTable()
         }))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -57,40 +61,18 @@ class ViewController: UIViewController {
         updateVisuals()
         activeGame.turns.append(("miss", false as AnyObject, 1 as AnyObject))
     }
-    func normalTap(_ sender: UIGestureRecognizer){  // User made the cup
-        setCurrentCup(sender: sender)
-        removeCup(sender: sender)
-        let multiplier = 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
-        activeGame.madeCounter += multiplier
-        updateVisuals()
-        activeGame.turns.append(("make", currentCup, multiplier as AnyObject))
-    }
-    func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
-        if sender.state == .began {
-            setCurrentCup(sender: sender)
-            removeCup(sender: sender)
-            activeGame.turns.append(("remove", currentCup, false as AnyObject))
-        }
-    }
-    
+
+
     // Functions
     func updateVisuals() {
         missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
         currentScore.text = activeGame.getScore()
     }
-    func setCurrentCup(sender: UIGestureRecognizer){
-        currentCup = activeGame.cupTags[(sender.view?.tag)!]
-    }
-    func removeCup(sender: UIGestureRecognizer){
-        let location = currentCup.location
-        activeGame.cupConfig[(location?.0)!][(location?.1)!] = false
-        currentCup.view.isUserInteractionEnabled = false
-        currentCup.clear()
-    }
+
     func replaceCup(cup: Cup){
         let location = cup.location
-        activeGame.cupConfig[(location?.0)!][(location?.1)!] = true
-        cup.view.isUserInteractionEnabled = true
+        activeGame.cupConfig[(location.0)][(location.1)] = true
+        cup.isUserInteractionEnabled = true
         cup.putBack()
     }
     func setTable(){
@@ -103,20 +85,13 @@ class ViewController: UIViewController {
         for i in 0..<numBase {
             xValue = dimension*i/2
             for j in 0..<numBase-i {
-                cup = Cup()
-                cup.view.contentMode = UIViewContentMode.scaleAspectFit
-                cup.view.frame = CGRect(x: xValue, y: yValue, width: dimension, height: dimension)
-                cup.view.tag = tagCounter
+
+                cup = Cup(frame: CGRect(x: xValue, y: yValue, width: dimension, height: dimension))
+                cup.tag = tagCounter
                 cup.location = (i, j)
+                cup.delegate = self
                 
-                // Adds gestures
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap(_: )))
-                let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap(_: )))
-                cup.view.addGestureRecognizer(tapGesture)
-                cup.view.addGestureRecognizer(longGesture)
-                tapGesture.numberOfTapsRequired = 1
-                
-                self.table.addSubview(cup.view)
+                self.table.addSubview(cup)
                 activeGame.cupTags.append(cup)
                 activeGame.cupConfig[i][j] = true
                 xValue += dimension;
@@ -125,6 +100,7 @@ class ViewController: UIViewController {
             yValue += Int(Double(dimension)*0.85)
         }
     }
+
     func clearTable(){
         activeGame = PongGame(cups: numCups)
         updateVisuals()
@@ -151,11 +127,42 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    // this should be set in the pList
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
+    func removeCup(cup: Cup) {
+        let location = cup.location
+        activeGame.cupConfig[(location.0)][(location.1)] = false
+        cup.isUserInteractionEnabled = false
+        cup.clear()
+    }
 
 }
+
+// When dealing with protocols, it's best practice to put them in an extension
+extension PongGameVC: CupDelegate {
+    func didTap(cup: Cup) {
+
+        removeCup(cup: cup)
+
+
+        let multiplier = 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: cup))
+        activeGame.madeCounter += multiplier
+        updateVisuals()
+        activeGame.turns.append(("make", cup, multiplier as AnyObject))
+    }
+
+    func didLongTap(cup: Cup, longPressGesture: UILongPressGestureRecognizer) {
+        if longPressGesture.state == .began {
+
+            removeCup(cup: cup)
+
+            activeGame.turns.append(("remove", cup, false as AnyObject))
+        }
+    }
+}
+
 

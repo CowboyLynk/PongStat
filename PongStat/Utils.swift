@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class PongGame {
-    var numCups: Double
+    var numCups: Int
     var numBase: Int
     var madeCounter: Double
     var missedCounter: Int
@@ -19,9 +19,9 @@ class PongGame {
     var turns: [(String, AnyObject, AnyObject)]
     
     
-    init(cups: Double){
+    init(cups: Int){
         numCups = cups
-        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
+        numBase = Int(-1/2*(1 - (8.0*Double(numCups) + 1.0).squareRoot()))
         madeCounter = 0.0
         missedCounter = 0
         cupTags = [Cup]()
