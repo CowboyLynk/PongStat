@@ -15,6 +15,7 @@ class GameController: UIViewController {
     var cup: Cup!
     var currentCup: Cup!
     var activeGame: PongGame!
+    var chartCounter = 0
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -36,10 +37,12 @@ class GameController: UIViewController {
                 }
             } else { // if its a miss
                 activeGame.missedCounter -= 1
-        }
-        activeGame.nodes.removeLast()
-        activeGame.turns.removeLast()
-        updateVisuals()
+            }
+            chartCounter -= 2
+            print(chartCounter)
+            activeGame.nodes.removeLast()
+            activeGame.turns.removeLast()
+            updateVisuals()
         }
     }
     @IBAction func reset(_ sender: Any) {
@@ -69,7 +72,6 @@ class GameController: UIViewController {
         activeGame.nodes.append((true, activeGame.getScore()))
         activeGame.turns.append(("make", currentCup, multiplier as AnyObject))
         updateVisuals()
-        updateChart()
     }
     func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
         if sender.state == .began {
@@ -133,6 +135,7 @@ class GameController: UIViewController {
         }
     }
     func clearTable(){
+        chartCounter = 0
         activeGame = PongGame(cups: numCups)
         updateVisuals()
         for view in table.subviews{
@@ -140,7 +143,7 @@ class GameController: UIViewController {
         }
     }
     func setUpChart(){
-        chartView.noDataText = "No data yet"
+        chartView.noDataText = ""
         chartView.leftAxis.axisMinimum = 0.0
         chartView.leftAxis.axisMaximum = 110.0
         chartView.leftAxis.enabled = false
@@ -159,37 +162,48 @@ class GameController: UIViewController {
         chartView.highlightPerTapEnabled = false
         chartView.highlightPerDragEnabled = false
         chartView.doubleTapToZoomEnabled = false
+        chartView.pinchZoomEnabled = false
     }
     func updateChart(){
         var scores = [ChartDataEntry]()
         var colors = [UIColor]()
-        for i in 0..<activeGame.nodes.count {
-            let shot = activeGame.nodes[i].0
-            if shot {
-                colors.append(UIColor.white)
+        if activeGame.nodes.count > 0{
+            scores.append(ChartDataEntry(x: 0, y: Double(activeGame.nodes[0].1)))
+            colors.append(UIColor.white)
+            for i in 0..<activeGame.nodes.count {
+                let shot = activeGame.nodes[i].0
+                if shot {
+                    colors.append(UIColor.white)
+                }
+                else {
+                    colors.append(UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0))
+                }
+                let entry = ChartDataEntry(x: Double(i+1), y: Double(activeGame.nodes[i].1))
+                scores.append(entry)
             }
-            else {
-                colors.append(UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0))
-            }
-            let entry = ChartDataEntry(x: Double(i), y: Double(activeGame.nodes[i].1))
-            scores.append(entry)
         }
         let chartDataSet = LineChartDataSet(values: scores, label: "Efficiency")
+
+        chartView.xAxis.axisMaximum = Double(chartCounter + 1)
+        chartView.setVisibleXRangeMaximum(5)
+        chartView.xAxis.xOffset = 5
+        chartView.moveViewToX(Double(chartCounter))
+        chartCounter += 1
         
         // Styling
         chartDataSet.setColors(UIColor.white)
         chartDataSet.circleColors.remove(at: 0)
         chartDataSet.circleColors.append(contentsOf: colors)
         chartDataSet.fillColor = UIColor(red:0.39, green:0.78, blue:0.56, alpha:1.0)
-        chartDataSet.circleRadius = 4
-        chartDataSet.circleHoleRadius = 2
+        chartDataSet.circleRadius = 6
+        chartDataSet.circleHoleRadius = 3
         chartDataSet.circleHoleColor = UIColor(red:0.29, green:0.58, blue:0.41, alpha:1.0)
         chartDataSet.mode = LineChartDataSet.Mode.cubicBezier
         chartDataSet.drawValuesEnabled = false
         chartDataSet.lineWidth = 3
         chartDataSet.drawFilledEnabled = true
         
-        let chartData = LineChartData(dataSet: chartDataSet)
+        let chartData = LineChartData(dataSet: chartDataSet)  // Error occurs here
         chartView.data = chartData
     }
     
