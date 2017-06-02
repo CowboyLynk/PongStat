@@ -17,6 +17,7 @@ class PongGame {
     var cupTags: [Cup]
     var cupConfig: [[Bool]]
     var turns: [(String, AnyObject, AnyObject)]
+    var nodes: [(Bool, Int)] // (make/miss, score)
     
     
     init(cups: Double){
@@ -27,14 +28,15 @@ class PongGame {
         cupTags = [Cup]()
         cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
         turns = []
+        nodes = []
     }
     
-    func getScore() -> String {
+    func getScore() -> Int {
         var score = 0
         if madeCounter + Double(missedCounter) > 0{
             score = Int(madeCounter/(madeCounter+Double(missedCounter))*100)
         }
-        return "WEIGHTED SCORE: \(score)"
+        return score
     }
     
     func calcCupsAround(cup: Cup) -> Int {
@@ -54,5 +56,14 @@ class PongGame {
             }
         }
         return cupsAround
+    }
+}
+
+class CustomNav: UINavigationController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationBar.barTintColor = UIColor(red:0.20, green:0.41, blue:0.29, alpha:1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
 }
