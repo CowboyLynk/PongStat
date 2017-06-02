@@ -48,7 +48,6 @@ class PongGame {
         for perm in perms{
             if row + perm.0 <= maxIndex && row + perm.0 >= 0 {
                 if col + perm.1 <= maxIndex && col + perm.1 >= 0 {
-                    print("checking")
                     let check = self.cupConfig[row + perm.0][col + perm.1]
                     if check == true {
                         cupsAround += 1
@@ -56,9 +55,19 @@ class PongGame {
                 }
             }
         }
-        print(cupsAround)
-        print()
         return cupsAround
+    }
+    
+    func getCupCount() -> Int{
+        var counter = Int(numCups)
+        for turn in turns{
+            print(turn)
+            if turn.0 != "miss"{
+                counter -= 1
+            }
+        }
+        print(counter)
+        return counter
     }
 }
 

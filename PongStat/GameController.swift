@@ -15,6 +15,7 @@ class GameController: UIViewController {
     var cup: Cup!
     var currentCup: Cup!
     var activeGame: PongGame!
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -23,6 +24,8 @@ class GameController: UIViewController {
     @IBOutlet weak var table: UIView!
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet var winnerView: UIView!
+    @IBOutlet weak var finalScore: UILabel!
     
     // Actions
     @IBAction func undo(_ sender: Any) {
@@ -51,9 +54,15 @@ class GameController: UIViewController {
             // Resets table
             self.clearTable()
             self.setTable()
+            self.winnerAnimateOut()
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    @IBAction func playAgain(_ sender: Any) {
+        clearTable()
+        setTable()
+        winnerAnimateOut()
     }
     
     // Cup interactions
@@ -65,18 +74,18 @@ class GameController: UIViewController {
     }
     func normalTap(_ sender: UIGestureRecognizer){  // User made the cup
         setCurrentCup(sender: sender)
-        removeCup(sender: sender)
         let multiplier = 1 + 0.1 * Double(5 - activeGame.calcCupsAround(cup: currentCup))
         activeGame.madeCounter += multiplier
         activeGame.nodes.append((true, activeGame.getScore()))
         activeGame.turns.append(("make", currentCup, multiplier as AnyObject))
+        removeCup(sender: sender)
         updateVisuals()
     }
     func longTap(_ sender: UIGestureRecognizer){  // Someone else made the cup
         if sender.state == .began {
             setCurrentCup(sender: sender)
-            removeCup(sender: sender)
             activeGame.turns.append(("remove", currentCup, false as AnyObject))
+            removeCup(sender: sender)
         }
     }
     
@@ -94,6 +103,9 @@ class GameController: UIViewController {
         activeGame.cupConfig[(location?.0)!][(location?.1)!] = false
         currentCup.view.isUserInteractionEnabled = false
         currentCup.clear()
+        if activeGame.getCupCount() == 0{
+            winnerAnimateIn()
+        }
     }
     func replaceCup(cup: Cup){
         let location = cup.location
@@ -205,6 +217,44 @@ class GameController: UIViewController {
         
         let chartData = LineChartData(dataSet: chartDataSet)  // Error occurs here
         chartView.data = chartData
+    }
+    func winnerAnimateIn(){
+        // gets final score
+        finalScore.text = "Final Score: \(activeGame.getScore())"
+        
+        // Adds BG blur
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0
+        view.addSubview(blurEffectView)
+        
+        // Adds winner screen
+        self.view.addSubview(winnerView)
+        winnerView.alpha = 0
+        winnerView.center = CGPoint.init(x: self.view.center.x, y: self.view.bounds.height)
+        winnerView.layer.shadowColor = UIColor.black.cgColor
+        winnerView.layer.shadowOpacity = 0.3
+        winnerView.layer.shadowOffset = CGSize.zero
+        winnerView.layer.shadowRadius = 20
+        
+        UIView.animate(withDuration: 0.4){
+            self.winnerView.alpha = 1
+            self.blurEffectView.alpha = 1
+        }
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [] , animations: {
+            self.winnerView.center = CGPoint.init(x: self.view.center.x, y: self.view.bounds.height/2)
+        }, completion: nil)
+    }
+    func winnerAnimateOut(){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.blurEffectView.alpha = 0
+            self.winnerView.alpha = 0
+            self.winnerView.transform = CGAffineTransform.init(scaleX: 1.05, y: 1.05)
+            
+        }) { (sucsess:Bool) in
+            self.winnerView.removeFromSuperview()
+            self.blurEffectView.removeFromSuperview()
+        }
     }
     
     override func viewDidLoad() {
