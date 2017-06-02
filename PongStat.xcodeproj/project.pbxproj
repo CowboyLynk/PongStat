@@ -16,6 +16,7 @@
 		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
 		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
 		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
+		8533FC7E1EE20A320021FB20 /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8533FC7D1EE20A320021FB20 /* StartController.swift */; };
 		85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBD61EDE5E5E00F937FE /* Cup.swift */; };
 		85C7DBD91EDE5E5E00F937FE /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7DBD71EDE5E5E00F937FE /* Cup.xib */; };
 		85F671471EE044530002F76F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F671461EE044530002F76F /* Utils.swift */; };
@@ -87,6 +88,7 @@
 		852E1D531EDC445500EB49CA /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D571EDC445500EB49CA /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
 		852E1D591EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8533FC7D1EE20A320021FB20 /* StartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
 		858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		85C7DBD61EDE5E5E00F937FE /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
 		85C7DBD71EDE5E5E00F937FE /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				852E1D371EDC445500EB49CA /* AppDelegate.swift */,
 				852E1D391EDC445500EB49CA /* GameController.swift */,
+				8533FC7D1EE20A320021FB20 /* StartController.swift */,
 				852E1D3B1EDC445500EB49CA /* Main.storyboard */,
 				852E1D3E1EDC445500EB49CA /* Assets.xcassets */,
 				852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */,
@@ -346,6 +349,7 @@
 			files = (
 				85F671471EE044530002F76F /* Utils.swift in Sources */,
 				85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */,
+				8533FC7E1EE20A320021FB20 /* StartController.swift in Sources */,
 				852E1D3A1EDC445500EB49CA /* GameController.swift in Sources */,
 				852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */,
 			);

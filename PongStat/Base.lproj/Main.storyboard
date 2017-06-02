@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start Controller-->
         <scene sceneID="80W-QF-hAf">
             <objects>
-                <viewController id="e0a-dX-r2v" sceneMemberID="viewController">
+                <viewController id="e0a-dX-r2v" customClass="StartController" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Moe-S5-Aui"/>
                         <viewControllerLayoutGuide type="bottom" id="dB8-mF-28X"/>
@@ -21,19 +21,72 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iH-SM-gNA">
-                                <rect key="frame" x="97" y="286" width="180" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="17"/>
-                                <state key="normal" title="Start Game"/>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYh-LP-ICp">
+                                <rect key="frame" x="21" y="191" width="150" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.25882352939999997" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="27"/>
+                                <state key="normal" title="6-Cup">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="eI1-X2-pto"/>
+                                    <action selector="missed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R2I-h6-6Ji"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="P1n-0Q-PS8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySr-o5-wcf">
+                                <rect key="frame" x="204" y="191" width="150" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.25882352939999997" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="27"/>
+                                <state key="normal" title="10-Cup">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="missed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xyn-MU-UZq"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="goO-nv-o2D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOe-Gn-PJu">
+                                <rect key="frame" x="21" y="312" width="333" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.25882352939999997" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="27"/>
+                                <state key="normal" title="Custom-Cup">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="missed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xBO-n3-0YD"/>
+                                    <action selector="requestCustom:" destination="e0a-dX-r2v" eventType="touchUpInside" id="nzT-gg-5Az"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588240000001" green="0.63921568630000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="LLd-ff-cXD"/>
+                    <connections>
+                        <outlet property="customCup" destination="NOe-Gn-PJu" id="eED-Yg-wP4"/>
+                        <outlet property="sixCup" destination="HYh-LP-ICp" id="7Ua-UF-MsC"/>
+                        <outlet property="tenCup" destination="ySr-o5-wcf" id="Xkm-y2-9mW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTb-RW-klQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -219,5 +272,8 @@
         <image name="Reset" width="24" height="24"/>
         <image name="Undo" width="125" height="125"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="P1n-0Q-PS8"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
