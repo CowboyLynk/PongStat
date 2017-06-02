@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GameController: UIViewController {
     // Variables
     var numCups = 10.0
     var cup: Cup!

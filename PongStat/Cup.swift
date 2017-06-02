@@ -13,15 +13,14 @@ class Cup: UIViewController {
     var location: (Int, Int)!
     
     // Outlets
-    @IBOutlet weak var Cup: UIImageView!
-    @IBOutlet weak var Shadow: UIImageView!
+    @IBOutlet weak var cup: UIImageView!
     
     // Functions
     func clear(){
-        self.Cup.isHidden = true
+        self.cup.isHidden = true
     }
     func putBack(){
-        self.Cup.isHidden = false
+        self.cup.isHidden = false
     }
     
     override func viewDidLoad() {
