@@ -22,6 +22,7 @@ class GameController: UIViewController {
     @IBOutlet weak var currentScore: UILabel!
     @IBOutlet weak var table: UIView!
     @IBOutlet weak var chartView: LineChartView!
+    @IBOutlet weak var noDataLabel: UILabel!
     
     // Actions
     @IBAction func undo(_ sender: Any) {
@@ -140,7 +141,7 @@ class GameController: UIViewController {
     }
     func setUpChart(){
         chartView.noDataText = ""
-        chartView.leftAxis.axisMinimum = 0.0
+        chartView.leftAxis.axisMinimum = -10
         chartView.leftAxis.axisMaximum = 110.0
         chartView.leftAxis.enabled = false
         chartView.leftAxis.labelTextColor = UIColor.white
@@ -164,6 +165,7 @@ class GameController: UIViewController {
         var scores = [ChartDataEntry]()
         var colors = [UIColor]()
         if activeGame.nodes.count > 0{
+            noDataLabel.isHidden = true
             scores.append(ChartDataEntry(x: 0, y: Double(activeGame.nodes[0].1)))
             colors.append(UIColor.white)
             for i in 0..<activeGame.nodes.count {
@@ -177,6 +179,8 @@ class GameController: UIViewController {
                 let entry = ChartDataEntry(x: Double(i+1), y: Double(activeGame.nodes[i].1))
                 scores.append(entry)
             }
+        } else {
+            noDataLabel.isHidden = false
         }
         let chartDataSet = LineChartDataSet(values: scores, label: "Efficiency")
 
