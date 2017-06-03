@@ -7,29 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		852BA9261EE1B737001FF424 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
-		852BA9271EE1B737001FF424 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D371EDC445500EB49CA /* AppDelegate.swift */; };
-		852E1D3A1EDC445500EB49CA /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D391EDC445500EB49CA /* GameController.swift */; };
+		852E1D3A1EDC445500EB49CA /* PongGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D391EDC445500EB49CA /* PongGameVC.swift */; };
 		852E1D3D1EDC445500EB49CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D3B1EDC445500EB49CA /* Main.storyboard */; };
 		852E1D3F1EDC445500EB49CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D3E1EDC445500EB49CA /* Assets.xcassets */; };
 		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
 		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
 		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
-		8533FC7E1EE20A320021FB20 /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8533FC7D1EE20A320021FB20 /* StartController.swift */; };
+		85964CD41EE26C9A002BB76D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
+		85964CD51EE26C9A002BB76D /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBD61EDE5E5E00F937FE /* Cup.swift */; };
 		85C7DBD91EDE5E5E00F937FE /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7DBD71EDE5E5E00F937FE /* Cup.xib */; };
 		85F671471EE044530002F76F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F671461EE044530002F76F /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		852BA9281EE1B737001FF424 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06165F231D8110E600722320;
-			remoteInfo = Charts;
-		};
 		852E1D491EDC445500EB49CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 852E1D2C1EDC445500EB49CA /* Project object */;
@@ -58,16 +50,23 @@
 			remoteGlobalIDString = 06165F2E1D8110E600722320;
 			remoteInfo = ChartsTests;
 		};
+		85964CD61EE26C9A002BB76D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		852BA92A1EE1B737001FF424 /* Embed Frameworks */ = {
+		85964CD81EE26C9A002BB76D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				852BA9271EE1B737001FF424 /* Charts.framework in Embed Frameworks */,
+				85964CD51EE26C9A002BB76D /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,7 +76,7 @@
 /* Begin PBXFileReference section */
 		852E1D341EDC445500EB49CA /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D371EDC445500EB49CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		852E1D391EDC445500EB49CA /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		852E1D391EDC445500EB49CA /* PongGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongGameVC.swift; sourceTree = "<group>"; };
 		852E1D3C1EDC445500EB49CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		852E1D3E1EDC445500EB49CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		852E1D411EDC445500EB49CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +87,6 @@
 		852E1D531EDC445500EB49CA /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D571EDC445500EB49CA /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
 		852E1D591EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8533FC7D1EE20A320021FB20 /* StartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
 		858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		85C7DBD61EDE5E5E00F937FE /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
 		85C7DBD71EDE5E5E00F937FE /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
@@ -100,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852BA9261EE1B737001FF424 /* Charts.framework in Frameworks */,
+				85964CD41EE26C9A002BB76D /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				852E1D371EDC445500EB49CA /* AppDelegate.swift */,
-				852E1D391EDC445500EB49CA /* GameController.swift */,
-				8533FC7D1EE20A320021FB20 /* StartController.swift */,
+				852E1D391EDC445500EB49CA /* PongGameVC.swift */,
 				852E1D3B1EDC445500EB49CA /* Main.storyboard */,
 				852E1D3E1EDC445500EB49CA /* Assets.xcassets */,
 				852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */,
@@ -196,12 +193,12 @@
 				852E1D301EDC445500EB49CA /* Sources */,
 				852E1D311EDC445500EB49CA /* Frameworks */,
 				852E1D321EDC445500EB49CA /* Resources */,
-				852BA92A1EE1B737001FF424 /* Embed Frameworks */,
+				85964CD81EE26C9A002BB76D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				852BA9291EE1B737001FF424 /* PBXTargetDependency */,
+				85964CD71EE26C9A002BB76D /* PBXTargetDependency */,
 			);
 			name = PongStat;
 			productName = PongStat;
@@ -349,8 +346,7 @@
 			files = (
 				85F671471EE044530002F76F /* Utils.swift in Sources */,
 				85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */,
-				8533FC7E1EE20A320021FB20 /* StartController.swift in Sources */,
-				852E1D3A1EDC445500EB49CA /* GameController.swift in Sources */,
+				852E1D3A1EDC445500EB49CA /* PongGameVC.swift in Sources */,
 				852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,11 +370,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		852BA9291EE1B737001FF424 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 852BA9281EE1B737001FF424 /* PBXContainerItemProxy */;
-		};
 		852E1D4A1EDC445500EB49CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 852E1D331EDC445500EB49CA /* PongStat */;
@@ -388,6 +379,11 @@
 			isa = PBXTargetDependency;
 			target = 852E1D331EDC445500EB49CA /* PongStat */;
 			targetProxy = 852E1D541EDC445500EB49CA /* PBXContainerItemProxy */;
+		};
+		85964CD71EE26C9A002BB76D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 85964CD61EE26C9A002BB76D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

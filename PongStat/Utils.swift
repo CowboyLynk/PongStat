@@ -10,33 +10,50 @@ import Foundation
 import UIKit
 
 class PongGame {
-    var numCups: Double
+    var numCups: Int
     var numBase: Int
     var madeCounter: Double
     var missedCounter: Int
-    var cupTags: [Cup]
     var cupConfig: [[Bool]]
-    var turns: [(String, AnyObject, AnyObject)]
-    var nodes: [(Bool, Int)] // (make/miss, score)
+    var turns: [(String, AnyObject, Double, Int)]  // (type of shot, associated cup, multiplier, score)
     
     
-    init(cups: Double){
+    init(cups: Int){
         numCups = cups
-        numBase = Int(-1/2*(1 - (8.0*numCups + 1.0).squareRoot()))
+        numBase = Int(-1/2*(1 - (8.0*Double(numCups) + 1.0).squareRoot()))
         madeCounter = 0.0
         missedCounter = 0
-        cupTags = [Cup]()
         cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
         turns = []
-        nodes = []
     }
     
-    func getScore() -> Int {
+    func getScore() -> Int{
         var score = 0
-        if madeCounter + Double(missedCounter) > 0{
+        if madeCounter + Double(missedCounter) > 0.001{ // 0.001 to account for small errors with adding doubles
             score = Int(madeCounter/(madeCounter+Double(missedCounter))*100)
         }
         return score
+    }
+    
+    func getNumNodes() -> Int{
+        var counter = 0
+        for turn in turns {
+            if turn.0 != "remove"{
+                counter += 1
+            }
+        }
+        return counter
+    }
+    
+    func getCupCount() -> Int{
+        var counter = Int(numCups)
+        for turn in turns{
+            print(turn)
+            if turn.0 != "miss"{
+                counter -= 1
+            }
+        }
+        return counter
     }
     
     func calcCupsAround(cup: Cup) -> Int {
@@ -56,18 +73,6 @@ class PongGame {
             }
         }
         return cupsAround
-    }
-    
-    func getCupCount() -> Int{
-        var counter = Int(numCups)
-        for turn in turns{
-            print(turn)
-            if turn.0 != "miss"{
-                counter -= 1
-            }
-        }
-        print(counter)
-        return counter
     }
 }
 

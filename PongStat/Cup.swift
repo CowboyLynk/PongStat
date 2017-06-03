@@ -8,40 +8,74 @@
 
 import UIKit
 
-class Cup: UIViewController {
+protocol CupDelegate {
+    func didTap(cup: Cup)
+    func didLongPress(cup: Cup, longPressGesture: UILongPressGestureRecognizer)
+}
+
+
+class Cup: UIView {
     // Variables
-    var location: (Int, Int)!
+    var location = (Int(), Int())
+    var delegate: CupDelegate?
     
     // Outlets
-    @IBOutlet weak var cup: UIImageView!
-    
+    @IBOutlet weak var Cup: UIImageView!
+    @IBOutlet weak var Shadow: UIImageView!
+    @IBOutlet var view: UIView!
+
     // Functions
     func clear(){
-        self.cup.isHidden = true
+        self.Cup.isHidden = true
     }
     func putBack(){
-        self.cup.isHidden = false
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.Cup.isHidden = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        nibSetup()
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        nibSetup()
     }
-    */
+
+    func didTap(_ sender: UITapGestureRecognizer) {
+        self.delegate?.didTap(cup: self)
+    }
+
+    func didLongPress(_ sender: UILongPressGestureRecognizer) {
+        self.delegate?.didLongPress(cup: self, longPressGesture: sender)
+    }
+
+    // MARK: The following code is for the initialization
+    private func nibSetup() {
+        backgroundColor = .clear
+
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.translatesAutoresizingMaskIntoConstraints = true
+        self.addSubview(view)
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
+        self.addGestureRecognizer(tapGesture)
+
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+        self.addGestureRecognizer(longPressGesture)
+
+
+
+    }
+
+    private func loadViewFromNib() -> UIView {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+        let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
+
+        return nibView
+    }
 
 }
