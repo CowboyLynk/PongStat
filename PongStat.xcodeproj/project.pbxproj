@@ -14,6 +14,7 @@
 		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
 		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
 		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
+		855ABDE01EE513190036793E /* reRackSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855ABDDF1EE513190036793E /* reRackSwitch.swift */; };
 		85964CD41EE26C9A002BB76D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
 		85964CD51EE26C9A002BB76D /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBD61EDE5E5E00F937FE /* Cup.swift */; };
@@ -87,6 +88,7 @@
 		852E1D531EDC445500EB49CA /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852E1D571EDC445500EB49CA /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
 		852E1D591EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		855ABDDF1EE513190036793E /* reRackSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reRackSwitch.swift; sourceTree = "<group>"; };
 		858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		85C7DBD61EDE5E5E00F937FE /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
 		85C7DBD71EDE5E5E00F937FE /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				852E1D431EDC445500EB49CA /* Info.plist */,
 				85F671461EE044530002F76F /* Utils.swift */,
 				85C7DBD61EDE5E5E00F937FE /* Cup.swift */,
+				855ABDDF1EE513190036793E /* reRackSwitch.swift */,
 				85C7DBD71EDE5E5E00F937FE /* Cup.xib */,
 			);
 			path = PongStat;
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85F671471EE044530002F76F /* Utils.swift in Sources */,
+				855ABDE01EE513190036793E /* reRackSwitch.swift in Sources */,
 				85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */,
 				852E1D3A1EDC445500EB49CA /* PongGameVC.swift in Sources */,
 				852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */,

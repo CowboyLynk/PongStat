@@ -15,6 +15,7 @@ class PongGame {
     var madeCounter: Double
     var missedCounter: Int
     var cupConfig: [[Bool]]
+    var reRackConfig: [[Bool]]!
     var turns: [(String, AnyObject, Double, Int)]  // (type of shot, associated cup, multiplier, score)
     
     
@@ -48,7 +49,6 @@ class PongGame {
     func getCupCount() -> Int{
         var counter = Int(numCups)
         for turn in turns{
-            print(turn)
             if turn.0 != "miss"{
                 counter -= 1
             }

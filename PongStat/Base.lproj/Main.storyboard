@@ -52,16 +52,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zd-DL-d9p" userLabel="Undo">
-                                <rect key="frame" x="16" y="428" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Undo">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="undo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A6a-x0-68z"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPh-YM-MUA">
                                 <rect key="frame" x="16" y="483" width="343" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -78,6 +68,22 @@
                                 </state>
                                 <connections>
                                     <action selector="missed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6D1-ef-iRU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iun-1q-zYV" userLabel="ReRack">
+                                <rect key="frame" x="319" y="428" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Re-rack"/>
+                                <connections>
+                                    <action selector="reRackButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oYo-I2-Vbe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHL-Mk-Vkq">
+                                <rect key="frame" x="16" y="428" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Undo"/>
+                                <connections>
+                                    <action selector="undoButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zDk-zf-Sad"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -103,6 +109,7 @@
                         <outlet property="finalScore" destination="VuZ-2J-pFx" id="zZ6-DM-jOm"/>
                         <outlet property="missedButton" destination="NPh-YM-MUA" id="LYC-8f-ICb"/>
                         <outlet property="noDataLabel" destination="azs-Mc-Un6" id="3xZ-lH-dvx"/>
+                        <outlet property="reRackView" destination="CfI-by-QR9" id="FHN-pO-sh1"/>
                         <outlet property="table" destination="aRR-Gw-Cvg" id="th1-N8-3NE"/>
                         <outlet property="winnerView" destination="Nbk-YX-ODx" id="neX-09-M3a"/>
                     </connections>
@@ -168,13 +175,46 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view contentMode="scaleToFill" id="CfI-by-QR9" userLabel="ReRack View">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RERACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exM-jv-Dlg">
+                            <rect key="frame" x="76" y="20" width="148" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="17"/>
+                            <color key="textColor" red="0.25490196079999999" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUK-9L-2B0">
+                            <rect key="frame" x="41" y="328" width="218" height="52"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" red="0.36470588240000001" green="0.63921568630000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
+                            <state key="normal" title="SET RACK"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="setRack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bBM-wB-984"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </objects>
             <point key="canvasLocation" x="2834.4000000000001" y="-69.715142428785612"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zTg-Yg-9Pn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8eZ-lM-6ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xti-Wt-r8Y" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OuD-su-SO2"/>
@@ -200,13 +240,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="E4h-qC-OCz"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8eZ-lM-6ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1960.8" y="-70.614692653673174"/>
         </scene>
         <!--Custom Nav-->
         <scene sceneID="CIm-1Y-CO4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ui-Tj-dTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uAz-w0-S71" customClass="CustomNav" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -219,6 +259,7 @@
                         <segue destination="xti-Wt-r8Y" kind="relationship" relationship="rootViewController" id="aij-J2-Pwh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ui-Tj-dTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1183" y="-71"/>
         </scene>
@@ -226,6 +267,7 @@
     <resources>
         <image name="Back" width="24" height="24"/>
         <image name="HappyBeer" width="888" height="702"/>
+        <image name="Re-rack" width="110" height="100"/>
         <image name="Reset" width="24" height="24"/>
         <image name="Undo" width="125" height="125"/>
     </resources>

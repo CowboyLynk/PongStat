@@ -14,6 +14,7 @@ class PongGameVC: UIViewController {
     var numCups = 10
     var activeGame: PongGame!
     var cup: Cup!
+    var reRackPlaceholder: reRackSwitch!
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
     
     // Outlets
@@ -25,10 +26,16 @@ class PongGameVC: UIViewController {
     // Winner view outlets
     @IBOutlet var winnerView: UIView!
     @IBOutlet weak var finalScore: UILabel!
+    // ReRack view outlets
+    @IBOutlet var reRackView: UIView!
     
     // Actions
-    @IBAction func undo(_ sender: Any) {
+    @IBAction func undoButtonTapped(_ sender: Any) {
         undo()
+    }
+    @IBAction func reRackButtonTapped(_ sender: Any) {
+        setReRackView()
+        springAnimateIn(viewToAnimate: reRackView)
     }
     @IBAction func resetButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
@@ -44,13 +51,44 @@ class PongGameVC: UIViewController {
     // Winner view actions
     @IBAction func undoGameOver(_ sender: Any) {
         undo()
-        winnerAnimateOut()
+        animateOut(viewToAnimate: self.winnerView)
     }
     @IBAction func playAgain(_ sender: Any) {
         clearTable()
         setTable()
-        winnerAnimateOut()
+        animateOut(viewToAnimate: self.winnerView)
     }
+    // Rerack view actions
+    @IBAction func setRack(_ sender: Any) {
+        for view in table.subviews{
+            view.removeFromSuperview()
+        }
+        animateOut(viewToAnimate: self.reRackView)
+        
+        // Set table
+        let numBase = activeGame.numBase
+        let screenSize: CGRect = self.table.bounds
+        var xValue = 0
+        var yValue = 0
+        let dimension = Int(Int(screenSize.width)/numBase)
+        for i in 0..<numBase {
+            xValue = dimension*i/2
+            for j in 0..<numBase-i {
+                if activeGame.reRackConfig[i][j] {
+                    // Make cup
+                    cup = Cup(frame: CGRect(x: xValue, y: yValue, width: dimension, height: dimension))
+                    cup.location = (i, j)
+                    cup.delegate = self
+                    // Add cup
+                    self.table.addSubview(cup)
+                    activeGame.cupConfig[i][j] = true
+                }
+                xValue += dimension
+            }
+            yValue += Int(Double(dimension)*0.85)
+        }
+    }
+    
     
     // Cup interactions
     @IBAction func missed(_ sender: Any) {  // User missed the cup
@@ -71,7 +109,7 @@ class PongGameVC: UIViewController {
         cup.isUserInteractionEnabled = false
         cup.clear()
         if activeGame.getCupCount() == 0{
-            winnerAnimateIn()
+            springAnimateIn(viewToAnimate: self.winnerView)
         }
     }
     func replaceCup(cup: Cup){
@@ -107,6 +145,36 @@ class PongGameVC: UIViewController {
         for view in table.subviews{
             view.removeFromSuperview()
         }
+        animateOut(viewToAnimate: self.winnerView)
+        animateOut(viewToAnimate: self.reRackView)
+    }
+    func setReRackView(){
+        let numBase = activeGame.numBase
+        activeGame.reRackConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
+        let screenSize: CGRect = self.reRackView.bounds
+        var xValue = 0
+        var yValue = 60
+        let dimension = Int(Int(screenSize.width)/numBase)
+        for i in 0..<numBase {
+            xValue = dimension*i/2
+            for j in 0..<numBase-i {
+                // Make cup
+                reRackPlaceholder = reRackSwitch(frame: CGRect(x: xValue, y: yValue, width: dimension, height: dimension))
+                reRackPlaceholder.location = (i, j)
+                reRackPlaceholder.layer.cornerRadius = CGFloat(dimension/2)
+                reRackPlaceholder.addTarget(self, action: #selector(reRackPlaceholderTapped(sender:)), for: .touchUpInside)
+                // Add cup
+                self.reRackView.addSubview(reRackPlaceholder)
+                xValue += dimension
+            }
+            yValue += Int(Double(dimension)*0.85)
+        }
+        activeGame.cupConfig = activeGame.reRackConfig
+    }
+    func reRackPlaceholderTapped(sender:reRackSwitch!){
+        sender.isPressed()
+        let location = sender.location
+        activeGame.reRackConfig[location.0][location.1] = sender.switchState
     }
     func undo(){
         // this is messy, don't force unwrap the optionals
@@ -195,7 +263,7 @@ class PongGameVC: UIViewController {
     }
     
     // Animations
-    func winnerAnimateIn(){
+    func springAnimateIn(viewToAnimate: UIView){
         // gets final score
         finalScore.text = "Final Score: \(activeGame.getScore())"
         
@@ -205,31 +273,31 @@ class PongGameVC: UIViewController {
         blurEffectView.alpha = 0
         view.addSubview(blurEffectView)
         
-        // Adds winner screen
-        self.view.addSubview(winnerView)
-        winnerView.alpha = 0
-        winnerView.center = CGPoint.init(x: self.view.center.x, y: self.view.bounds.height)
-        winnerView.layer.shadowColor = UIColor.black.cgColor
-        winnerView.layer.shadowOpacity = 0.3
-        winnerView.layer.shadowOffset = CGSize.zero
-        winnerView.layer.shadowRadius = 20
+        // Adds view to main screen
+        self.view.addSubview(viewToAnimate)
+        viewToAnimate.alpha = 0
+        viewToAnimate.center = CGPoint.init(x: self.view.center.x, y: self.view.bounds.height)
+        viewToAnimate.layer.shadowColor = UIColor.black.cgColor
+        viewToAnimate.layer.shadowOpacity = 0.3
+        viewToAnimate.layer.shadowOffset = CGSize.zero
+        viewToAnimate.layer.shadowRadius = 20
         
         UIView.animate(withDuration: 0.4){
-            self.winnerView.alpha = 1
+            viewToAnimate.alpha = 1
             self.blurEffectView.alpha = 1
         }
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [] , animations: {
-            self.winnerView.center = CGPoint.init(x: self.view.center.x, y: self.view.bounds.height/2)
+            viewToAnimate.center = CGPoint.init(x: self.view.center.x, y: self.view.bounds.height/2)
         }, completion: nil)
     }
-    func winnerAnimateOut(){
+    func animateOut(viewToAnimate: UIView){
         UIView.animate(withDuration: 0.3, animations: {
             self.blurEffectView.alpha = 0
-            self.winnerView.alpha = 0
-            self.winnerView.transform = CGAffineTransform.init(scaleX: 1.05, y: 1.05)
+            viewToAnimate.alpha = 0
+            viewToAnimate.transform = CGAffineTransform.init(scaleX: 1.05, y: 1.05)
             
         }) { (sucsess:Bool) in
-            self.winnerView.removeFromSuperview()
+            viewToAnimate.removeFromSuperview()
             self.blurEffectView.removeFromSuperview()
         }
     }

@@ -52,8 +52,6 @@ class Cup: UIView {
 
     // MARK: The following code is for the initialization
     private func nibSetup() {
-        backgroundColor = .clear
-
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -65,9 +63,6 @@ class Cup: UIView {
 
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
         self.addGestureRecognizer(longPressGesture)
-
-
-
     }
 
     private func loadViewFromNib() -> UIView {
