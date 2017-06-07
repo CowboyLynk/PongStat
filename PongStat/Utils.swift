@@ -59,7 +59,7 @@ class PongGame {
     func calcCupsAround(cup: Cup) -> Int {
         var cupsAround = 0
         let maxIndex = cupConfig.count - 1
-        let perms = [(1, 0), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, -1)]
+        let perms = [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0)]
         let row = cup.location.0
         let col = cup.location.1
         for perm in perms{
