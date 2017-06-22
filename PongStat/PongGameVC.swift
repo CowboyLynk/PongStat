@@ -16,6 +16,7 @@ class PongGameVC: UIViewController {
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
+    @IBOutlet weak var currentScoreLabel: UILabel!
 
     // Actions
     @IBAction func rotateButtonTapped(_ sender: Any) {
@@ -92,7 +93,7 @@ class PongGameVC: UIViewController {
     func updateVisuals(){
         activeGame.updateScore()
         missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
-        //currentScoreLabel.text = "WEIGHTED SCORE: \(Int(activeGame.score))"
+        currentScoreLabel.text = "WEIGHTED SCORE: \(Int(activeGame.score))"
         //ChartSetup.updateChart(chartView: chartView, noDataLabel: noDataLabel, turnNodes: getTurnNodes())
     }
     
@@ -104,7 +105,9 @@ class PongGameVC: UIViewController {
         tableView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width))
         self.view.addSubview(tableView)
         tableView.setSize()
-        setTable(tableArrangement: CupConfigs.honeycomb())
+        tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
+        tableView.backgroundColor = .gray
+        setTable(tableArrangement: CupConfigs.stoplight())
         
         // Custon missed button appearance
         missedButton.layer.shadowColor = UIColor(red:0.80, green:0.20, blue:0.10, alpha:1.0).cgColor

@@ -27,7 +27,7 @@ extension UIView {
     }
     func setSize(){
         let scaleFactor = self.superview!.bounds.width/self.bounds.width * 0.7
-        self.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width)
+        //self.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width)
         self.center = self.superview!.center
         self.transform = transform.scaledBy(x: scaleFactor, y: scaleFactor)
     }
