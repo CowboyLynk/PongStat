@@ -34,7 +34,7 @@ class PongGameVC: UIViewController {
                 tableView.addSubview(cup.makeCupCopy())
             }
             
-
+            activeGame.tableView = tableView
             updateVisuals()
             //checkForReReck()
             printTurns()
