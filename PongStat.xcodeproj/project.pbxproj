@@ -7,111 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D371EDC445500EB49CA /* AppDelegate.swift */; };
-		852E1D3A1EDC445500EB49CA /* PongGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D391EDC445500EB49CA /* PongGameVC.swift */; };
-		852E1D3D1EDC445500EB49CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D3B1EDC445500EB49CA /* Main.storyboard */; };
-		852E1D3F1EDC445500EB49CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D3E1EDC445500EB49CA /* Assets.xcassets */; };
-		852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */; };
-		852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D4C1EDC445500EB49CA /* PongStatTests.swift */; };
-		852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852E1D571EDC445500EB49CA /* PongStatUITests.swift */; };
-		855ABDE01EE513190036793E /* reRackSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855ABDDF1EE513190036793E /* reRackSwitch.swift */; };
-		85964CD41EE26C9A002BB76D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; };
-		85964CD51EE26C9A002BB76D /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 858AAC151EE0B5D3000ADD7F /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7DBD61EDE5E5E00F937FE /* Cup.swift */; };
-		85C7DBD91EDE5E5E00F937FE /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7DBD71EDE5E5E00F937FE /* Cup.xib */; };
-		85F671471EE044530002F76F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F671461EE044530002F76F /* Utils.swift */; };
+		85100E651EFAD7D60057F182 /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85100E641EFAD7D60057F182 /* Cup.xib */; };
+		85100E671EFAD7DC0057F182 /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85100E661EFAD7DC0057F182 /* Cup.swift */; };
+		857D2C751EFB03B30010DCCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857D2C731EFB03B30010DCCF /* Main.storyboard */; };
+		857D2C771EFB09EB0010DCCF /* CupConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C761EFB09EB0010DCCF /* CupConfigs.swift */; };
+		857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C7B1EFBEFD90010DCCF /* Utils.swift */; };
+		85E6D9B11EFAD627009F2D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */; };
+		85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B21EFAD627009F2D80 /* ViewController.swift */; };
+		85E6D9B81EFAD627009F2D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E6D9B71EFAD627009F2D80 /* Assets.xcassets */; };
+		85E6D9BB1EFAD627009F2D80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E6D9B91EFAD627009F2D80 /* LaunchScreen.storyboard */; };
+		85E6D9C61EFAD628009F2D80 /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9C51EFAD628009F2D80 /* PongStatTests.swift */; };
+		85E6D9D11EFAD628009F2D80 /* PongStatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9D01EFAD628009F2D80 /* PongStatUITests.swift */; };
+		85E6D9E31EFAD763009F2D80 /* PongGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */; };
+		85E6D9E51EFAD76D009F2D80 /* PongGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9E41EFAD76D009F2D80 /* PongGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		852E1D491EDC445500EB49CA /* PBXContainerItemProxy */ = {
+		85E6D9C21EFAD628009F2D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 852E1D2C1EDC445500EB49CA /* Project object */;
+			containerPortal = 85E6D9A51EFAD627009F2D80 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 852E1D331EDC445500EB49CA;
+			remoteGlobalIDString = 85E6D9AC1EFAD627009F2D80;
 			remoteInfo = PongStat;
 		};
-		852E1D541EDC445500EB49CA /* PBXContainerItemProxy */ = {
+		85E6D9CD1EFAD628009F2D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 852E1D2C1EDC445500EB49CA /* Project object */;
+			containerPortal = 85E6D9A51EFAD627009F2D80 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 852E1D331EDC445500EB49CA;
+			remoteGlobalIDString = 85E6D9AC1EFAD627009F2D80;
 			remoteInfo = PongStat;
-		};
-		858AAC141EE0B5D3000ADD7F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F241D8110E600722320;
-			remoteInfo = Charts;
-		};
-		858AAC161EE0B5D3000ADD7F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F2E1D8110E600722320;
-			remoteInfo = ChartsTests;
-		};
-		85964CD61EE26C9A002BB76D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06165F231D8110E600722320;
-			remoteInfo = Charts;
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		85964CD81EE26C9A002BB76D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				85964CD51EE26C9A002BB76D /* Charts.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		852E1D341EDC445500EB49CA /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		852E1D371EDC445500EB49CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		852E1D391EDC445500EB49CA /* PongGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongGameVC.swift; sourceTree = "<group>"; };
-		852E1D3C1EDC445500EB49CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		852E1D3E1EDC445500EB49CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		852E1D411EDC445500EB49CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		852E1D431EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		852E1D481EDC445500EB49CA /* PongStatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		852E1D4C1EDC445500EB49CA /* PongStatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatTests.swift; sourceTree = "<group>"; };
-		852E1D4E1EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		852E1D531EDC445500EB49CA /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		852E1D571EDC445500EB49CA /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
-		852E1D591EDC445500EB49CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		855ABDDF1EE513190036793E /* reRackSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reRackSwitch.swift; sourceTree = "<group>"; };
-		858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
-		85C7DBD61EDE5E5E00F937FE /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
-		85C7DBD71EDE5E5E00F937FE /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
-		85F671461EE044530002F76F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		85100E641EFAD7D60057F182 /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
+		85100E661EFAD7DC0057F182 /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
+		857D2C741EFB03B30010DCCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		857D2C761EFB09EB0010DCCF /* CupConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupConfigs.swift; sourceTree = "<group>"; };
+		857D2C7B1EFBEFD90010DCCF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		85E6D9AD1EFAD627009F2D80 /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		85E6D9B21EFAD627009F2D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		85E6D9B71EFAD627009F2D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85E6D9BA1EFAD627009F2D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		85E6D9BC1EFAD627009F2D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85E6D9C11EFAD628009F2D80 /* PongStatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85E6D9C51EFAD628009F2D80 /* PongStatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatTests.swift; sourceTree = "<group>"; };
+		85E6D9C71EFAD628009F2D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85E6D9CC1EFAD628009F2D80 /* PongStatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PongStatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85E6D9D01EFAD628009F2D80 /* PongStatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongStatUITests.swift; sourceTree = "<group>"; };
+		85E6D9D21EFAD628009F2D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PongGameVC.swift; sourceTree = "<group>"; };
+		85E6D9E41EFAD76D009F2D80 /* PongGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PongGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		852E1D311EDC445500EB49CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85964CD41EE26C9A002BB76D /* Charts.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		852E1D451EDC445500EB49CA /* Frameworks */ = {
+		85E6D9AA1EFAD627009F2D80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		852E1D501EDC445500EB49CA /* Frameworks */ = {
+		85E6D9BE1EFAD628009F2D80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85E6D9C91EFAD628009F2D80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -121,157 +86,157 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		852E1D2B1EDC445500EB49CA = {
+		85E6D9A41EFAD627009F2D80 = {
 			isa = PBXGroup;
 			children = (
-				858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */,
-				852E1D361EDC445500EB49CA /* PongStat */,
-				852E1D4B1EDC445500EB49CA /* PongStatTests */,
-				852E1D561EDC445500EB49CA /* PongStatUITests */,
-				852E1D351EDC445500EB49CA /* Products */,
+				85E6D9AF1EFAD627009F2D80 /* PongStat */,
+				85E6D9C41EFAD628009F2D80 /* PongStatTests */,
+				85E6D9CF1EFAD628009F2D80 /* PongStatUITests */,
+				85E6D9AE1EFAD627009F2D80 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		852E1D351EDC445500EB49CA /* Products */ = {
+		85E6D9AE1EFAD627009F2D80 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				852E1D341EDC445500EB49CA /* PongStat.app */,
-				852E1D481EDC445500EB49CA /* PongStatTests.xctest */,
-				852E1D531EDC445500EB49CA /* PongStatUITests.xctest */,
+				85E6D9AD1EFAD627009F2D80 /* PongStat.app */,
+				85E6D9C11EFAD628009F2D80 /* PongStatTests.xctest */,
+				85E6D9CC1EFAD628009F2D80 /* PongStatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		852E1D361EDC445500EB49CA /* PongStat */ = {
+		85E6D9AF1EFAD627009F2D80 /* PongStat */ = {
 			isa = PBXGroup;
 			children = (
-				852E1D371EDC445500EB49CA /* AppDelegate.swift */,
-				852E1D391EDC445500EB49CA /* PongGameVC.swift */,
-				852E1D3B1EDC445500EB49CA /* Main.storyboard */,
-				852E1D3E1EDC445500EB49CA /* Assets.xcassets */,
-				852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */,
-				852E1D431EDC445500EB49CA /* Info.plist */,
-				85F671461EE044530002F76F /* Utils.swift */,
-				85C7DBD61EDE5E5E00F937FE /* Cup.swift */,
-				855ABDDF1EE513190036793E /* reRackSwitch.swift */,
-				85C7DBD71EDE5E5E00F937FE /* Cup.xib */,
+				85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */,
+				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
+				857D2C731EFB03B30010DCCF /* Main.storyboard */,
+				85E6D9DE1EFAD677009F2D80 /* Utilities */,
+				85E6D9B71EFAD627009F2D80 /* Assets.xcassets */,
+				85E6D9B21EFAD627009F2D80 /* ViewController.swift */,
+				85E6D9B91EFAD627009F2D80 /* LaunchScreen.storyboard */,
+				85E6D9BC1EFAD627009F2D80 /* Info.plist */,
 			);
 			path = PongStat;
 			sourceTree = "<group>";
 		};
-		852E1D4B1EDC445500EB49CA /* PongStatTests */ = {
+		85E6D9C41EFAD628009F2D80 /* PongStatTests */ = {
 			isa = PBXGroup;
 			children = (
-				852E1D4C1EDC445500EB49CA /* PongStatTests.swift */,
-				852E1D4E1EDC445500EB49CA /* Info.plist */,
+				85E6D9C51EFAD628009F2D80 /* PongStatTests.swift */,
+				85E6D9C71EFAD628009F2D80 /* Info.plist */,
 			);
 			path = PongStatTests;
 			sourceTree = "<group>";
 		};
-		852E1D561EDC445500EB49CA /* PongStatUITests */ = {
+		85E6D9CF1EFAD628009F2D80 /* PongStatUITests */ = {
 			isa = PBXGroup;
 			children = (
-				852E1D571EDC445500EB49CA /* PongStatUITests.swift */,
-				852E1D591EDC445500EB49CA /* Info.plist */,
+				85E6D9D01EFAD628009F2D80 /* PongStatUITests.swift */,
+				85E6D9D21EFAD628009F2D80 /* Info.plist */,
 			);
 			path = PongStatUITests;
 			sourceTree = "<group>";
 		};
-		858AAC101EE0B5D3000ADD7F /* Products */ = {
+		85E6D9DE1EFAD677009F2D80 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				858AAC151EE0B5D3000ADD7F /* Charts.framework */,
-				858AAC171EE0B5D3000ADD7F /* ChartsTests.xctest */,
+				85E6D9E41EFAD76D009F2D80 /* PongGame.swift */,
+				85100E661EFAD7DC0057F182 /* Cup.swift */,
+				85100E641EFAD7D60057F182 /* Cup.xib */,
+				857D2C761EFB09EB0010DCCF /* CupConfigs.swift */,
+				857D2C7B1EFBEFD90010DCCF /* Utils.swift */,
 			);
-			name = Products;
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		852E1D331EDC445500EB49CA /* PongStat */ = {
+		85E6D9AC1EFAD627009F2D80 /* PongStat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 852E1D5C1EDC445500EB49CA /* Build configuration list for PBXNativeTarget "PongStat" */;
+			buildConfigurationList = 85E6D9D51EFAD628009F2D80 /* Build configuration list for PBXNativeTarget "PongStat" */;
 			buildPhases = (
-				852E1D301EDC445500EB49CA /* Sources */,
-				852E1D311EDC445500EB49CA /* Frameworks */,
-				852E1D321EDC445500EB49CA /* Resources */,
-				85964CD81EE26C9A002BB76D /* Embed Frameworks */,
+				85E6D9A91EFAD627009F2D80 /* Sources */,
+				85E6D9AA1EFAD627009F2D80 /* Frameworks */,
+				85E6D9AB1EFAD627009F2D80 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				85964CD71EE26C9A002BB76D /* PBXTargetDependency */,
 			);
 			name = PongStat;
 			productName = PongStat;
-			productReference = 852E1D341EDC445500EB49CA /* PongStat.app */;
+			productReference = 85E6D9AD1EFAD627009F2D80 /* PongStat.app */;
 			productType = "com.apple.product-type.application";
 		};
-		852E1D471EDC445500EB49CA /* PongStatTests */ = {
+		85E6D9C01EFAD628009F2D80 /* PongStatTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 852E1D5F1EDC445500EB49CA /* Build configuration list for PBXNativeTarget "PongStatTests" */;
+			buildConfigurationList = 85E6D9D81EFAD628009F2D80 /* Build configuration list for PBXNativeTarget "PongStatTests" */;
 			buildPhases = (
-				852E1D441EDC445500EB49CA /* Sources */,
-				852E1D451EDC445500EB49CA /* Frameworks */,
-				852E1D461EDC445500EB49CA /* Resources */,
+				85E6D9BD1EFAD628009F2D80 /* Sources */,
+				85E6D9BE1EFAD628009F2D80 /* Frameworks */,
+				85E6D9BF1EFAD628009F2D80 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				852E1D4A1EDC445500EB49CA /* PBXTargetDependency */,
+				85E6D9C31EFAD628009F2D80 /* PBXTargetDependency */,
 			);
 			name = PongStatTests;
 			productName = PongStatTests;
-			productReference = 852E1D481EDC445500EB49CA /* PongStatTests.xctest */;
+			productReference = 85E6D9C11EFAD628009F2D80 /* PongStatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		852E1D521EDC445500EB49CA /* PongStatUITests */ = {
+		85E6D9CB1EFAD628009F2D80 /* PongStatUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 852E1D621EDC445500EB49CA /* Build configuration list for PBXNativeTarget "PongStatUITests" */;
+			buildConfigurationList = 85E6D9DB1EFAD628009F2D80 /* Build configuration list for PBXNativeTarget "PongStatUITests" */;
 			buildPhases = (
-				852E1D4F1EDC445500EB49CA /* Sources */,
-				852E1D501EDC445500EB49CA /* Frameworks */,
-				852E1D511EDC445500EB49CA /* Resources */,
+				85E6D9C81EFAD628009F2D80 /* Sources */,
+				85E6D9C91EFAD628009F2D80 /* Frameworks */,
+				85E6D9CA1EFAD628009F2D80 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				852E1D551EDC445500EB49CA /* PBXTargetDependency */,
+				85E6D9CE1EFAD628009F2D80 /* PBXTargetDependency */,
 			);
 			name = PongStatUITests;
 			productName = PongStatUITests;
-			productReference = 852E1D531EDC445500EB49CA /* PongStatUITests.xctest */;
+			productReference = 85E6D9CC1EFAD628009F2D80 /* PongStatUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		852E1D2C1EDC445500EB49CA /* Project object */ = {
+		85E6D9A51EFAD627009F2D80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Cowboy Lynk";
 				TargetAttributes = {
-					852E1D331EDC445500EB49CA = {
+					85E6D9AC1EFAD627009F2D80 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 78T5GXP6Q3;
 						ProvisioningStyle = Automatic;
 					};
-					852E1D471EDC445500EB49CA = {
+					85E6D9C01EFAD628009F2D80 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 78T5GXP6Q3;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 852E1D331EDC445500EB49CA;
+						TestTargetID = 85E6D9AC1EFAD627009F2D80;
 					};
-					852E1D521EDC445500EB49CA = {
+					85E6D9CB1EFAD628009F2D80 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 78T5GXP6Q3;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 852E1D331EDC445500EB49CA;
+						TestTargetID = 85E6D9AC1EFAD627009F2D80;
 					};
 				};
 			};
-			buildConfigurationList = 852E1D2F1EDC445500EB49CA /* Build configuration list for PBXProject "PongStat" */;
+			buildConfigurationList = 85E6D9A81EFAD627009F2D80 /* Build configuration list for PBXProject "PongStat" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -279,61 +244,38 @@
 				en,
 				Base,
 			);
-			mainGroup = 852E1D2B1EDC445500EB49CA;
-			productRefGroup = 852E1D351EDC445500EB49CA /* Products */;
+			mainGroup = 85E6D9A41EFAD627009F2D80;
+			productRefGroup = 85E6D9AE1EFAD627009F2D80 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 858AAC101EE0B5D3000ADD7F /* Products */;
-					ProjectRef = 858AAC0F1EE0B5D3000ADD7F /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				852E1D331EDC445500EB49CA /* PongStat */,
-				852E1D471EDC445500EB49CA /* PongStatTests */,
-				852E1D521EDC445500EB49CA /* PongStatUITests */,
+				85E6D9AC1EFAD627009F2D80 /* PongStat */,
+				85E6D9C01EFAD628009F2D80 /* PongStatTests */,
+				85E6D9CB1EFAD628009F2D80 /* PongStatUITests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		858AAC151EE0B5D3000ADD7F /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = 858AAC141EE0B5D3000ADD7F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		858AAC171EE0B5D3000ADD7F /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = 858AAC161EE0B5D3000ADD7F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
-		852E1D321EDC445500EB49CA /* Resources */ = {
+		85E6D9AB1EFAD627009F2D80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85C7DBD91EDE5E5E00F937FE /* Cup.xib in Resources */,
-				852E1D421EDC445500EB49CA /* LaunchScreen.storyboard in Resources */,
-				852E1D3F1EDC445500EB49CA /* Assets.xcassets in Resources */,
-				852E1D3D1EDC445500EB49CA /* Main.storyboard in Resources */,
+				85100E651EFAD7D60057F182 /* Cup.xib in Resources */,
+				85E6D9BB1EFAD627009F2D80 /* LaunchScreen.storyboard in Resources */,
+				85E6D9B81EFAD627009F2D80 /* Assets.xcassets in Resources */,
+				857D2C751EFB03B30010DCCF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		852E1D461EDC445500EB49CA /* Resources */ = {
+		85E6D9BF1EFAD628009F2D80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		852E1D511EDC445500EB49CA /* Resources */ = {
+		85E6D9CA1EFAD628009F2D80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -343,67 +285,64 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		852E1D301EDC445500EB49CA /* Sources */ = {
+		85E6D9A91EFAD627009F2D80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85F671471EE044530002F76F /* Utils.swift in Sources */,
-				855ABDE01EE513190036793E /* reRackSwitch.swift in Sources */,
-				85C7DBD81EDE5E5E00F937FE /* Cup.swift in Sources */,
-				852E1D3A1EDC445500EB49CA /* PongGameVC.swift in Sources */,
-				852E1D381EDC445500EB49CA /* AppDelegate.swift in Sources */,
+				85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */,
+				857D2C771EFB09EB0010DCCF /* CupConfigs.swift in Sources */,
+				85E6D9E31EFAD763009F2D80 /* PongGameVC.swift in Sources */,
+				85E6D9E51EFAD76D009F2D80 /* PongGame.swift in Sources */,
+				85100E671EFAD7DC0057F182 /* Cup.swift in Sources */,
+				85E6D9B11EFAD627009F2D80 /* AppDelegate.swift in Sources */,
+				857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		852E1D441EDC445500EB49CA /* Sources */ = {
+		85E6D9BD1EFAD628009F2D80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852E1D4D1EDC445500EB49CA /* PongStatTests.swift in Sources */,
+				85E6D9C61EFAD628009F2D80 /* PongStatTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		852E1D4F1EDC445500EB49CA /* Sources */ = {
+		85E6D9C81EFAD628009F2D80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852E1D581EDC445500EB49CA /* PongStatUITests.swift in Sources */,
+				85E6D9D11EFAD628009F2D80 /* PongStatUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		852E1D4A1EDC445500EB49CA /* PBXTargetDependency */ = {
+		85E6D9C31EFAD628009F2D80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 852E1D331EDC445500EB49CA /* PongStat */;
-			targetProxy = 852E1D491EDC445500EB49CA /* PBXContainerItemProxy */;
+			target = 85E6D9AC1EFAD627009F2D80 /* PongStat */;
+			targetProxy = 85E6D9C21EFAD628009F2D80 /* PBXContainerItemProxy */;
 		};
-		852E1D551EDC445500EB49CA /* PBXTargetDependency */ = {
+		85E6D9CE1EFAD628009F2D80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 852E1D331EDC445500EB49CA /* PongStat */;
-			targetProxy = 852E1D541EDC445500EB49CA /* PBXContainerItemProxy */;
-		};
-		85964CD71EE26C9A002BB76D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 85964CD61EE26C9A002BB76D /* PBXContainerItemProxy */;
+			target = 85E6D9AC1EFAD627009F2D80 /* PongStat */;
+			targetProxy = 85E6D9CD1EFAD628009F2D80 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		852E1D3B1EDC445500EB49CA /* Main.storyboard */ = {
+		857D2C731EFB03B30010DCCF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				852E1D3C1EDC445500EB49CA /* Base */,
+				857D2C741EFB03B30010DCCF /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		852E1D401EDC445500EB49CA /* LaunchScreen.storyboard */ = {
+		85E6D9B91EFAD627009F2D80 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				852E1D411EDC445500EB49CA /* Base */,
+				85E6D9BA1EFAD627009F2D80 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -411,10 +350,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		852E1D5A1EDC445500EB49CA /* Debug */ = {
+		85E6D9D31EFAD628009F2D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -436,7 +374,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -463,10 +400,9 @@
 			};
 			name = Debug;
 		};
-		852E1D5B1EDC445500EB49CA /* Release */ = {
+		85E6D9D41EFAD628009F2D80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -488,7 +424,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -508,84 +443,84 @@
 			};
 			name = Release;
 		};
-		852E1D5D1EDC445500EB49CA /* Debug */ = {
+		85E6D9D61EFAD628009F2D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lampshade.PongStat;
+				PRODUCT_BUNDLE_IDENTIFIER = LampshadeSoftware.PongStat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		852E1D5E1EDC445500EB49CA /* Release */ = {
+		85E6D9D71EFAD628009F2D80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lampshade.PongStat;
+				PRODUCT_BUNDLE_IDENTIFIER = LampshadeSoftware.PongStat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
-		852E1D601EDC445500EB49CA /* Debug */ = {
+		85E6D9D91EFAD628009F2D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lampshade.PongStatTests;
+				PRODUCT_BUNDLE_IDENTIFIER = LampshadeSoftware.PongStatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PongStat.app/PongStat";
 			};
 			name = Debug;
 		};
-		852E1D611EDC445500EB49CA /* Release */ = {
+		85E6D9DA1EFAD628009F2D80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lampshade.PongStatTests;
+				PRODUCT_BUNDLE_IDENTIFIER = LampshadeSoftware.PongStatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PongStat.app/PongStat";
 			};
 			name = Release;
 		};
-		852E1D631EDC445500EB49CA /* Debug */ = {
+		85E6D9DC1EFAD628009F2D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStatUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lampshade.PongStatUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = LampshadeSoftware.PongStatUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PongStat;
 			};
 			name = Debug;
 		};
-		852E1D641EDC445500EB49CA /* Release */ = {
+		85E6D9DD1EFAD628009F2D80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStatUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lampshade.PongStatUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = LampshadeSoftware.PongStatUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PongStat;
@@ -595,43 +530,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		852E1D2F1EDC445500EB49CA /* Build configuration list for PBXProject "PongStat" */ = {
+		85E6D9A81EFAD627009F2D80 /* Build configuration list for PBXProject "PongStat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				852E1D5A1EDC445500EB49CA /* Debug */,
-				852E1D5B1EDC445500EB49CA /* Release */,
+				85E6D9D31EFAD628009F2D80 /* Debug */,
+				85E6D9D41EFAD628009F2D80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		852E1D5C1EDC445500EB49CA /* Build configuration list for PBXNativeTarget "PongStat" */ = {
+		85E6D9D51EFAD628009F2D80 /* Build configuration list for PBXNativeTarget "PongStat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				852E1D5D1EDC445500EB49CA /* Debug */,
-				852E1D5E1EDC445500EB49CA /* Release */,
+				85E6D9D61EFAD628009F2D80 /* Debug */,
+				85E6D9D71EFAD628009F2D80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		852E1D5F1EDC445500EB49CA /* Build configuration list for PBXNativeTarget "PongStatTests" */ = {
+		85E6D9D81EFAD628009F2D80 /* Build configuration list for PBXNativeTarget "PongStatTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				852E1D601EDC445500EB49CA /* Debug */,
-				852E1D611EDC445500EB49CA /* Release */,
+				85E6D9D91EFAD628009F2D80 /* Debug */,
+				85E6D9DA1EFAD628009F2D80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		852E1D621EDC445500EB49CA /* Build configuration list for PBXNativeTarget "PongStatUITests" */ = {
+		85E6D9DB1EFAD628009F2D80 /* Build configuration list for PBXNativeTarget "PongStatUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				852E1D631EDC445500EB49CA /* Debug */,
-				852E1D641EDC445500EB49CA /* Release */,
+				85E6D9DC1EFAD628009F2D80 /* Debug */,
+				85E6D9DD1EFAD628009F2D80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 852E1D2C1EDC445500EB49CA /* Project object */;
+	rootObject = 85E6D9A51EFAD627009F2D80 /* Project object */;
 }

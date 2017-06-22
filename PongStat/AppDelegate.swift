@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  PongStat
 //
-//  Created by Cowboy Lynk on 5/29/17.
+//  Created by Cowboy Lynk on 6/21/17.
 //  Copyright © 2017 Cowboy Lynk. All rights reserved.
 //
 
@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UIApplication.shared.statusBarStyle = .lightContent
         return true
     }
 

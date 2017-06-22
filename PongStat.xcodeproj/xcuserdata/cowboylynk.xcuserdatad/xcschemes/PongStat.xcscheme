@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "852E1D331EDC445500EB49CA"
+               BlueprintIdentifier = "85E6D9AC1EFAD627009F2D80"
                BuildableName = "PongStat.app"
                BlueprintName = "PongStat"
                ReferencedContainer = "container:PongStat.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "852E1D471EDC445500EB49CA"
+               BlueprintIdentifier = "85E6D9C01EFAD628009F2D80"
                BuildableName = "PongStatTests.xctest"
                BlueprintName = "PongStatTests"
                ReferencedContainer = "container:PongStat.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "852E1D521EDC445500EB49CA"
+               BlueprintIdentifier = "85E6D9CB1EFAD628009F2D80"
                BuildableName = "PongStatUITests.xctest"
                BlueprintName = "PongStatUITests"
                ReferencedContainer = "container:PongStat.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "852E1D331EDC445500EB49CA"
+            BlueprintIdentifier = "85E6D9AC1EFAD627009F2D80"
             BuildableName = "PongStat.app"
             BlueprintName = "PongStat"
             ReferencedContainer = "container:PongStat.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "852E1D331EDC445500EB49CA"
+            BlueprintIdentifier = "85E6D9AC1EFAD627009F2D80"
             BuildableName = "PongStat.app"
             BlueprintName = "PongStat"
             ReferencedContainer = "container:PongStat.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "852E1D331EDC445500EB49CA"
+            BlueprintIdentifier = "85E6D9AC1EFAD627009F2D80"
             BuildableName = "PongStat.app"
             BlueprintName = "PongStat"
             ReferencedContainer = "container:PongStat.xcodeproj">
