@@ -73,6 +73,7 @@ class Cup: UIView{
     func makeCupCopy() -> Cup {
         let copy = Cup(frame: self.frame)
         copy.location = self.location
+        copy.transform = self.transform
         copy.delegate = self.delegate
         copy.cup.isHidden = self.cup.isHidden
         copy.isUserInteractionEnabled = self.isUserInteractionEnabled

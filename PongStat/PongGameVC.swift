@@ -27,18 +27,19 @@ class PongGameVC: UIViewController {
             tableView.clearView()
             turns.removeLast()
             activeGame = turns.last?.copy() as! PongGame
-            //tableView = activeGame.tableView.copy()
             
-            // adds all the cups from the saved
+            // Adds all the cups from the SAVED tableView to the ACTIVE tableView
             for subview in activeGame.tableView.subviews{
                 let cup = subview as! Cup
                 tableView.addSubview(cup.makeCupCopy())
             }
+            tableView.transform = activeGame.tableView.transform // makes sure the ACTIVE tableView is in the same orientation as the SAVED tableView
             
+            // sets the now updated tableView to be the one that updates in the game
             activeGame.tableView = tableView
+            
             updateVisuals()
             //checkForReReck()
-            printTurns()
         }
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {
@@ -65,28 +66,12 @@ class PongGameVC: UIViewController {
         activeGame.updateScore()
         turns.append(activeGame.copy() as! PongGame) // Adds the current cup config to turns
         
-        printTurns()
-        
         updateVisuals()
         /*if activeGame.getCount(array: activeGame.cupConfig) == 0{
             finalScoreLabel.text = "Final Score: \(String(Int(activeGame.score)))"
             Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
         }*/
     }
-    
-    func printTurns(){
-        for turn in turns{
-            var cup: Cup
-            var string = "["
-            for subview in turn.tableView.subviews{
-                cup = subview as! Cup
-                string += String(cup.cup.isHidden) + " "
-            }
-            print(string + "],")
-        }
-        print()
-    }
-    // Functions
     func setTable(tableArrangement: ([[Bool]], Int)){
         /* Takes in a cup configuration and a table type (offset pyramid, grid, or other) and places the cups according to the configuration it is given
         */
@@ -144,7 +129,7 @@ class PongGameVC: UIViewController {
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
         tableView.backgroundColor = .gray
-        setTable(tableArrangement: CupConfigs.honeycomb())
+        setTable(tableArrangement: CupConfigs.pyramid(numBase: 4))
         
         // Set the initial turn
         activeGame.tableView = tableView

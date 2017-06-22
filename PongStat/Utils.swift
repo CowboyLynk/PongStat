@@ -31,6 +31,7 @@ extension UIView {
     }
     
     func copy(with zone: NSZone? = nil) -> UIView {
+        print("orig: +\(self.transform)")
         let copy = UIView(frame: self.frame)
         //copy.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.bounds.width, height: self.bounds.height)
         copy.transform = self.transform
@@ -40,6 +41,8 @@ extension UIView {
             copy.addSubview(cup.makeCupCopy())
         }
         copy.backgroundColor = .gray
+        print(("copy: +\(self.transform)"))
+        print()
         return copy
     }
 }
