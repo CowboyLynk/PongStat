@@ -29,6 +29,7 @@ class PongGameVC: UIViewController {
             activeGame = turns.last?.copy() as! PongGame
             //tableView = activeGame.tableView.copy()
             
+            // adds all the cups from the saved
             for subview in activeGame.tableView.subviews{
                 let cup = subview as! Cup
                 tableView.addSubview(cup.makeCupCopy())
