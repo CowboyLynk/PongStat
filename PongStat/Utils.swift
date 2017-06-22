@@ -26,10 +26,21 @@ extension UIView {
         }
     }
     func setSize(){
-        let scaleFactor = self.superview!.bounds.width/self.bounds.width * 0.7
-        //self.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width)
         self.center = self.superview!.center
-        self.transform = transform.scaledBy(x: scaleFactor, y: scaleFactor)
+        self.transform = transform.scaledBy(x: 0.7, y: 0.7)
+    }
+    
+    func copy(with zone: NSZone? = nil) -> UIView {
+        let copy = UIView(frame: self.frame)
+        //copy.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.bounds.width, height: self.bounds.height)
+        copy.transform = self.transform
+        var cup: Cup
+        for cupSubview in self.subviews{
+            cup = cupSubview as! Cup
+            copy.addSubview(cup.makeCupCopy())
+        }
+        copy.backgroundColor = .gray
+        return copy
     }
 }
 

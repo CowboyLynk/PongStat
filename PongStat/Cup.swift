@@ -13,7 +13,7 @@ protocol CupDelegate {
     func didLongPress(cup: Cup, longPressGesture: UILongPressGestureRecognizer)
 }
 
-class Cup: UIView {
+class Cup: UIView{
     // Variables
     var location = (Int(), Int())
     var delegate: CupDelegate?
@@ -68,6 +68,15 @@ class Cup: UIView {
         let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         return nibView
+    }
+    
+    func makeCupCopy() -> Cup {
+        let copy = Cup(frame: self.frame)
+        copy.location = self.location
+        copy.delegate = self.delegate
+        copy.cup.isHidden = self.cup.isHidden
+        copy.isUserInteractionEnabled = self.isUserInteractionEnabled
+        return copy
     }
     
 }

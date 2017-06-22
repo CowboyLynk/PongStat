@@ -14,7 +14,7 @@ class PongGame: NSObject, NSCopying {
     var madeCounter: Double
     var missedCounter: Int
     var cupConfig: [[Bool]]!
-    var tableType: Int!
+    var tableView: UIView!
     
     override init(){
         madeCounter = 0
@@ -34,7 +34,7 @@ class PongGame: NSObject, NSCopying {
         copy.madeCounter = self.madeCounter
         copy.missedCounter = self.missedCounter
         copy.cupConfig = self.cupConfig
-        copy.tableType = self.tableType
+        copy.tableView = self.tableView.copy()
         return copy
     }
     

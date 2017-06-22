@@ -46,11 +46,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zch-4I-jef" userLabel="Rotate Button">
-                                <rect key="frame" x="164" y="167" width="46" height="30"/>
+                                <rect key="frame" x="16" y="138" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Rotate"/>
                                 <connections>
                                     <action selector="rotateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tsp-QV-S67"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRq-6f-a6O" userLabel="Re-Rack">
+                                <rect key="frame" x="309" y="415" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Re-rack"/>
+                                <connections>
+                                    <action selector="reRackButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xea-Oi-YKV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7s-TO-SVB" userLabel="Undo">
+                                <rect key="frame" x="16" y="415" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Undo"/>
+                                <connections>
+                                    <action selector="undoButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1MP-4A-aVb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -91,4 +107,8 @@
             <point key="canvasLocation" x="136.80000000000001" y="135.38230884557723"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Re-rack" width="110" height="100"/>
+        <image name="Undo" width="125" height="125"/>
+    </resources>
 </document>

@@ -12,7 +12,7 @@ class PongGameVC: UIViewController {
     // Variables
     var activeGame: PongGame!
     var tableView: UIView!
-    var turns = [(Int, PongGame)]()  // (TurnType, activeGame copy)
+    var turns = [PongGame]()
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -21,6 +21,26 @@ class PongGameVC: UIViewController {
     // Actions
     @IBAction func rotateButtonTapped(_ sender: Any) {
         tableView.rotate(by: CGFloat.pi/2)
+    }
+    @IBAction func undoButtonTapped(_ sender: Any) {
+        if turns.count > 1{
+            tableView.clearView()
+            turns.removeLast()
+            activeGame = turns.last?.copy() as! PongGame
+            //tableView = activeGame.tableView.copy()
+            
+            for subview in activeGame.tableView.subviews{
+                let cup = subview as! Cup
+                tableView.addSubview(cup.makeCupCopy())
+            }
+            
+
+            updateVisuals()
+            //checkForReReck()
+            printTurns()
+        }
+    }
+    @IBAction func reRackButtonTapped(_ sender: Any) {
     }
     
     // Functions
@@ -42,12 +62,28 @@ class PongGameVC: UIViewController {
             print("default")
         }
         activeGame.updateScore()
-        turns.append((turnType, activeGame.copy() as! PongGame)) // Adds the current cup config to turns
+        turns.append(activeGame.copy() as! PongGame) // Adds the current cup config to turns
+        
+        printTurns()
+        
         updateVisuals()
         /*if activeGame.getCount(array: activeGame.cupConfig) == 0{
             finalScoreLabel.text = "Final Score: \(String(Int(activeGame.score)))"
             Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
         }*/
+    }
+    
+    func printTurns(){
+        for turn in turns{
+            var cup: Cup
+            var string = "["
+            for subview in turn.tableView.subviews{
+                cup = subview as! Cup
+                string += String(cup.cup.isHidden) + " "
+            }
+            print(string + "],")
+        }
+        print()
     }
     // Functions
     func setTable(tableArrangement: ([[Bool]], Int)){
@@ -107,7 +143,11 @@ class PongGameVC: UIViewController {
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
         tableView.backgroundColor = .gray
-        setTable(tableArrangement: CupConfigs.stoplight())
+        setTable(tableArrangement: CupConfigs.honeycomb())
+        
+        // Set the initial turn
+        activeGame.tableView = tableView
+        turns.append(activeGame.copy() as! PongGame)
         
         // Custon missed button appearance
         missedButton.layer.shadowColor = UIColor(red:0.80, green:0.20, blue:0.10, alpha:1.0).cgColor
