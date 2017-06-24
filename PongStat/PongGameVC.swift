@@ -13,6 +13,7 @@ class PongGameVC: UIViewController {
     var activeGame: PongGame!
     var tableView: UIView!
     var turns = [PongGame]()
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -45,7 +46,7 @@ class PongGameVC: UIViewController {
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
         reRackView.clearView()
-        self.view.addSubview(reRackView)
+        Animations.springAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
         reRackView.center = self.view.center
         reRackView.center.y = self.view.bounds.height/2
         for reRackOption in activeGame.getPossibleReRacks(){
@@ -55,15 +56,19 @@ class PongGameVC: UIViewController {
     }
     func reRackOptionTapped(sender: reRackOption){
         setTable(tableArrangement: sender.tableArrangement as! ([[Bool]], Int))
-        reRackView.removeFromSuperview()
+        Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
+    }
+    @IBAction func closeReRackButtonTapped(_ sender: Any) {
+        Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
     }
     
+    
     // Functions
-    func takeTurn(turnType: Int, playedCup: Any) {
-        switch turnType{  // the switch is used for shared
+    func takeTurn(turnType: Int, playedCup: Any) { // 0: User made the cup, 1: User missed a cup, 2: partner made a cup
+        switch turnType{
         case 1:  // User missed the cup
             activeGame.missedCounter += 1
-        case 0, 2:  // Made by user or someone else
+        case 0, 2:  // A cup was made
             let playedCup = playedCup as! Cup
             playedCup.removeCup()
             activeGame.cupConfig[playedCup.location.0][playedCup.location.1] = false
@@ -152,6 +157,11 @@ class PongGameVC: UIViewController {
         missedButton.layer.shadowRadius = 0
         missedButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         missedButton.layer.cornerRadius = 15
+        
+        // Initializes whole-screen blur view (used in many pop-ups)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0
         
         super.viewDidLoad()
     }

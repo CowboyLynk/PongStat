@@ -30,7 +30,9 @@ extension UIView {
     
     func clearView(){ // Removes every subview from the view
         for subview in self.subviews{
-            subview.removeFromSuperview()
+            if subview.tag != 99 {
+                subview.removeFromSuperview()
+            }
         }
     }
     

@@ -32,7 +32,6 @@ class PongGame: NSObject, NSCopying {
         let numCups = self.getCount(array: self.cupConfig)
         var possibleReRacks = [reRackOption]()
         if numCups > 1{
-            print(numCups)
             let numBase = -1/2*(1 - (8.0*Double(numCups) + 1.0).squareRoot())
             if numBase.truncatingRemainder(dividingBy: 1.0) == 0{
                 possibleReRacks.append(ReRacks.pyramid(numBase: Int(numBase)))
