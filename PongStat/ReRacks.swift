@@ -12,11 +12,13 @@ import UIKit
 
 class ReRacks {
     
-    static func createButton(name: String, image: UIImage){
-        //let button = reRackButtton()
+    static func createButton(name: String, image: UIImage, tableArrangement: ([[Bool]], Int)) -> reRackOption{
+        let button = reRackOption(frame: CGRect(x: 0, y: 0, width: 100, height: 100), tableArrangement: tableArrangement, name: name)
+        button.setImage(image, for: .normal)
+        return button
     }
 
-    static func pyramid(numBase: Int) -> ([[Bool]], Int){
+    static func pyramid(numBase: Int) -> reRackOption{
         //CREATE BUTTON HERE!!!
         var cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
         
@@ -28,7 +30,7 @@ class ReRacks {
             colShrinker += 1
         }
         
-        return (cupConfig, 0)
+        return createButton(name: "Pyramid", image: #imageLiteral(resourceName: "pyramid"), tableArrangement: (cupConfig, 0))
     }
     
     //3's

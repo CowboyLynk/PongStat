@@ -43,16 +43,19 @@ class PongGameVC: UIViewController {
             //checkForReReck()
         }
     }
-    @IBAction func reRackButtonTapped(_ sender: Any) {
+    @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
+        reRackView.clearView()
         self.view.addSubview(reRackView)
         reRackView.center = self.view.center
         reRackView.center.y = self.view.bounds.height/2
-        /*
-        for reRack in activeGame.getPossibleReRacks(){
-            reRackOption = reRackButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100), tableArrangement: (reRack.0, reRack.1))
-            reRackOption.setImage(reRack.3, for: .normal)
+        for reRackOption in activeGame.getPossibleReRacks(){
             reRackView.addSubview(reRackOption)
-        }*/
+            reRackOption.addTarget(self, action: #selector(reRackOptionTapped(sender:)), for: .touchUpInside)
+        }
+    }
+    func reRackOptionTapped(sender: reRackOption){
+        setTable(tableArrangement: sender.tableArrangement as! ([[Bool]], Int))
+        reRackView.removeFromSuperview()
     }
     
     // Functions
@@ -137,8 +140,7 @@ class PongGameVC: UIViewController {
         self.view.addSubview(tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
-        let startingPyramid = ReRacks.pyramid(numBase: 4)
-        setTable(tableArrangement: ReRacks.pyramid(numBase: 4))
+        setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement as! ([[Bool]], Int))
         
         // Set the initial turn
         activeGame.tableView = tableView
