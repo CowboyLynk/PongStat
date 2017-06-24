@@ -12,14 +12,16 @@ import UIKit
 
 class ReRacks {
     
-    static func createButton(name: String, image: UIImage, tableArrangement: ([[Bool]], Int)) -> reRackOption{
+    //Table arrangement: (Cup configuration, Grid type, number of 1/4 rotations)
+    static func createButton(name: String, image: UIImage, tableArrangement: ([[Bool]], Int, Int)) -> reRackOption{
         let button = reRackOption(frame: CGRect(x: 0, y: 0, width: 100, height: 100), tableArrangement: tableArrangement, name: name)
         button.setImage(image, for: .normal)
+        button.setTitle(name, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         return button
     }
 
     static func pyramid(numBase: Int) -> reRackOption{
-        //CREATE BUTTON HERE!!!
         var cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
         
         var colShrinker = 0
@@ -30,7 +32,21 @@ class ReRacks {
             colShrinker += 1
         }
         
-        return createButton(name: "Pyramid", image: #imageLiteral(resourceName: "pyramid"), tableArrangement: (cupConfig, 0))
+        return createButton(name: "Pyramid", image: #imageLiteral(resourceName: "pyramid"), tableArrangement: (cupConfig, 0, 0))
+    }
+    
+    static func playButton(numBase: Int) -> reRackOption{
+        var cupConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
+        
+        var colShrinker = 0
+        for row in 0..<cupConfig.count{
+            for col in 0..<(cupConfig[0].count - colShrinker){
+                cupConfig[row][col] = true
+            }
+            colShrinker += 1
+        }
+        
+        return createButton(name: "Play Button", image: #imageLiteral(resourceName: "pyramid"), tableArrangement: (cupConfig, 0, 1))
     }
     
     //3's

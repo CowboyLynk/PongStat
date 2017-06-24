@@ -14,7 +14,7 @@ class reRackOption: UIButton{
     var tableArrangement: Any
     var name: String
     
-    init(frame: CGRect, tableArrangement: ([[Bool]], Int), name: String){
+    init(frame: CGRect, tableArrangement: Any, name: String){
         self.tableArrangement = tableArrangement
         self.name = name
         super.init(frame: frame)

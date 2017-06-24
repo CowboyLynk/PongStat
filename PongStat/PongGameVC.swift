@@ -55,7 +55,7 @@ class PongGameVC: UIViewController {
         }
     }
     func reRackOptionTapped(sender: reRackOption){
-        setTable(tableArrangement: sender.tableArrangement as! ([[Bool]], Int))
+        setTable(tableArrangement: sender.tableArrangement as! ([[Bool]], Int, Int))
         Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
         takeTurn(turnType: 4, playedCup: false)
     }
@@ -90,8 +90,8 @@ class PongGameVC: UIViewController {
             Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
         }*/
     }
-    func setTable(tableArrangement: ([[Bool]], Int)){  // (cupConfig, gridType, associatedImage)
-        /* Takes in a cup configuration and a table type (offset pyramid, grid, or other) and places the cups according to the configuration it is given
+    func setTable(tableArrangement: ([[Bool]], Int, Int)){  // (cupConfig, gridType, rotation angle)
+        /* Takes in a cup configuration and a grid type (offset pyramid, grid, or other) and places the cups according to the configuration it is given
         */
         activeGame.cupConfig = tableArrangement.0
         let tableType = tableArrangement.1
@@ -146,7 +146,7 @@ class PongGameVC: UIViewController {
         self.view.addSubview(tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
-        setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement as! ([[Bool]], Int))
+        setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement as! ([[Bool]], Int, Int))
         
         // Set the initial turn
         activeGame.tableView = tableView
