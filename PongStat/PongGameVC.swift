@@ -57,6 +57,7 @@ class PongGameVC: UIViewController {
     func reRackOptionTapped(sender: reRackOption){
         setTable(tableArrangement: sender.tableArrangement as! ([[Bool]], Int))
         Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
+        takeTurn(turnType: 4, playedCup: false)
     }
     @IBAction func closeReRackButtonTapped(_ sender: Any) {
         Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
