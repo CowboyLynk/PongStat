@@ -17,10 +17,11 @@ class PongGameVC: UIViewController {
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
     @IBOutlet weak var currentScoreLabel: UILabel!
+    @IBOutlet var reRackView: UIView!
 
     // Actions
     @IBAction func rotateButtonTapped(_ sender: Any) {
-        tableView.rotate(by: CGFloat.pi/2)
+        tableView.rotate(by: 3*CGFloat.pi/2)
     }
     @IBAction func undoButtonTapped(_ sender: Any) {
         if turns.count > 1{
@@ -43,6 +44,15 @@ class PongGameVC: UIViewController {
         }
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {
+        self.view.addSubview(reRackView)
+        reRackView.center = self.view.center
+        reRackView.center.y = self.view.bounds.height/2
+        /*
+        for reRack in activeGame.getPossibleReRacks(){
+            reRackOption = reRackButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100), tableArrangement: (reRack.0, reRack.1))
+            reRackOption.setImage(reRack.3, for: .normal)
+            reRackView.addSubview(reRackOption)
+        }*/
     }
     
     // Functions
@@ -60,8 +70,7 @@ class PongGameVC: UIViewController {
                 activeGame.madeCounter += multiplier
             }
             //checkForReReck()
-        default:
-            print("default")
+        default: break
         }
         activeGame.updateScore()
         turns.append(activeGame.copy() as! PongGame) // Adds the current cup config to turns
@@ -72,7 +81,7 @@ class PongGameVC: UIViewController {
             Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
         }*/
     }
-    func setTable(tableArrangement: ([[Bool]], Int)){
+    func setTable(tableArrangement: ([[Bool]], Int)){  // (cupConfig, gridType, associatedImage)
         /* Takes in a cup configuration and a table type (offset pyramid, grid, or other) and places the cups according to the configuration it is given
         */
         activeGame.cupConfig = tableArrangement.0
@@ -128,8 +137,8 @@ class PongGameVC: UIViewController {
         self.view.addSubview(tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
-        tableView.backgroundColor = .gray
-        setTable(tableArrangement: CupConfigs.pyramid(numBase: 4))
+        let startingPyramid = ReRacks.pyramid(numBase: 4)
+        setTable(tableArrangement: ReRacks.pyramid(numBase: 4))
         
         // Set the initial turn
         activeGame.tableView = tableView

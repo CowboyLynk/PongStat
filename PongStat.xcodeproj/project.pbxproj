@@ -10,7 +10,7 @@
 		85100E651EFAD7D60057F182 /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85100E641EFAD7D60057F182 /* Cup.xib */; };
 		85100E671EFAD7DC0057F182 /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85100E661EFAD7DC0057F182 /* Cup.swift */; };
 		857D2C751EFB03B30010DCCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857D2C731EFB03B30010DCCF /* Main.storyboard */; };
-		857D2C771EFB09EB0010DCCF /* CupConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C761EFB09EB0010DCCF /* CupConfigs.swift */; };
+		857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C761EFB09EB0010DCCF /* ReRacks.swift */; };
 		857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C7B1EFBEFD90010DCCF /* Utils.swift */; };
 		85E6D9B11EFAD627009F2D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */; };
 		85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B21EFAD627009F2D80 /* ViewController.swift */; };
@@ -43,7 +43,7 @@
 		85100E641EFAD7D60057F182 /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
 		85100E661EFAD7DC0057F182 /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
 		857D2C741EFB03B30010DCCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		857D2C761EFB09EB0010DCCF /* CupConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupConfigs.swift; sourceTree = "<group>"; };
+		857D2C761EFB09EB0010DCCF /* ReRacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReRacks.swift; sourceTree = "<group>"; };
 		857D2C7B1EFBEFD90010DCCF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		85E6D9AD1EFAD627009F2D80 /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85AFB5B91EFC5B4F00745FCB /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		85E6D9A41EFAD627009F2D80 = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */,
-				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
+				85AFB5B91EFC5B4F00745FCB /* View Controllers */,
 				857D2C731EFB03B30010DCCF /* Main.storyboard */,
 				85E6D9DE1EFAD677009F2D80 /* Utilities */,
 				85E6D9B71EFAD627009F2D80 /* Assets.xcassets */,
@@ -145,7 +153,7 @@
 				85E6D9E41EFAD76D009F2D80 /* PongGame.swift */,
 				85100E661EFAD7DC0057F182 /* Cup.swift */,
 				85100E641EFAD7D60057F182 /* Cup.xib */,
-				857D2C761EFB09EB0010DCCF /* CupConfigs.swift */,
+				857D2C761EFB09EB0010DCCF /* ReRacks.swift */,
 				857D2C7B1EFBEFD90010DCCF /* Utils.swift */,
 			);
 			name = Utilities;
@@ -290,7 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */,
-				857D2C771EFB09EB0010DCCF /* CupConfigs.swift in Sources */,
+				857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */,
 				85E6D9E31EFAD763009F2D80 /* PongGameVC.swift in Sources */,
 				85E6D9E51EFAD76D009F2D80 /* PongGame.swift in Sources */,
 				85100E671EFAD7DC0057F182 /* Cup.swift in Sources */,

@@ -76,6 +76,7 @@
                     <connections>
                         <outlet property="currentScoreLabel" destination="Ipa-8o-Z7R" id="ewZ-MB-t0v"/>
                         <outlet property="missedButton" destination="LYh-6E-F2o" id="mKh-ay-RgM"/>
+                        <outlet property="reRackView" destination="oGx-sT-F2r" id="If4-AY-QFW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

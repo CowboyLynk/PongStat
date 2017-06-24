@@ -28,6 +28,35 @@ class PongGame: NSObject, NSCopying {
         }
     }
     
+    /*func getPossibleReRacks() -> [([[Bool]], Int)]{
+        let numCups = self.getCount(array: self.cupConfig)
+        var possibleReRacks = [([[Bool]], Int, String, UIImage, Double)]()
+        if numCups > 1{
+            if -1/2*(1 - (8.0*Double(numCups) + 1.0).squareRoot()).truncatingRemainder(dividingBy: 1.0) == 0{
+                possibleReRacks.append(ReRacks.pyramid(numBase: numCups))
+            }
+        }
+        
+        /*switch numCups{
+        case 3:
+            possibleReRacks.append(contentsOf: ["Stoplight", "thin red line"])
+        default: break
+        }*/
+        return possibleReRacks
+    }*/
+    
+    func getCount(array: [[Bool]]) -> Int{
+        var count = 0
+        for row in 0..<array.count{
+            for col in 0..<array[0].count{
+                if array[row][col]{
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
+    
     func copy(with zone: NSZone? = nil) -> Any {
         let copy = PongGame()
         copy.score = self.score

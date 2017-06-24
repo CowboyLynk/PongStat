@@ -9,6 +9,20 @@
 import Foundation
 import UIKit
 
+// Classes
+class reRackButton: UIButton{
+    var tableArrangement: ([[Bool]], Int)!
+    
+    init(frame: CGRect, tableArrangement: ([[Bool]], Int)){
+        self.tableArrangement = tableArrangement
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 // Extensions
 extension UIView {
     
@@ -31,7 +45,6 @@ extension UIView {
     }
     
     func copy(with zone: NSZone? = nil) -> UIView {
-        print("orig: +\(self.transform)")
         let copy = UIView(frame: self.frame)
         //copy.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.bounds.width, height: self.bounds.height)
         copy.transform = self.transform
@@ -40,9 +53,6 @@ extension UIView {
             cup = cupSubview as! Cup
             copy.addSubview(cup.makeCupCopy())
         }
-        copy.backgroundColor = .gray
-        print(("copy: +\(self.transform)"))
-        print()
         return copy
     }
 }
