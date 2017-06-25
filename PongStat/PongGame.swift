@@ -35,6 +35,7 @@ class PongGame: NSObject, NSCopying {
             let numBase = -1/2*(1 - (8.0*Double(numCups) + 1.0).squareRoot())
             if numBase.truncatingRemainder(dividingBy: 1.0) == 0{
                 possibleReRacks.append(ReRacks.pyramid(numBase: Int(numBase)))
+                possibleReRacks.append(ReRacks.playButton(numBase: Int(numBase)))
             }
         }
         

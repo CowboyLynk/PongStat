@@ -38,13 +38,13 @@ extension UIView {
     
     // Transform Functions
     func rotate(by: CGFloat){
-        self.transform = transform.rotated(by: by)  // rotates the whole table
+        self.transform = CGAffineTransform(rotationAngle: by) // rotates the whole table
         for subview in self.subviews{  // reverse rotates each of the cups so that they are always upright
-            subview.transform = subview.transform.rotated(by: -by)
+            subview.transform = CGAffineTransform(rotationAngle: -by)
         }
+        self.setSize()
     }
     func setSize(){
-        self.center = self.superview!.center
         self.transform = transform.scaledBy(x: 0.7, y: 0.7)
     }
     

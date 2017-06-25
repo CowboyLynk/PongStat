@@ -21,9 +21,6 @@ class PongGameVC: UIViewController {
     @IBOutlet var reRackView: UIView!
 
     // Actions
-    @IBAction func rotateButtonTapped(_ sender: Any) {
-        tableView.rotate(by: 3*CGFloat.pi/2)
-    }
     @IBAction func undoButtonTapped(_ sender: Any) {
         if turns.count > 1{
             tableView.clearView()
@@ -49,9 +46,15 @@ class PongGameVC: UIViewController {
         Animations.springAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
         reRackView.center = self.view.center
         reRackView.center.y = self.view.bounds.height/2
+        
+        // Position variables
+        var xPos = 25
+        var yPos = 64
         for reRackOption in activeGame.getPossibleReRacks(){
             reRackView.addSubview(reRackOption)
             reRackOption.addTarget(self, action: #selector(reRackOptionTapped(sender:)), for: .touchUpInside)
+            reRackOption.frame.origin = CGPoint(x: xPos, y: yPos)
+            xPos += 150
         }
     }
     func reRackOptionTapped(sender: reRackOption){
@@ -97,7 +100,7 @@ class PongGameVC: UIViewController {
         let tableType = tableArrangement.1
         tableView.clearView()
         
-        // Dimensions and position variables
+        // DIMENSIONS and POSITIONS variables
         let largestRowCount = activeGame.getLargestRowCount(cupConfig: activeGame.cupConfig)
         var dimension = Double(tableView.bounds.width)/Double(largestRowCount)
         if dimension > 100{ // sets the max size that a cup can be
@@ -114,6 +117,8 @@ class PongGameVC: UIViewController {
         var yPos = 0.0
         yPos = (Double(tableView.bounds.height) - ((dimension*Double(colLength - 1) - dimension*Double(colLength - 1)*0.12*isNotGrid) + dimension))/2
         
+        
+        // SETTING OF THE TABLE (placing the cups)
         for row in 0..<activeGame.cupConfig.count{
             // Sets the starting xPos (stays 0 if the tableType is a grid)
             xPos = sidePadding + (dimension/2 * Double(row)) * isNotGrid
@@ -128,6 +133,14 @@ class PongGameVC: UIViewController {
                 xPos += dimension
             }
             yPos += dimension - (0.12*dimension*isNotGrid)
+        }
+        
+        // ROTATES the table by the correct amount
+        tableView.rotate(by: -CGFloat(tableArrangement.2)*CGFloat.pi/2)
+        if tableType == 1{
+            tableView.transform.tx = self.view.bounds.width * 0.05
+        } else{
+            tableView.transform.tx = 0
         }
     }
     func updateVisuals(){
