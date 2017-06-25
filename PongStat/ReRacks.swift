@@ -30,8 +30,6 @@ class ReRacks {
         // Other styling
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
-        //button.layer.borderColor = UIColor.green.cgColor
-        //button.layer.borderWidth = 2
         button.layer.shadowRadius = 7
         button.layer.shadowOpacity = 0.2
         button.layer.shadowOffset = CGSize(width: 0, height: 5)
@@ -70,16 +68,16 @@ class ReRacks {
     static func stoplight() -> reRackOption{
         return createButton(name: "Stop Light", image: #imageLiteral(resourceName: "stoplight"), tableArrangement: ([[true], [true], [true]], 2, 0))
     }
-    static func thinRedLine() -> ([[Bool]], Int){
-        return ([[true, true, true]], 2)
+    static func thinRedLine() -> reRackOption{
+        return createButton(name: "Thin Line", image: #imageLiteral(resourceName: "thinline"), tableArrangement: ([[true], [true], [true]], 2, 1))
     }
     
     //4's
-    static func diamond() -> ([[Bool]], Int){
-        return ([[false, true, false], [true, true, false], [true, false, false]], 0)
+    static func diamond() -> reRackOption{
+        return createButton(name: "Diamond", image: #imageLiteral(resourceName: "diamond"), tableArrangement: ([[false, true, false], [true, true, false], [true, false, false]], 0, 0))
     }
-    static func square() -> ([[Bool]], Int){
-        return ([[true, true], [true, true], [true, true]], 2)
+    static func square() -> reRackOption{
+        return createButton(name: "Square", image: #imageLiteral(resourceName: "square"), tableArrangement: ([[true, true], [true, true]], 2, 0))
     }
     
     //5's

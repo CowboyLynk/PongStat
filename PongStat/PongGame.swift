@@ -41,7 +41,9 @@ class PongGame: NSObject, NSCopying {
         
         switch numCups{
         case 3:
-            possibleReRacks.append(contentsOf: [ReRacks.stoplight()])
+            possibleReRacks.append(contentsOf: [ReRacks.stoplight(), ReRacks.thinRedLine()])
+        case 4:
+            possibleReRacks.append(contentsOf: [ReRacks.diamond(), ReRacks.square()])
         default: break
         }
         return possibleReRacks

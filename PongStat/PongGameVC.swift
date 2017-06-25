@@ -43,7 +43,7 @@ class PongGameVC: UIViewController {
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
         reRackView.clearView()
-        Animations.springAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
+        Animations.normalAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
         reRackView.center = self.view.center
         reRackView.center.y = self.view.bounds.height/2
         
