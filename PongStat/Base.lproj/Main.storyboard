@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="135.38230884557723"/>
         </scene>
-        <!--Custom Nave-->
+        <!--Navigation Controller-->
         <scene sceneID="V2l-gR-h6P">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P7f-ot-DmQ" customClass="customNave" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P7f-ot-DmQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="0Oh-qY-13i">

@@ -50,11 +50,17 @@ class PongGameVC: UIViewController {
         // Position variables
         var xPos = 25
         var yPos = 64
+        var counter = 1
         for reRackOption in activeGame.getPossibleReRacks(){
             reRackView.addSubview(reRackOption)
             reRackOption.addTarget(self, action: #selector(reRackOptionTapped(sender:)), for: .touchUpInside)
             reRackOption.frame.origin = CGPoint(x: xPos, y: yPos)
             xPos += 150
+            if counter % 2 == 0{
+                xPos = 25
+                yPos += 150
+            }
+            counter += 1
         }
     }
     func reRackOptionTapped(sender: reRackOption){

@@ -39,11 +39,11 @@ class PongGame: NSObject, NSCopying {
             }
         }
         
-        /*switch numCups{
+        switch numCups{
         case 3:
-            possibleReRacks.append(contentsOf: ["Stoplight", "thin red line"])
+            possibleReRacks.append(contentsOf: [ReRacks.stoplight()])
         default: break
-        }*/
+        }
         return possibleReRacks
     }
     

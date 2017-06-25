@@ -63,12 +63,12 @@ class ReRacks {
             colShrinker += 1
         }
         
-        return createButton(name: "Play Button", image: #imageLiteral(resourceName: "pyramid"), tableArrangement: (cupConfig, 1, 1))
+        return createButton(name: "Play Button", image: #imageLiteral(resourceName: "playbutton"), tableArrangement: (cupConfig, 1, 1))
     }
     
     //3's
-    static func stoplight() -> ([[Bool]], Int){
-        return ([[true], [true], [true]], 2)
+    static func stoplight() -> reRackOption{
+        return createButton(name: "Stop Light", image: #imageLiteral(resourceName: "stoplight"), tableArrangement: ([[true], [true], [true]], 2, 0))
     }
     static func thinRedLine() -> ([[Bool]], Int){
         return ([[true, true, true]], 2)
