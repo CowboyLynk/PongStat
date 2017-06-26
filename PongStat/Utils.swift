@@ -11,10 +11,11 @@ import UIKit
 
 // Classes
 class reRackOption: UIButton{
-    var tableArrangement: Any
+    var tableArrangement: ([[Bool]], Int, Int)
+    var newTableView: UIView!
     var name: String
     
-    init(frame: CGRect, tableArrangement: Any, name: String){
+    init(frame: CGRect, tableArrangement: ([[Bool]], Int, Int), name: String){
         self.tableArrangement = tableArrangement
         self.name = name
         super.init(frame: frame)
@@ -35,6 +36,15 @@ extension UIView {
             }
         }
     }
+    func swapView(newView: UIView){
+        self.clearView()
+        // Adds all the cups from the SAVED tableView to the ACTIVE tableView
+        for subview in newView.subviews{
+            let cup = subview as! Cup
+            self.addSubview(cup.makeCupCopy())
+        }
+        self.transform = newView.transform // makes sure the ACTIVE tableView is in the same orientation as the SAVED tableView
+    }
     
     // Transform Functions
     func rotate(by: CGFloat){
@@ -45,7 +55,9 @@ extension UIView {
         self.setSize()
     }
     func setSize(){
-        self.transform = transform.scaledBy(x: 0.7, y: 0.7)
+        let superViewWidth = self.superview!.bounds.width
+        let fraction = superViewWidth*0.7/self.bounds.width
+        self.transform = transform.scaledBy(x:fraction, y: fraction)
     }
     
     func copy(with zone: NSZone? = nil) -> UIView {

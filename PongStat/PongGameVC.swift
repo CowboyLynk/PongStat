@@ -23,19 +23,12 @@ class PongGameVC: UIViewController {
     // Actions
     @IBAction func undoButtonTapped(_ sender: Any) {
         if turns.count > 1{
-            tableView.clearView()
             turns.removeLast()
             activeGame = turns.last?.copy() as! PongGame
             
-            // Adds all the cups from the SAVED tableView to the ACTIVE tableView
-            for subview in activeGame.tableView.subviews{
-                let cup = subview as! Cup
-                tableView.addSubview(cup.makeCupCopy())
-            }
-            tableView.transform = activeGame.tableView.transform // makes sure the ACTIVE tableView is in the same orientation as the SAVED tableView
-            
-            // sets the now updated tableView to be the one that updates in the game
-            activeGame.tableView = tableView
+            // Takes all the cups from the new reRack and places them on the tableView
+            tableView.swapView(newView: activeGame.tableView)
+            activeGame.tableView = tableView // Sets the now updated tableView to be the one that updates in the game
             
             updateVisuals()
             //checkForReReck()
@@ -64,7 +57,21 @@ class PongGameVC: UIViewController {
         }
     }
     func reRackOptionTapped(sender: reRackOption){
-        setTable(tableArrangement: sender.tableArrangement as! ([[Bool]], Int, Int))
+        if (sender.newTableView != nil){ // runs if the user selects a non-grid-aligned reRack
+            activeGame.cupConfig = sender.tableArrangement.0
+            
+            // Takes all the cups from the new reRack and places them on the tableView
+            tableView.swapView(newView: sender.newTableView)
+            activeGame.tableView = tableView
+            tableView.setSize()
+            // Adds the delegate to each of the new cups so that they respond to taps
+            for subview in tableView.subviews{
+                let cup = subview as! Cup
+                cup.delegate = self
+            }
+        } else {  // runs if the user selects a reRack that can be placed on a grid configuration
+            setTable(tableArrangement: sender.tableArrangement)
+        }
         Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
         takeTurn(turnType: 4, playedCup: false)
     }
@@ -94,6 +101,9 @@ class PongGameVC: UIViewController {
         turns.append(activeGame.copy() as! PongGame) // Adds the current cup config to turns
         
         updateVisuals()
+        
+        print(activeGame.cupConfig)
+        print()
         /*if activeGame.getCount(array: activeGame.cupConfig) == 0{
             finalScoreLabel.text = "Final Score: \(String(Int(activeGame.score)))"
             Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
@@ -162,10 +172,11 @@ class PongGameVC: UIViewController {
         
         // Set up table
         tableView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width))
+        //tableView = UIView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
         self.view.addSubview(tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
-        setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement as! ([[Bool]], Int, Int))
+        setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement)
         
         // Set the initial turn
         activeGame.tableView = tableView

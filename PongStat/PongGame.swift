@@ -43,7 +43,9 @@ class PongGame: NSObject, NSCopying {
         case 3:
             possibleReRacks.append(contentsOf: [ReRacks.stoplight(), ReRacks.thinRedLine()])
         case 4:
-            possibleReRacks.append(contentsOf: [ReRacks.diamond(), ReRacks.square()])
+            possibleReRacks.append(contentsOf: [ReRacks.diamond(), ReRacks.square(), ReRacks.penis(width: self.tableView.bounds.width)])
+        case 5:
+            possibleReRacks.append(ReRacks.wizard(width: self.tableView.bounds.width))
         default: break
         }
         return possibleReRacks
