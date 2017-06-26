@@ -36,6 +36,20 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csA-cM-fH8" userLabel="Chart Container">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NO DATA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7E-jU-UzU">
+                                        <rect key="frame" x="11" y="54" width="352" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WhZ-xA-gbh" userLabel="Chart View" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="-20" y="10" width="375" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.23921568630000001" green="0.4823529412" blue="0.34509803919999998" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.4823529412" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WEIGHTED SCORE:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-8o-Z7R" userLabel="Current Score Label">
@@ -66,8 +80,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="iv4-2c-E8p"/>
                     <connections>
+                        <outlet property="chartView" destination="WhZ-xA-gbh" id="Dny-OM-IxP"/>
                         <outlet property="currentScoreLabel" destination="Ipa-8o-Z7R" id="ewZ-MB-t0v"/>
                         <outlet property="missedButton" destination="LYh-6E-F2o" id="mKh-ay-RgM"/>
+                        <outlet property="noDataLabel" destination="i7E-jU-UzU" id="rdf-Wt-XjE"/>
                         <outlet property="reRackView" destination="oGx-sT-F2r" id="If4-AY-QFW"/>
                     </connections>
                 </viewController>
@@ -93,7 +109,6 @@
         <!--Navigation Controller-->
         <scene sceneID="V2l-gR-h6P">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gWw-cm-UFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P7f-ot-DmQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -106,6 +121,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4Jk-LE-rHa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gWw-cm-UFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="135.38230884557723"/>
         </scene>

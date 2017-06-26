@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		85100E651EFAD7D60057F182 /* Cup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85100E641EFAD7D60057F182 /* Cup.xib */; };
 		85100E671EFAD7DC0057F182 /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85100E661EFAD7DC0057F182 /* Cup.swift */; };
+		8519FFEB1F01640300374430 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8519FFE81F0163E900374430 /* Charts.framework */; };
+		8519FFEC1F01640300374430 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8519FFE81F0163E900374430 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8519FFF11F0164D000374430 /* ChartSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519FFF01F0164D000374430 /* ChartSetup.swift */; };
 		857D2C751EFB03B30010DCCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857D2C731EFB03B30010DCCF /* Main.storyboard */; };
 		857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C761EFB09EB0010DCCF /* ReRacks.swift */; };
 		857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C7B1EFBEFD90010DCCF /* Utils.swift */; };
@@ -24,6 +27,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8519FFE71F0163E900374430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8519FFE21F0163E900374430 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		8519FFE91F0163E900374430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8519FFE21F0163E900374430 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
+		8519FFED1F01640300374430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8519FFE21F0163E900374430 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
 		85E6D9C21EFAD628009F2D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 85E6D9A51EFAD627009F2D80 /* Project object */;
@@ -40,9 +64,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8519FFEF1F01640300374430 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8519FFEC1F01640300374430 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		85100E641EFAD7D60057F182 /* Cup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cup.xib; sourceTree = "<group>"; };
 		85100E661EFAD7DC0057F182 /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
+		8519FFE21F0163E900374430 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		8519FFF01F0164D000374430 /* ChartSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSetup.swift; sourceTree = "<group>"; };
 		857D2C741EFB03B30010DCCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		857D2C761EFB09EB0010DCCF /* ReRacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReRacks.swift; sourceTree = "<group>"; };
 		857D2C7B1EFBEFD90010DCCF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -68,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8519FFEB1F01640300374430 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8519FFE31F0163E900374430 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8519FFE81F0163E900374430 /* Charts.framework */,
+				8519FFEA1F0163E900374430 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		85AFB5B91EFC5B4F00745FCB /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +149,7 @@
 		85E6D9A41EFAD627009F2D80 = {
 			isa = PBXGroup;
 			children = (
+				8519FFE21F0163E900374430 /* Charts.xcodeproj */,
 				85E6D9AF1EFAD627009F2D80 /* PongStat */,
 				85E6D9C41EFAD628009F2D80 /* PongStatTests */,
 				85E6D9CF1EFAD628009F2D80 /* PongStatUITests */,
@@ -157,6 +208,7 @@
 				85100E641EFAD7D60057F182 /* Cup.xib */,
 				857D2C761EFB09EB0010DCCF /* ReRacks.swift */,
 				857D2C7B1EFBEFD90010DCCF /* Utils.swift */,
+				8519FFF01F0164D000374430 /* ChartSetup.swift */,
 				85AFB5BC1EFEF5AB00745FCB /* Animations.swift */,
 			);
 			name = Utilities;
@@ -172,10 +224,12 @@
 				85E6D9A91EFAD627009F2D80 /* Sources */,
 				85E6D9AA1EFAD627009F2D80 /* Frameworks */,
 				85E6D9AB1EFAD627009F2D80 /* Resources */,
+				8519FFEF1F01640300374430 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8519FFEE1F01640300374430 /* PBXTargetDependency */,
 			);
 			name = PongStat;
 			productName = PongStat;
@@ -258,6 +312,12 @@
 			mainGroup = 85E6D9A41EFAD627009F2D80;
 			productRefGroup = 85E6D9AE1EFAD627009F2D80 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8519FFE31F0163E900374430 /* Products */;
+					ProjectRef = 8519FFE21F0163E900374430 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				85E6D9AC1EFAD627009F2D80 /* PongStat */,
@@ -266,6 +326,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8519FFE81F0163E900374430 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 8519FFE71F0163E900374430 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8519FFEA1F0163E900374430 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 8519FFE91F0163E900374430 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		85E6D9AB1EFAD627009F2D80 /* Resources */ = {
@@ -300,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8519FFF11F0164D000374430 /* ChartSetup.swift in Sources */,
 				85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */,
 				857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */,
 				85E6D9E31EFAD763009F2D80 /* PongGameVC.swift in Sources */,
@@ -330,6 +408,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8519FFEE1F01640300374430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 8519FFED1F01640300374430 /* PBXContainerItemProxy */;
+		};
 		85E6D9C31EFAD628009F2D80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 85E6D9AC1EFAD627009F2D80 /* PongStat */;
@@ -458,6 +541,7 @@
 		85E6D9D61EFAD628009F2D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStat/Info.plist;
@@ -472,6 +556,7 @@
 		85E6D9D71EFAD628009F2D80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78T5GXP6Q3;
 				INFOPLIST_FILE = PongStat/Info.plist;

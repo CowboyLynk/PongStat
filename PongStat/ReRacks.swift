@@ -64,6 +64,11 @@ class ReRacks {
         return createButton(name: "Play Button", image: #imageLiteral(resourceName: "playbutton"), tableArrangement: (cupConfig, 1, 1))
     }
     
+    //2's
+    static func pair() -> reRackOption {
+        return createButton(name: "Pair", image: #imageLiteral(resourceName: "pair"), tableArrangement: ([[true], [true]], 2, 0))
+    }
+    
     //3's
     static func stoplight() -> reRackOption{
         return createButton(name: "Stop Light", image: #imageLiteral(resourceName: "stoplight"), tableArrangement: ([[true], [true], [true]], 2, 0))
@@ -108,8 +113,8 @@ class ReRacks {
     }
     
     //5's
-    static func trapezoid() -> ([[Bool]], Int){
-        return ([[true, true, true], [true, true, false]], 0)
+    static func trapezoid() -> reRackOption{
+        return createButton(name: "Trapezoid", image: #imageLiteral(resourceName: "square"), tableArrangement: ([[true, true, true], [true, true, false]], 0, 0))
     }
     static func wizard(width: CGFloat) -> reRackOption{
         let xCenter = width/2
@@ -138,23 +143,57 @@ class ReRacks {
         newView.addSubview(cup2)
         newView.addSubview(cup1)
         newView.addSubview(cup0)
-        let button = createButton(name: "Wizard Staff", image: #imageLiteral(resourceName: "penis"), tableArrangement: ([[true, false], [true, true], [true, false], [true, false]], 3, 0))
+        let button = createButton(name: "Wizard Staff", image:#imageLiteral(resourceName: "wizard"), tableArrangement: ([[true, false], [true, true], [true, false], [true, false]], 3, 0))
+        button.newTableView = newView
+        return button
+    }
+    static func house(width: CGFloat) -> reRackOption{
+        let xCenter = width/2
+        let cupDimension = CGFloat(100)
+        let newView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: width))
+        
+        //Adds all the cups
+        let cup4 = Cup(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        cup4.center = CGPoint(x: xCenter, y: xCenter - cupDimension*0.88)
+        cup4.location = (0, 0)
+        let cup3 = Cup(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        cup3.center = CGPoint(x: xCenter - cupDimension/2, y: xCenter)
+        cup3.location = (1, 0)
+        let cup2 = Cup(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        cup2.center = CGPoint(x: xCenter + cupDimension/2, y: xCenter)
+        cup2.location = (1, 1)
+        let cup1 = Cup(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        cup1.center = CGPoint(x: xCenter - cupDimension/2, y: xCenter + cupDimension)
+        cup1.location = (2, 0)
+        let cup0 = Cup(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        cup0.center = CGPoint(x: xCenter + cupDimension/2, y: xCenter + cupDimension)
+        cup0.location = (2, 1)
+        
+        newView.addSubview(cup4)
+        newView.addSubview(cup3)
+        newView.addSubview(cup2)
+        newView.addSubview(cup1)
+        newView.addSubview(cup0)
+        let button = createButton(name: "House", image:#imageLiteral(resourceName: "House"), tableArrangement: ([[true, false], [true, true], [true, true]], 3, 0))
         button.newTableView = newView
         return button
     }
     
     //6's
-    static func sixPack() -> ([[Bool]], Int){
-        return ([[true, true], [true, true], [true, true]], 2)
+    static func sixPack() -> reRackOption{
+        return createButton(name: "Six Pack", image: #imageLiteral(resourceName: "sixpack"), tableArrangement: ([[true, true], [true, true], [true, true]], 2, 0))
+    }
+    static func  zipper() -> reRackOption{
+        return createButton(name: "Zipper", image: #imageLiteral(resourceName: "zipper"), tableArrangement: ([[false, true, true, true], [true, true, true, false]], 1, 1))
     }
     
     //7's
-    static func honeycomb() -> ([[Bool]], Int){
-        return ([[false, true, true, false], [true, true, true, false], [true, true, false, false]], 0)
+    static func honeycomb() -> reRackOption{
+        return createButton(name: "Honeycomb", image: #imageLiteral(resourceName: "honeycomb"), tableArrangement: ([[false, true, true, false], [true, true, true, false], [true, true, false, false]], 0, 0))
     }
     
     //8's
-    static func marching() -> ([[Bool]], Int){
-        return ([[true, true], [true, true], [true,true], [true, true]], 2)
+    static func marching() -> reRackOption{
+        return createButton(name: "Marching", image: #imageLiteral(resourceName: "marching"), tableArrangement: ([[true, true], [true, true], [true,true], [true, true]], 2, 0))
     }
 }

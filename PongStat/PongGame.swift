@@ -15,6 +15,7 @@ class PongGame: NSObject, NSCopying {
     var missedCounter: Int
     var cupConfig: [[Bool]]!
     var tableView: UIView!
+    var turnType = 4 //0: user made, 1: user missed, 2: partner made, 3: reRack
     
     override init(){
         madeCounter = 0
@@ -40,12 +41,20 @@ class PongGame: NSObject, NSCopying {
         }
         
         switch numCups{
+        case 2:
+            possibleReRacks.append(ReRacks.pair())
         case 3:
             possibleReRacks.append(contentsOf: [ReRacks.stoplight(), ReRacks.thinRedLine()])
         case 4:
             possibleReRacks.append(contentsOf: [ReRacks.diamond(), ReRacks.square(), ReRacks.penis(width: self.tableView.bounds.width)])
         case 5:
-            possibleReRacks.append(ReRacks.wizard(width: self.tableView.bounds.width))
+            possibleReRacks.append(contentsOf: [ReRacks.wizard(width: self.tableView.bounds.width), ReRacks.house(width: self.tableView.bounds.width)])
+        case 6:
+            possibleReRacks.append(contentsOf: [ReRacks.sixPack(), ReRacks.zipper()])
+        case 7:
+            possibleReRacks.append(ReRacks.honeycomb())
+        case 8:
+            possibleReRacks.append(ReRacks.marching())
         default: break
         }
         return possibleReRacks
@@ -70,6 +79,7 @@ class PongGame: NSObject, NSCopying {
         copy.missedCounter = self.missedCounter
         copy.cupConfig = self.cupConfig
         copy.tableView = self.tableView.copy()
+        copy.turnType = self.turnType
         return copy
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class PongGameVC: UIViewController {
     // Variables
@@ -19,6 +20,8 @@ class PongGameVC: UIViewController {
     @IBOutlet weak var missedButton: UIButton!
     @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet var reRackView: UIView!
+    @IBOutlet weak var chartView: LineChartView!
+    @IBOutlet weak var noDataLabel: UILabel!
 
     // Actions
     @IBAction func undoButtonTapped(_ sender: Any) {
@@ -81,7 +84,8 @@ class PongGameVC: UIViewController {
     
     
     // Functions
-    func takeTurn(turnType: Int, playedCup: Any) { // 0: User made the cup, 1: User missed a cup, 2: partner made a cup
+    func takeTurn(turnType: Int, playedCup: Any) { // 0: User made the cup, 1: User missed a cup, 2: partner made a cup, 3: reRack
+        activeGame.turnType = turnType
         switch turnType{
         case 1:  // User missed the cup
             activeGame.missedCounter += 1
@@ -102,8 +106,6 @@ class PongGameVC: UIViewController {
         
         updateVisuals()
         
-        print(activeGame.cupConfig)
-        print()
         /*if activeGame.getCount(array: activeGame.cupConfig) == 0{
             finalScoreLabel.text = "Final Score: \(String(Int(activeGame.score)))"
             Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
@@ -163,7 +165,16 @@ class PongGameVC: UIViewController {
         activeGame.updateScore()
         missedButton.setTitle("MISSED: \(activeGame.missedCounter)", for: .normal)
         currentScoreLabel.text = "WEIGHTED SCORE: \(Int(activeGame.score))"
-        //ChartSetup.updateChart(chartView: chartView, noDataLabel: noDataLabel, turnNodes: getTurnNodes())
+        ChartSetup.updateChart(chartView: chartView, noDataLabel: noDataLabel, turnNodes: getTurnNodes())
+    }
+    func getTurnNodes() -> [(Int, PongGame)]{  // Returns only turns that are makes or misses for the graph nodes
+        var turnNodes = [(Int, PongGame)]()
+        for turn in turns{
+            if turn.turnType == 0 || turn.turnType == 1{
+                turnNodes.append((turn.turnType, turn))
+            }
+        }
+        return turnNodes
     }
     
     override func viewDidLoad() {
@@ -177,6 +188,7 @@ class PongGameVC: UIViewController {
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
         setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement)
+        ChartSetup.setUpChart(chartView: chartView)
         
         // Set the initial turn
         activeGame.tableView = tableView
