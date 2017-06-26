@@ -19,19 +19,20 @@ class ReRacks {
         // Add image
         button.setImage(image, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 30, 0)
+        button.imageEdgeInsets = UIEdgeInsetsMake(15, 0, 40, 0)
         button.imageView?.layer.cornerRadius = 10
         
         // Add title
-        button.setTitle(name, for: .normal)
-        button.setTitleColor(.gray, for: .normal)
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -300, -95, 0)
+        button.setTitle(name.uppercased(), for: .normal)
+        button.setTitleColor(UIColor(red:0.56, green:0.59, blue:0.62, alpha:1.0), for: .normal)
+        button.titleLabel!.font =  UIFont(name: "HelveticaNeue-Bold", size: 14)
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -300, -75, 0)
         
         // Other styling
         button.backgroundColor = .white
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 5
         button.layer.shadowRadius = 7
-        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOpacity = 0.1
         button.layer.shadowOffset = CGSize(width: 0, height: 5)
         return button
     }
