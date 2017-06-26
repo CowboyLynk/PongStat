@@ -78,7 +78,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.36470588240000001" green="0.63921568630000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iv4-2c-E8p"/>
+                    <navigationItem key="navigationItem" id="iv4-2c-E8p">
+                        <barButtonItem key="rightBarButtonItem" image="Reset" id="1dT-Ax-OER">
+                            <connections>
+                                <action selector="resetButtonTapped:" destination="BYZ-38-t0r" id="9Ft-0Q-nTo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="chartView" destination="WhZ-xA-gbh" id="Dny-OM-IxP"/>
                         <outlet property="currentScoreLabel" destination="Ipa-8o-Z7R" id="ewZ-MB-t0v"/>
@@ -106,10 +112,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="135.38230884557723"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Nav-->
         <scene sceneID="V2l-gR-h6P">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P7f-ot-DmQ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P7f-ot-DmQ" customClass="CustomNav" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="0Oh-qY-13i">
@@ -129,6 +135,7 @@
     <resources>
         <image name="Close" width="24" height="24"/>
         <image name="Re-rack" width="110" height="100"/>
+        <image name="Reset" width="24" height="24"/>
         <image name="Undo" width="125" height="125"/>
     </resources>
 </document>

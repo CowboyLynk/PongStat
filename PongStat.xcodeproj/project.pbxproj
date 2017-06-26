@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
+				85E6D9B21EFAD627009F2D80 /* ViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -171,11 +172,10 @@
 			isa = PBXGroup;
 			children = (
 				85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */,
-				85AFB5B91EFC5B4F00745FCB /* View Controllers */,
 				857D2C731EFB03B30010DCCF /* Main.storyboard */,
+				85AFB5B91EFC5B4F00745FCB /* View Controllers */,
 				85E6D9DE1EFAD677009F2D80 /* Utilities */,
 				85E6D9B71EFAD627009F2D80 /* Assets.xcassets */,
-				85E6D9B21EFAD627009F2D80 /* ViewController.swift */,
 				85E6D9B91EFAD627009F2D80 /* LaunchScreen.storyboard */,
 				85E6D9BC1EFAD627009F2D80 /* Info.plist */,
 			);

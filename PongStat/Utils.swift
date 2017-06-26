@@ -26,6 +26,21 @@ class reRackOption: UIButton{
     }
 }
 
+class CustomNav: UINavigationController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationBar.barTintColor = UIColor(red:0.20, green:0.41, blue:0.29, alpha:1.0)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 20))
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        let image = UIImage(named: "Title")
+        imageView.image = image
+        navigationItem.titleView = imageView
+    }
+}
+
 // Extensions
 extension UIView {
     

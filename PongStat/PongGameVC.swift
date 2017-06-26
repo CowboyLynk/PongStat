@@ -11,6 +11,7 @@ import Charts
 
 class PongGameVC: UIViewController {
     // Variables
+    var numBase = 4
     var activeGame: PongGame!
     var tableView: UIView!
     var turns = [PongGame]()
@@ -36,6 +37,22 @@ class PongGameVC: UIViewController {
             updateVisuals()
             //checkForReReck()
         }
+    }
+    @IBAction func resetButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            // Resets table
+            self.activeGame = PongGame()  // creates a new game
+            self.activeGame.tableView = self.tableView
+            self.tableView.clearView()
+            self.setTable(tableArrangement: ReRacks.pyramid(numBase: self.numBase).tableArrangement)
+            self.turns.removeAll()
+            self.turns.append(self.activeGame.copy() as! PongGame)
+            print(self.activeGame.cupConfig)
+            self.updateVisuals()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
         reRackView.clearView()
@@ -187,7 +204,7 @@ class PongGameVC: UIViewController {
         self.view.addSubview(tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
-        setTable(tableArrangement: ReRacks.pyramid(numBase: 4).tableArrangement)
+        setTable(tableArrangement: ReRacks.pyramid(numBase: numBase).tableArrangement)
         ChartSetup.setUpChart(chartView: chartView)
         
         // Set the initial turn
@@ -205,6 +222,14 @@ class PongGameVC: UIViewController {
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurEffectView.alpha = 0
+        
+        // Nav bar
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 20))
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        let image = UIImage(named: "Title")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         super.viewDidLoad()
     }
