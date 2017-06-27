@@ -85,7 +85,7 @@ class PongGame: NSObject, NSCopying {
     
     // Auxillary Funcions
     func getLargestRowCount(cupConfig: [[Bool]]) -> Int{  // Used to calculate the cup height and width
-        // More info: use the cups because the number of cups matter more than the legth of the array its in. See honeycomb example: it onyl has 3 cups, but an array row length of 4
+        // More info: uses the number of cups because the number of cups matters more than the length of the array it's in. See honeycomb example: it only has 3 cups, but an array row length of 4
         var largestRowCount = 0
         for row in cupConfig{
             var count = 0

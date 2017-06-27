@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StartViewController: UIViewController {
+    @IBAction func playGameButtonPressed(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -17,7 +17,7 @@
 		857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C7B1EFBEFD90010DCCF /* Utils.swift */; };
 		85AFB5BD1EFEF5AB00745FCB /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AFB5BC1EFEF5AB00745FCB /* Animations.swift */; };
 		85E6D9B11EFAD627009F2D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */; };
-		85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B21EFAD627009F2D80 /* ViewController.swift */; };
+		85E6D9B31EFAD627009F2D80 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B21EFAD627009F2D80 /* StartViewController.swift */; };
 		85E6D9B81EFAD627009F2D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E6D9B71EFAD627009F2D80 /* Assets.xcassets */; };
 		85E6D9BB1EFAD627009F2D80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E6D9B91EFAD627009F2D80 /* LaunchScreen.storyboard */; };
 		85E6D9C61EFAD628009F2D80 /* PongStatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9C51EFAD628009F2D80 /* PongStatTests.swift */; };
@@ -89,7 +89,7 @@
 		85AFB5BC1EFEF5AB00745FCB /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		85E6D9AD1EFAD627009F2D80 /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		85E6D9B21EFAD627009F2D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		85E6D9B21EFAD627009F2D80 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		85E6D9B71EFAD627009F2D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85E6D9BA1EFAD627009F2D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85E6D9BC1EFAD627009F2D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
-				85E6D9B21EFAD627009F2D80 /* ViewController.swift */,
+				85E6D9B21EFAD627009F2D80 /* StartViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8519FFF11F0164D000374430 /* ChartSetup.swift in Sources */,
-				85E6D9B31EFAD627009F2D80 /* ViewController.swift in Sources */,
+				85E6D9B31EFAD627009F2D80 /* StartViewController.swift in Sources */,
 				857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */,
 				85E6D9E31EFAD763009F2D80 /* PongGameVC.swift in Sources */,
 				85E6D9E51EFAD76D009F2D80 /* PongGame.swift in Sources */,

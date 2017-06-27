@@ -12,7 +12,10 @@ import UIKit
 
 class ReRacks {
     
-    //Table arrangement: (Cup configuration, Grid type, number of 1/4 rotations)
+    // Table arrangement: (Cup configuration, Grid type, number of 1/4 rotations)
+    // Grid Type: 0: normal pyrmaid, 1: play button, 2: square grid, 3: other
+    
+    
     static func createButton(name: String, image: UIImage, tableArrangement: ([[Bool]], Int, Int)) -> reRackOption{
         let button = reRackOption(frame: CGRect(x: 0, y: 0, width: 125, height: 125), tableArrangement: tableArrangement, name: name)
         
@@ -185,7 +188,7 @@ class ReRacks {
         return createButton(name: "Six Pack", image: #imageLiteral(resourceName: "sixpack"), tableArrangement: ([[true, true], [true, true], [true, true]], 2, 0))
     }
     static func  zipper() -> reRackOption{
-        return createButton(name: "Zipper", image: #imageLiteral(resourceName: "zipper"), tableArrangement: ([[false, true, true, true], [true, true, true, false]], 1, 1))
+        return createButton(name: "Zipper", image: #imageLiteral(resourceName: "zipper"), tableArrangement: ([[false, true, true, true], [true, true, true, false]], 3, 1))
     }
     
     //7's

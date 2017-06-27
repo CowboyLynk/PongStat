@@ -44,7 +44,12 @@ class PongGameVC: UIViewController {
         undo()
     }
     @IBAction func resetButtonTapped(_ sender: Any) {
-        reset()
+        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            self.reset()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
         reRackView.clearView()
@@ -133,7 +138,7 @@ class PongGameVC: UIViewController {
         if dimension > 100{ // sets the max size that a cup can be
             dimension = 100
         }
-        var isNotGrid = 1.0 // 0: it is a grid config, 1: it is not a grid config
+        var isNotGrid = 1.0 // 0: it is a square grid config, 1: it is not a square grid config
         if tableType == 2 {
             isNotGrid = 0.0
         }
@@ -147,8 +152,7 @@ class PongGameVC: UIViewController {
         
         // SETTING OF THE TABLE (placing the cups)
         for row in 0..<activeGame.cupConfig.count{
-            // Sets the starting xPos (stays 0 if the tableType is a grid)
-            xPos = sidePadding + (dimension/2 * Double(row)) * isNotGrid
+            xPos = sidePadding + (dimension/2 * Double(row)) * isNotGrid // Sets the STARTING XPOS (stays 0 if the tableType is a grid)
             // Cycles through the cupConfig array and sets the table accordingly
             for col in 0..<activeGame.cupConfig[0].count{
                 let newCup = Cup(frame: CGRect(x: xPos, y: yPos, width: dimension, height: dimension))
@@ -190,20 +194,14 @@ class PongGameVC: UIViewController {
         }
     }
     func reset(){
-        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-            // Resets table
-            self.activeGame = PongGame()  // creates a new game
-            self.activeGame.tableView = self.tableView
-            self.tableView.clearView()
-            self.setTable(tableArrangement: ReRacks.pyramid(numBase: self.numBase).tableArrangement)
-            self.turns.removeAll()
-            self.turns.append(self.activeGame.copy() as! PongGame)
-            print(self.activeGame.cupConfig)
-            self.updateVisuals()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        self.activeGame = PongGame()  // creates a new game
+        self.activeGame.tableView = self.tableView
+        self.tableView.clearView()
+        self.setTable(tableArrangement: ReRacks.pyramid(numBase: self.numBase).tableArrangement)
+        self.turns.removeAll()
+        self.turns.append(self.activeGame.copy() as! PongGame)
+        print(self.activeGame.cupConfig)
+        self.updateVisuals()
     }
     func getTurnNodes() -> [(Int, PongGame)]{  // Returns only turns that are makes or misses for the graph nodes
         var turnNodes = [(Int, PongGame)]()
@@ -224,6 +222,7 @@ class PongGameVC: UIViewController {
         tableView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width))
         //tableView = UIView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
         self.view.addSubview(tableView)
+        view.sendSubview(toBack: tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
         setTable(tableArrangement: ReRacks.pyramid(numBase: numBase).tableArrangement)
