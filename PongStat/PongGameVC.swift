@@ -13,6 +13,8 @@ class PongGameVC: UIViewController {
     // Variables
     var numBase = 4
     var activeGame: PongGame!
+    var activeNight: PongNight!
+    var gameNumber = 1.0
     var tableView: UIView!
     var turns = [PongGame]()
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
@@ -33,10 +35,15 @@ class PongGameVC: UIViewController {
         undo()
     }
     @IBAction func wvPlayAgainButtonPressed(_ sender: Any) {
+        // Adds the game to the night graph
+        activeNight.addGame(time: gameNumber, score: activeGame.score)
+        gameNumber += 1.0
+        
         Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
         reset()
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
+        activeNight.setDefaults()
     }
 
     // Actions
@@ -200,7 +207,6 @@ class PongGameVC: UIViewController {
         self.setTable(tableArrangement: ReRacks.pyramid(numBase: self.numBase).tableArrangement)
         self.turns.removeAll()
         self.turns.append(self.activeGame.copy() as! PongGame)
-        print(self.activeGame.cupConfig)
         self.updateVisuals()
     }
     func getTurnNodes() -> [(Int, PongGame)]{  // Returns only turns that are makes or misses for the graph nodes
@@ -215,6 +221,9 @@ class PongGameVC: UIViewController {
     
     
     override func viewDidLoad() {
+        // Starts a new night
+        activeNight = PongNight()
+        
         // start a new game
         activeGame = PongGame()
         
@@ -263,6 +272,16 @@ class PongGameVC: UIViewController {
     @IBAction func missedButtonTapped(_ sender: Any) {
         takeTurn(turnType: 1, playedCup: false)
     }
+    
+    /*
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+    }*/
+    
 }
 
 extension PongGameVC: CupDelegate {

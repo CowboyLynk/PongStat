@@ -12,6 +12,7 @@
 		8519FFEB1F01640300374430 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8519FFE81F0163E900374430 /* Charts.framework */; };
 		8519FFEC1F01640300374430 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8519FFE81F0163E900374430 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8519FFF11F0164D000374430 /* ChartSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519FFF01F0164D000374430 /* ChartSetup.swift */; };
+		8526950F1F02FEEB00226ECD /* PongNight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526950E1F02FEEB00226ECD /* PongNight.swift */; };
 		857D2C751EFB03B30010DCCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857D2C731EFB03B30010DCCF /* Main.storyboard */; };
 		857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C761EFB09EB0010DCCF /* ReRacks.swift */; };
 		857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C7B1EFBEFD90010DCCF /* Utils.swift */; };
@@ -83,6 +84,7 @@
 		85100E661EFAD7DC0057F182 /* Cup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
 		8519FFE21F0163E900374430 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "PongStat/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		8519FFF01F0164D000374430 /* ChartSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSetup.swift; sourceTree = "<group>"; };
+		8526950E1F02FEEB00226ECD /* PongNight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PongNight.swift; sourceTree = "<group>"; };
 		857D2C741EFB03B30010DCCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		857D2C761EFB09EB0010DCCF /* ReRacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReRacks.swift; sourceTree = "<group>"; };
 		857D2C7B1EFBEFD90010DCCF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -138,13 +140,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		85AFB5B91EFC5B4F00745FCB /* View Controllers */ = {
+		8526950D1F02FEC400226ECD /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				85E6D9E41EFAD76D009F2D80 /* PongGame.swift */,
+				8526950E1F02FEEB00226ECD /* PongNight.swift */,
+				85100E661EFAD7DC0057F182 /* Cup.swift */,
+				85100E641EFAD7D60057F182 /* Cup.xib */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		85AFB5B91EFC5B4F00745FCB /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
 				85E6D9B21EFAD627009F2D80 /* StartViewController.swift */,
 			);
-			name = "View Controllers";
+			name = Views;
 			sourceTree = "<group>";
 		};
 		85E6D9A41EFAD627009F2D80 = {
@@ -173,7 +186,8 @@
 			children = (
 				85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */,
 				857D2C731EFB03B30010DCCF /* Main.storyboard */,
-				85AFB5B91EFC5B4F00745FCB /* View Controllers */,
+				85AFB5B91EFC5B4F00745FCB /* Views */,
+				8526950D1F02FEC400226ECD /* Objects */,
 				85E6D9DE1EFAD677009F2D80 /* Utilities */,
 				85E6D9B71EFAD627009F2D80 /* Assets.xcassets */,
 				85E6D9B91EFAD627009F2D80 /* LaunchScreen.storyboard */,
@@ -203,9 +217,6 @@
 		85E6D9DE1EFAD677009F2D80 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				85E6D9E41EFAD76D009F2D80 /* PongGame.swift */,
-				85100E661EFAD7DC0057F182 /* Cup.swift */,
-				85100E641EFAD7D60057F182 /* Cup.xib */,
 				857D2C761EFB09EB0010DCCF /* ReRacks.swift */,
 				857D2C7B1EFBEFD90010DCCF /* Utils.swift */,
 				8519FFF01F0164D000374430 /* ChartSetup.swift */,
@@ -379,6 +390,7 @@
 			files = (
 				8519FFF11F0164D000374430 /* ChartSetup.swift in Sources */,
 				85E6D9B31EFAD627009F2D80 /* StartViewController.swift in Sources */,
+				8526950F1F02FEEB00226ECD /* PongNight.swift in Sources */,
 				857D2C771EFB09EB0010DCCF /* ReRacks.swift in Sources */,
 				85E6D9E31EFAD763009F2D80 /* PongGameVC.swift in Sources */,
 				85E6D9E51EFAD76D009F2D80 /* PongGame.swift in Sources */,

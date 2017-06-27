@@ -12,17 +12,17 @@
         <!--Pong GameVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PongGameVC" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pongGameVCid" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="PongGameVC" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYh-6E-F2o">
-                                <rect key="frame" x="16" y="483" width="343" height="100"/>
+                                <rect key="frame" x="16" y="536" width="343" height="111"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.89411764709999997" green="0.25882352939999997" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="27"/>
@@ -34,18 +34,18 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csA-cM-fH8" userLabel="Chart Container">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="144"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NO DATA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7E-jU-UzU">
-                                        <rect key="frame" x="11" y="54" width="352" height="21"/>
+                                        <rect key="frame" x="11" y="61" width="352" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WhZ-xA-gbh" userLabel="Chart View" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="-20" y="10" width="375" height="130"/>
+                                        <rect key="frame" x="-20" y="10" width="375" height="145"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.23921568630000001" green="0.4823529412" blue="0.34509803919999998" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -53,14 +53,14 @@
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.4823529412" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WEIGHTED SCORE:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-8o-Z7R" userLabel="Current Score Label">
-                                <rect key="frame" x="0.0" y="138" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="153" width="375" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRq-6f-a6O" userLabel="Re-Rack">
-                                <rect key="frame" x="309" y="415" width="50" height="50"/>
+                                <rect key="frame" x="309" y="459" width="50" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Re-rack"/>
                                 <connections>
@@ -68,7 +68,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7s-TO-SVB" userLabel="Undo">
-                                <rect key="frame" x="16" y="415" width="50" height="50"/>
+                                <rect key="frame" x="16" y="459" width="50" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Undo"/>
                                 <connections>
@@ -79,8 +79,14 @@
                         <color key="backgroundColor" red="0.36470588240000001" green="0.63921568630000003" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="iv4-2c-E8p">
-                        <barButtonItem key="leftBarButtonItem" image="Menu" id="Gi2-cZ-p1m"/>
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="Gi2-cZ-p1m">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="9Xo-15-3cn" kind="show" id="QTS-OY-5Or"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Reset" width="10" id="1dT-Ax-OER">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="resetButtonTapped:" destination="BYZ-38-t0r" id="9Ft-0Q-nTo"/>
                             </connections>
@@ -187,17 +193,17 @@
         <!--Start View Controller-->
         <scene sceneID="ROi-vu-U5q">
             <objects>
-                <viewController id="9Xo-15-3cn" customClass="StartViewController" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startViewVCid" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Xo-15-3cn" customClass="StartViewController" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AxM-uL-M1Q"/>
                         <viewControllerLayoutGuide type="bottom" id="XyO-BB-WyN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WAJ-GE-LAR">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PX5-AN-7DB">
-                                <rect key="frame" x="164" y="286" width="46" height="30"/>
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -218,7 +224,7 @@
         <scene sceneID="V2l-gR-h6P">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gWw-cm-UFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P7f-ot-DmQ" customClass="CustomNav" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navVCid" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P7f-ot-DmQ" customClass="CustomNav" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="0Oh-qY-13i">
@@ -242,4 +248,7 @@
         <image name="Reset" width="24" height="24"/>
         <image name="Undo" width="125" height="125"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QTS-OY-5Or"/>
+    </inferredMetricsTieBreakers>
 </document>
