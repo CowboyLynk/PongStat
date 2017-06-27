@@ -23,36 +23,28 @@ class PongGameVC: UIViewController {
     @IBOutlet var reRackView: UIView!
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
+    
+    // Winner View Outlets
+    @IBOutlet var winnerView: UIView!
+    @IBOutlet weak var wvFinalScore: UILabel!
+    // Winner View Actions
+    @IBAction func wvUndoButtonPressed(_ sender: Any) {
+        Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
+        undo()
+    }
+    @IBAction func wvPlayAgainButtonPressed(_ sender: Any) {
+        Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
+        reset()
+    }
+    @IBAction func wvEndNightButtonPressed(_ sender: Any) {
+    }
 
     // Actions
     @IBAction func undoButtonTapped(_ sender: Any) {
-        if turns.count > 1{
-            turns.removeLast()
-            activeGame = turns.last?.copy() as! PongGame
-            
-            // Takes all the cups from the new reRack and places them on the tableView
-            tableView.swapView(newView: activeGame.tableView)
-            activeGame.tableView = tableView // Sets the now updated tableView to be the one that updates in the game
-            
-            updateVisuals()
-            //checkForReReck()
-        }
+        undo()
     }
     @IBAction func resetButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-            // Resets table
-            self.activeGame = PongGame()  // creates a new game
-            self.activeGame.tableView = self.tableView
-            self.tableView.clearView()
-            self.setTable(tableArrangement: ReRacks.pyramid(numBase: self.numBase).tableArrangement)
-            self.turns.removeAll()
-            self.turns.append(self.activeGame.copy() as! PongGame)
-            print(self.activeGame.cupConfig)
-            self.updateVisuals()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        reset()
     }
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
         reRackView.clearView()
@@ -123,10 +115,10 @@ class PongGameVC: UIViewController {
         
         updateVisuals()
         
-        /*if activeGame.getCount(array: activeGame.cupConfig) == 0{
-            finalScoreLabel.text = "Final Score: \(String(Int(activeGame.score)))"
-            Animations.springAnimateIn(viewToAnimate: winnersView, blurView: blurEffectView, view: self.view)
-        }*/
+        if activeGame.getCount(array: activeGame.cupConfig) == 0{
+            wvFinalScore.text = "Final Score: \(String(Int(activeGame.score)))"
+            Animations.springAnimateIn(viewToAnimate: winnerView, blurView: blurEffectView, view: self.view)
+        }
     }
     func setTable(tableArrangement: ([[Bool]], Int, Int)){  // (cupConfig, gridType, rotation angle)
         /* Takes in a cup configuration and a grid type (offset pyramid, grid, or other) and places the cups according to the configuration it is given
@@ -184,6 +176,35 @@ class PongGameVC: UIViewController {
         currentScoreLabel.text = "WEIGHTED SCORE: \(Int(activeGame.score))"
         ChartSetup.updateChart(chartView: chartView, noDataLabel: noDataLabel, turnNodes: getTurnNodes())
     }
+    func undo(){
+        if turns.count > 1{
+            turns.removeLast()
+            activeGame = turns.last?.copy() as! PongGame
+            
+            // Takes all the cups from the new reRack and places them on the tableView
+            tableView.swapView(newView: activeGame.tableView)
+            activeGame.tableView = tableView // Sets the now updated tableView to be the one that updates in the game
+            
+            updateVisuals()
+            //checkForReReck()
+        }
+    }
+    func reset(){
+        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            // Resets table
+            self.activeGame = PongGame()  // creates a new game
+            self.activeGame.tableView = self.tableView
+            self.tableView.clearView()
+            self.setTable(tableArrangement: ReRacks.pyramid(numBase: self.numBase).tableArrangement)
+            self.turns.removeAll()
+            self.turns.append(self.activeGame.copy() as! PongGame)
+            print(self.activeGame.cupConfig)
+            self.updateVisuals()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     func getTurnNodes() -> [(Int, PongGame)]{  // Returns only turns that are makes or misses for the graph nodes
         var turnNodes = [(Int, PongGame)]()
         for turn in turns{
@@ -193,6 +214,7 @@ class PongGameVC: UIViewController {
         }
         return turnNodes
     }
+    
     
     override func viewDidLoad() {
         // start a new game
