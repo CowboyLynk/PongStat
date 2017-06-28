@@ -100,6 +100,7 @@
                         <outlet property="reRackView" destination="oGx-sT-F2r" id="If4-AY-QFW"/>
                         <outlet property="winnerView" destination="cac-MH-MiY" id="zoe-VS-VK0"/>
                         <outlet property="wvFinalScore" destination="G68-wS-3Mn" id="yJl-Zl-INe"/>
+                        <segue destination="OXg-C7-spp" kind="show" identifier="showNightGraphs" action="showDetailViewController:sender:" id="DKX-Dj-Zbo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -190,6 +191,34 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="135.38230884557723"/>
         </scene>
+        <!--Pong NightVC-->
+        <scene sceneID="kxw-bD-jL0">
+            <objects>
+                <viewController id="OXg-C7-spp" customClass="PongNightVC" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m1O-qf-1F8"/>
+                        <viewControllerLayoutGuide type="bottom" id="KZQ-at-1Dm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W8i-4N-OdO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o9k-8M-Nzl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="o9k-8M-Nzl" id="2Ck-df-L3N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6N4-PT-XYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2013.5999999999999" y="934.18290854572717"/>
+        </scene>
         <!--Start View Controller-->
         <scene sceneID="ROi-vu-U5q">
             <objects>
@@ -203,12 +232,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PX5-AN-7DB">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <rect key="frame" x="164" y="278" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="playGameButtonPressed:" destination="9Xo-15-3cn" eventType="touchUpInside" id="yj5-Uz-J8v"/>
                                     <segue destination="BYZ-38-t0r" kind="show" id="NV0-lr-3cZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uv5-Uy-ItL">
+                                <rect key="frame" x="124" y="358" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Night Graphs"/>
+                                <connections>
+                                    <segue destination="OXg-C7-spp" kind="show" id="JIm-Ps-M1F"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -218,12 +255,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXh-LA-FGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="135"/>
+            <point key="canvasLocation" x="1156" y="134.48275862068968"/>
         </scene>
         <!--Custom Nav-->
         <scene sceneID="V2l-gR-h6P">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gWw-cm-UFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="navVCid" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P7f-ot-DmQ" customClass="CustomNav" customModule="PongStat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -236,6 +272,7 @@
                         <segue destination="9Xo-15-3cn" kind="relationship" relationship="rootViewController" id="f45-67-20f"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gWw-cm-UFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="319" y="135"/>
         </scene>
@@ -250,5 +287,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QTS-OY-5Or"/>
+        <segue reference="DKX-Dj-Zbo"/>
     </inferredMetricsTieBreakers>
 </document>

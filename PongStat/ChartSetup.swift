@@ -65,7 +65,7 @@ class ChartSetup{
         chartDataSet.lineWidth = 3
         chartDataSet.drawFilledEnabled = true
         
-        let chartData = LineChartData(dataSet: chartDataSet)  // Error occurs here
+        let chartData = LineChartData(dataSet: chartDataSet)
         chartView.data = chartData
     }
 }

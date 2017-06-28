@@ -11,6 +11,7 @@ import Charts
 
 class PongGameVC: UIViewController {
     // Variables
+    var startTime: Date!
     var numBase = 4
     var activeGame: PongGame!
     var activeNight: PongNight!
@@ -36,14 +37,15 @@ class PongGameVC: UIViewController {
     }
     @IBAction func wvPlayAgainButtonPressed(_ sender: Any) {
         // Adds the game to the night graph
-        activeNight.addGame(time: gameNumber, score: activeGame.score)
+        activeNight.addGame(time: formatTime.format(time: startTime), score: activeGame.score)
         gameNumber += 1.0
         
         Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
         reset()
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
-        activeNight.setDefaults()
+        activeNight.addGame(time: formatTime.format(time: startTime), score: activeGame.score)
+        self.performSegue(withIdentifier: "showNightGraphs", sender: StartViewController())
     }
 
     // Actions
@@ -115,8 +117,8 @@ class PongGameVC: UIViewController {
             playedCup.removeCup()
             activeGame.cupConfig[playedCup.location.0][playedCup.location.1] = false
             if turnType == 0{ // Made by user
-                //let multiplier = 1 + 0.1 * Double(6 - activeGame.calcCupsAround(cup: playedCup))
-                let multiplier = 1.0
+                let cupsAround = activeGame.getCupsAround(forCup: playedCup)
+                let multiplier = 1 + 0.1 * Double(6 - cupsAround)
                 activeGame.madeCounter += multiplier
             }
             //checkForReReck()
@@ -259,7 +261,9 @@ class PongGameVC: UIViewController {
         let image = UIImage(named: "Title")
         imageView.image = image
         navigationItem.titleView = imageView
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        let date = Date()
+        startTime = date
         
         super.viewDidLoad()
     }

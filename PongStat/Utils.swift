@@ -31,9 +31,20 @@ class CustomNav: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.barTintColor = UIColor(red:0.20, green:0.41, blue:0.29, alpha:1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationBar.tintColor = UIColor.white
     }
 }
+
+class formatTime: NSObject{
+    static func format(time: Date) -> String{
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: time)
+        let day = calendar.component(.day, from: time)
+        let year = calendar.component(.year, from: time)
+        return "\(month)/\(day)/\(year)"
+    }
+}
+
 
 // Extensions
 extension UIView {

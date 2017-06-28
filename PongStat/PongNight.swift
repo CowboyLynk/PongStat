@@ -20,10 +20,9 @@ class PongNight {
         pongNights.append([])
     }
     
-    func addGame(time: Double, score: Double){
+    func addGame(time: String, score: Double){
         let last = pongNights.count
-        pongNights[last - 1].append("\(time)/\(score)")
-        print(pongNights)
+        pongNights[last - 1].append("\(time)%\(score)")
         setDefaults()
     }
     

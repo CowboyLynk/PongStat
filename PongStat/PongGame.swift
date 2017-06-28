@@ -60,6 +60,22 @@ class PongGame: NSObject, NSCopying {
         return possibleReRacks
     }
     
+    func getCupsAround(forCup: Cup) -> Int{
+        var counter = 0
+        
+        let desiredDistance = forCup.bounds.width*1.5
+        for subview in tableView.subviews {
+            let cupAround = subview as! Cup
+            let distance = ((cupAround.center.x - forCup.center.x) * (cupAround.center.x - forCup.center.x) + (cupAround.center.y - forCup.center.y) * (cupAround.center.y - forCup.center.y)).squareRoot()
+            if distance <= desiredDistance && distance != 0{
+                if cupAround.cup.isHidden == false{
+                    counter += 1
+                }
+            }
+        }
+        return counter
+    }
+    
     func getCount(array: [[Bool]]) -> Int{
         var count = 0
         for row in 0..<array.count{
