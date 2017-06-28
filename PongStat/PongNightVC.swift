@@ -13,22 +13,30 @@ class PongNightVC: UIViewController {
     
     // Outlets
     @IBOutlet weak var scrollView: UIScrollView!
-    var time: String!
+    
+    // Variables
+    var nightDate: String!
+    var nightChart: LineChartView!
     
     // Functions
     func addChart(chart: LineChartView, nodes: [String]){
+        
+        // Sets the date of the graph
+        let index = nodes.last?.characters.index(of: "%")
+        nightDate = nodes.last?.substring(to: index!)
+        
+        // Adds all the ofhter values
         ChartSetup.setUpChart(chartView: chart)
         var scores = [ChartDataEntry]()
         var colors = [UIColor]()
         var counter = 1.0
         for node in nodes{
-            // gets the time and score
+            // Gets the TIME and SCORE
             let index = node.characters.index(of: "%")
-            time = node.substring(to: index!)
             let scoreIndex = node.index(index!, offsetBy: 1)
             let score = Int(Double(node.substring(from: scoreIndex))!)
             
-            // Sets the graph
+            // Adds the nodes the graph
             scores.append(ChartDataEntry(x: counter, y: Double(score)))
             counter += 1.0
             colors.append(UIColor.white)
@@ -39,16 +47,15 @@ class PongNightVC: UIViewController {
             chartDataSet.setColors(UIColor.white)
             chartDataSet.circleColors.remove(at: 0)
             chartDataSet.circleColors.append(contentsOf: colors)
-            //chartDataSet.fillColor = UIColor(red:0.39, green:0.78, blue:0.56, alpha:1.0)
+            chartDataSet.fillColor = UIColor(red:0.39, green:0.78, blue:0.56, alpha:1.0)
             chartDataSet.circleRadius = 6
             chartDataSet.circleHoleRadius = 3
-            //chartDataSet.circleHoleColor = UIColor(red:0.29, green:0.58, blue:0.41, alpha:1.0)
             chartDataSet.mode = LineChartDataSet.Mode.cubicBezier
             chartDataSet.drawValuesEnabled = true
             chartDataSet.valueTextColor = .white
             chartDataSet.valueFont = UIFont(name: "HelveticaNeue-Bold", size: 14)!
             chartDataSet.lineWidth = 3
-            chartDataSet.drawFilledEnabled = false
+            chartDataSet.drawFilledEnabled = true
             chart.leftAxis.axisMinimum = 0
             chart.leftAxis.axisMaximum = 120.0
             chart.xAxis.axisMinimum = 0.8
@@ -67,31 +74,38 @@ class PongNightVC: UIViewController {
         let nights = (UserDefaults.standard.array(forKey: "PongNight")?.reversed())
         if (nights != nil){
             for night in nights!{
+                // Creates the views that display the night's information
                 let view = UIView(frame: CGRect(x: 0, y: yPos, width: Int(self.view.bounds.width*0.95), height: 200))
-                let nightChart = LineChartView(frame: CGRect(x: 0, y: 50, width: view.bounds.width, height: 150))
+                nightChart = LineChartView(frame: CGRect(x: 0, y: 50, width: view.bounds.width, height: 150))
                 let chartInfoView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
                 let chartInfo = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
+                
+                // Adds all the scores to the chart
+                addChart(chart: nightChart, nodes: night as! [String])
+                
+                // Styles the night charts' views
+                nightChart.animate(yAxisDuration: 1)
                 chartInfo.textAlignment = .center
                 chartInfo.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
                 chartInfo.textColor = UIColor(red:0.56, green:0.59, blue:0.62, alpha:1.0)
-                
                 chartInfoView.backgroundColor = .white
-                chartInfoView.addSubview(chartInfo)
+                chartInfo.text = "NIGHT OF: \(nightDate!)"
                 view.center.x = self.view.center.x
+                view.layer.shadowRadius = 7
+                view.layer.shadowOffset = CGSize(width: 0, height: 0)
+                view.layer.shadowOpacity = 0.2
+                view.layer.cornerRadius = 20
                 
-                //Makes a new chart
-                addChart(chart: nightChart, nodes: night as! [String])
-                
-                chartInfo.text = "GAME ON: \(time!)"
-                yPos += 230
+                // Adds all the subviews
+                chartInfoView.addSubview(chartInfo)
                 view.addSubview(nightChart)
                 view.addSubview(chartInfoView)
-                view.layer.shadowRadius = 7
-                view.layer.shadowOpacity = 0.2
-                //view.layer.shadowOffset = CGSize(width: 0, height: 5)
-                view.layer.cornerRadius = 20
                 scrollView.addSubview(view)
+                
+                // Increments certain variables
                 scrollView.contentSize.height += 230
+                yPos += 230
+                
             }
         }
     

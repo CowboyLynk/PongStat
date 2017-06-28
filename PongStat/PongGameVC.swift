@@ -11,7 +11,7 @@ import Charts
 
 class PongGameVC: UIViewController {
     // Variables
-    var startTime: Date!
+    var startGameTime: Date!
     var numBase = 4
     var activeGame: PongGame!
     var activeNight: PongNight!
@@ -37,14 +37,14 @@ class PongGameVC: UIViewController {
     }
     @IBAction func wvPlayAgainButtonPressed(_ sender: Any) {
         // Adds the game to the night graph
-        activeNight.addGame(time: formatTime.format(time: startTime), score: activeGame.score)
+        activeNight.addGame(time: startGameTime, score: activeGame.score)
         gameNumber += 1.0
         
         Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
         reset()
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
-        activeNight.addGame(time: formatTime.format(time: startTime), score: activeGame.score)
+        activeNight.addGame(time: startGameTime, score: activeGame.score)
         self.performSegue(withIdentifier: "showNightGraphs", sender: StartViewController())
     }
 
@@ -231,6 +231,7 @@ class PongGameVC: UIViewController {
         
         // Set up table
         tableView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width))
+        
         //tableView = UIView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
         self.view.addSubview(tableView)
         view.sendSubview(toBack: tableView)
@@ -262,8 +263,10 @@ class PongGameVC: UIViewController {
         imageView.image = image
         navigationItem.titleView = imageView
         
+        
+        // Sets the times
         let date = Date()
-        startTime = date
+        startGameTime = date
         
         super.viewDidLoad()
     }
