@@ -301,11 +301,12 @@ class PongGameVC: UIViewController {
         missedButton.layer.cornerRadius = 15
         
         // Nav bar
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         let image = UIImage(named: "Title")
         imageView.image = image
         navigationItem.titleView = imageView
+        
         
         // Sets the times
         let date = Date()
