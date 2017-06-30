@@ -9,10 +9,16 @@
 import UIKit
 import Charts
 
-class PongNightVC: UIViewController {
+class PongNightsVC: UIViewController {
     
     // Outlets
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var noGamesLabel: UILabel!
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
+    // Actions
+    @IBAction func backButtonPressed(_ sender: Any) {
+    }
     
     // Variables
     var nightDate: String!
@@ -60,7 +66,7 @@ class PongNightVC: UIViewController {
             chart.leftAxis.axisMaximum = 120.0
             chart.xAxis.axisMinimum = 0.8
             chart.xAxis.axisMaximum = (scores.last?.x)! + 0.2
-            chart.backgroundColor = UIColor(colorLiteralRed: 0.36, green: 0.64, blue: 0.48, alpha: 1.0)
+            //chart.backgroundColor = UIColor(colorLiteralRed: 0.36, green: 0.64, blue: 0.48, alpha: 1.0)
             
             let chartData = LineChartData(dataSet: chartDataSet)
             chart.data = chartData
@@ -73,12 +79,14 @@ class PongNightVC: UIViewController {
         
         let nights = (UserDefaults.standard.array(forKey: "PongNight")?.reversed())
         if (nights != nil){
+            noGamesLabel.isHidden = true
             for night in nights!{
                 // Creates the views that display the night's information
                 let view = UIView(frame: CGRect(x: 0, y: yPos, width: Int(self.view.bounds.width*0.95), height: 200))
-                nightChart = LineChartView(frame: CGRect(x: 0, y: 50, width: view.bounds.width, height: 150))
-                let chartInfoView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
+                nightChart = LineChartView(frame: CGRect(x: 0, y: 60, width: view.bounds.width, height: 150))
+                let chartInfoView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 75))
                 let chartInfo = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
+                let background = UIView(frame: CGRect(x: 0, y: 50, width: view.bounds.width, height: 100))
                 
                 // Adds all the scores to the chart
                 addChart(chart: nightChart, nodes: night as! [String])
@@ -88,18 +96,22 @@ class PongNightVC: UIViewController {
                 chartInfo.textAlignment = .center
                 chartInfo.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
                 chartInfo.textColor = UIColor(red:0.56, green:0.59, blue:0.62, alpha:1.0)
-                chartInfoView.backgroundColor = .white
                 chartInfo.text = "NIGHT OF: \(nightDate!)"
+                chartInfoView.backgroundColor = .white
+                chartInfoView.layer.cornerRadius = 5
                 view.center.x = self.view.center.x
                 view.layer.shadowRadius = 7
                 view.layer.shadowOffset = CGSize(width: 0, height: 0)
                 view.layer.shadowOpacity = 0.2
-                view.layer.cornerRadius = 20
+                view.layer.cornerRadius = 5
+                view.backgroundColor = UIColor(colorLiteralRed: 0.36, green: 0.64, blue: 0.48, alpha: 1.0)
+                background.backgroundColor = UIColor(colorLiteralRed: 0.36, green: 0.64, blue: 0.48, alpha: 1.0)
                 
                 // Adds all the subviews
                 chartInfoView.addSubview(chartInfo)
-                view.addSubview(nightChart)
                 view.addSubview(chartInfoView)
+                view.addSubview(background)
+                view.addSubview(nightChart)
                 scrollView.addSubview(view)
                 
                 // Increments certain variables
@@ -109,9 +121,8 @@ class PongNightVC: UIViewController {
             }
         }
     
+        noGamesLabel.textColor = .gray
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

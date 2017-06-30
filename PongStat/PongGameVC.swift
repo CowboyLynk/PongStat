@@ -12,6 +12,7 @@ import Charts
 class PongGameVC: UIViewController {
     // Variables
     var startGameTime: Date!
+    var numInitialCups = 10
     var numBase = 4
     var activeGame: PongGame!
     var activeNight: PongNight!
@@ -27,6 +28,25 @@ class PongGameVC: UIViewController {
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
     
+    // Cup Prompt Outlets
+    @IBOutlet var cupPromptView: UIView!
+    @IBOutlet weak var cupPromptTextField: UITextField!
+    // Cup Prompt Actions
+    @IBAction func cupPromptPlayButtonPressed(_ sender: Any) {
+        let enteredField = cupPromptTextField.text
+        if enteredField != ""{
+            let numCups = Int(enteredField!)!
+            if numCups > 0 && numCups < 40{
+                cupPromptTextField.resignFirstResponder()
+                Animations.animateOut(viewToAnimate: cupPromptView, blurView: blurEffectView)
+                numInitialCups = numCups
+                reset()
+            } else{
+            }
+        }
+        cupPromptTextField.text = ""
+    }
+    
     // Winner View Outlets
     @IBOutlet var winnerView: UIView!
     @IBOutlet weak var wvFinalScore: UILabel!
@@ -39,12 +59,17 @@ class PongGameVC: UIViewController {
         // Adds the game to the night graph
         activeNight.addGame(time: startGameTime, score: activeGame.score)
         gameNumber += 1.0
+        cupPromptTextField.becomeFirstResponder()
+        Animations.normalAnimateIn(viewToAnimate: cupPromptView, blurView: blurEffectView, view: self.view)
+        Animations.animateOut(viewToAnimate: winnerView, blurView: UIVisualEffectView())
         
-        Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
-        reset()
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
         activeNight.addGame(time: startGameTime, score: activeGame.score)
+        activeNight.removeLastNight()
+        cupPromptTextField.becomeFirstResponder()
+        Animations.normalAnimateIn(viewToAnimate: cupPromptView, blurView: blurEffectView, view: self.view)
+        Animations.animateOut(viewToAnimate: winnerView, blurView: UIVisualEffectView())
         self.performSegue(withIdentifier: "showNightGraphs", sender: StartViewController())
     }
 
@@ -52,35 +77,45 @@ class PongGameVC: UIViewController {
     @IBAction func undoButtonTapped(_ sender: Any) {
         undo()
     }
-    @IBAction func resetButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Reset table?", message: "Are you sure that you want to reset the table? Your scores will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-            self.reset()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
         reRackView.clearView()
-        Animations.normalAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
-        reRackView.center = self.view.center
-        reRackView.center.y = self.view.bounds.height/2
         
         // Position variables
         var xPos = 25
-        var yPos = 64
+        var yPos = 89
         var counter = 1
-        for reRackOption in activeGame.getPossibleReRacks(){
-            reRackView.addSubview(reRackOption)
-            reRackOption.addTarget(self, action: #selector(reRackOptionTapped(sender:)), for: .touchUpInside)
-            reRackOption.frame.origin = CGPoint(x: xPos, y: yPos)
+        var rowCounter = 0
+        // Adds all the buttons for remaining-cup-dependant reracks
+        var allReRacks = activeGame.getPossibleReRacks()
+        allReRacks.append(ReRacks.createButton(name: "Custom", image: #imageLiteral(resourceName: "customTriangle"), tableArrangement: ([], 0, 0)))
+        allReRacks.append(ReRacks.createButton(name: "Custom", image: #imageLiteral(resourceName: "customGrid"), tableArrangement: ([], 0, 0)))
+        //let view = UIView(frame: CGRect(x: 0, y: 0, width: 125, height: 125))
+        //view.backgroundColor = .black
+        //allReRacks.append(view)
+        for reRackOption in allReRacks{
+            //Adds the button
+            let reRack = reRackOption as! reRackOption
+            reRackView.addSubview(reRack)
+            reRack.addTarget(self, action: #selector(reRackOptionTapped(sender:)), for: .touchUpInside)
+            reRack.frame.origin = CGPoint(x: xPos, y: yPos)
+            
+            // Increments certain variables
             xPos += 150
             if counter % 2 == 0{
                 xPos = 25
                 yPos += 150
             }
+            if (counter - 1) % 2 == 0{
+                rowCounter += 1
+            }
             counter += 1
         }
+        
+        
+        reRackView.frame.size = CGSize(width: reRackView.frame.width, height: CGFloat(89 + 150*rowCounter))
+        reRackView.center = self.view.center
+        reRackView.center.y = self.view.bounds.height/2
+        Animations.normalAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
     }
     func reRackOptionTapped(sender: reRackOption){
         if (sender.newTableView != nil){ // runs if the user selects a non-grid-aligned reRack
@@ -203,6 +238,7 @@ class PongGameVC: UIViewController {
         }
     }
     func reset(){
+        self.numBase = Int(-1/2*(1 - (8.0*Double(numInitialCups) + 1.0).squareRoot()))
         self.activeGame = PongGame()  // creates a new game
         self.activeGame.tableView = self.tableView
         self.tableView.clearView()
@@ -223,6 +259,19 @@ class PongGameVC: UIViewController {
     
     
     override func viewDidLoad() {
+        
+        // Initializes whole-screen blur view (used in many pop-ups)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //blurEffectView.alpha = 0
+        
+        // Gets the number of cups
+        cupPromptView.center = self.view.center
+        cupPromptView.center.y = (self.view.bounds.height - 170 - 35)/2
+        cupPromptTextField.becomeFirstResponder()
+        self.view.addSubview(blurEffectView)
+        self.view.addSubview(cupPromptView)
+        
         // Starts a new night
         activeNight = PongNight()
         
@@ -231,12 +280,12 @@ class PongGameVC: UIViewController {
         
         // Set up table
         tableView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width))
-        
         //tableView = UIView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
         self.view.addSubview(tableView)
         view.sendSubview(toBack: tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
+        numBase = Int(-1/2*(1 - (8.0*Double(numInitialCups) + 1.0).squareRoot())) // sets num cups on base of pyramid
         setTable(tableArrangement: ReRacks.pyramid(numBase: numBase).tableArrangement)
         ChartSetup.setUpChart(chartView: chartView)
         
@@ -251,11 +300,6 @@ class PongGameVC: UIViewController {
         missedButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         missedButton.layer.cornerRadius = 15
         
-        // Initializes whole-screen blur view (used in many pop-ups)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.alpha = 0
-        
         // Nav bar
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 20))
         imageView.contentMode = UIViewContentMode.scaleAspectFit
@@ -263,11 +307,12 @@ class PongGameVC: UIViewController {
         imageView.image = image
         navigationItem.titleView = imageView
         
-        
         // Sets the times
         let date = Date()
         startGameTime = date
         
+        
+        //presentNumCupsAlert()
         super.viewDidLoad()
     }
 

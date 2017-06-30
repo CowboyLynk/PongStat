@@ -37,7 +37,6 @@ class Animations: NSObject {
     static func normalAnimateIn(viewToAnimate: UIView, blurView: UIVisualEffectView, view: UIView){
         // Sets initial scale and pos
         viewToAnimate.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
-        viewToAnimate.center = CGPoint.init(x: view.center.x, y: view.bounds.height/2)
         
         // Adds BG blur
         view.addSubview(blurView)
@@ -55,7 +54,6 @@ class Animations: NSObject {
             blurView.alpha = 1
         }
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [] , animations: {
-            viewToAnimate.center = CGPoint.init(x: view.center.x, y: view.bounds.height/2)
             viewToAnimate.transform = CGAffineTransform.init(scaleX: 1, y: 1)
         }, completion: nil)
     }
@@ -66,6 +64,8 @@ class Animations: NSObject {
             viewToAnimate.transform = CGAffineTransform.init(scaleX: 1.05, y: 1.05)
             
         }) { (sucsess:Bool) in
+            viewToAnimate.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+
             viewToAnimate.removeFromSuperview()
             blurView.removeFromSuperview()
         }

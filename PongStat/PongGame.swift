@@ -29,7 +29,7 @@ class PongGame: NSObject, NSCopying {
         }
     }
     
-    func getPossibleReRacks() -> [reRackOption]{
+    func getPossibleReRacks() -> [Any]{
         let numCups = self.getCount(array: self.cupConfig)
         var possibleReRacks = [reRackOption]()
         if numCups > 1{

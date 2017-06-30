@@ -22,8 +22,15 @@ class PongNight {
     
     func addGame(time: Date, score: Double){
         let last = pongNights.count
-        pongNights[last - 1].append("\(formatTime.format(time: time))%\(score)")
+        pongNights[last - 1].append("\(staticFunctions.formatTime(time: time))%\(score)")
         setDefaults()
+    }
+    
+    func removeLastNight(){
+        if (pongNights.last?.count)! > 0{
+            pongNights.removeLast()
+            pongNights.append([])
+        }
     }
     
     func setDefaults(){

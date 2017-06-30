@@ -35,8 +35,8 @@ class CustomNav: UINavigationController {
     }
 }
 
-class formatTime: NSObject{
-    static func format(time: Date) -> String{
+class staticFunctions: NSObject{
+    static func formatTime(time: Date) -> String{
         let calendar = Calendar.current
         let month = calendar.component(.month, from: time)
         let day = calendar.component(.day, from: time)
