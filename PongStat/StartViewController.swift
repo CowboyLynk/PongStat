@@ -18,7 +18,7 @@ class StartViewController: UIViewController {
     
     // Actions
     @IBAction func playGameButtonPressed(_ sender: Any) {
-        presentNumCupsAlert()
+        //presentNumCupsAlert()
     }
     
     // Functions
@@ -26,35 +26,6 @@ class StartViewController: UIViewController {
         if let destination = segue.destination as? PongGameVC {
             destination.numInitialCups = self.numInitialCups
         }
-    }
-    func presentNumCupsAlert() {
-        let alertController = UIAlertController(title: "Number of cups", message: "How many cups are you playing with?", preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: "Play", style: .default) { (_) in
-            let field = alertController.textFields![0]
-            if field.text != "" && Int(field.text!)! > 0 {
-                if Int(field.text!)! >= 40 {
-                    let alert = UIAlertController(title: "Really?", message: "Yeah, I'm gonna call bullshit on that.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Sorry", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    self.numInitialCups = Int(field.text!)!
-                    self.performSegue(withIdentifier: "playGame", sender: nil)
-                }
-            } else {
-                // user did not fill field
-            }
-        }
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Number of cups"
-            textField.textAlignment = .center
-            textField.keyboardType = UIKeyboardType.numberPad
-        }
-        
-        alertController.addAction(confirmAction)
-        
-        self.present(alertController, animated: true, completion: nil)
     }
     
 

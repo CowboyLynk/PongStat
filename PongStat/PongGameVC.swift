@@ -20,6 +20,8 @@ class PongGameVC: UIViewController {
     var tableView: UIView!
     var turns = [PongGame]()
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
+    var menuBlurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
+    var menuActivated = false
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -27,6 +29,7 @@ class PongGameVC: UIViewController {
     @IBOutlet var reRackView: UIView!
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet var menuView: UIView!
     
     // Cup Prompt Outlets
     @IBOutlet var cupPromptView: UIView!
@@ -59,21 +62,19 @@ class PongGameVC: UIViewController {
         // Adds the game to the night graph
         activeNight.addGame(time: startGameTime, score: activeGame.score)
         gameNumber += 1.0
-        cupPromptTextField.becomeFirstResponder()
-        Animations.normalAnimateIn(viewToAnimate: cupPromptView, blurView: blurEffectView, view: self.view)
-        Animations.animateOut(viewToAnimate: winnerView, blurView: UIVisualEffectView())
+        presetNumCupsPrompt()
         
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
         activeNight.addGame(time: startGameTime, score: activeGame.score)
         activeNight.removeLastNight()
-        cupPromptTextField.becomeFirstResponder()
-        Animations.normalAnimateIn(viewToAnimate: cupPromptView, blurView: blurEffectView, view: self.view)
-        Animations.animateOut(viewToAnimate: winnerView, blurView: UIVisualEffectView())
-        self.performSegue(withIdentifier: "showNightGraphs", sender: StartViewController())
+        self.performSegue(withIdentifier: "returnToHome", sender: StartViewController())
     }
 
     // Actions
+    @IBAction func menuButtonTapped(_ sender: Any) {
+        presentMenu()
+    }
     @IBAction func undoButtonTapped(_ sender: Any) {
         undo()
     }
@@ -247,6 +248,21 @@ class PongGameVC: UIViewController {
         self.turns.append(self.activeGame.copy() as! PongGame)
         self.updateVisuals()
     }
+    func presentMenu(){
+        cupPromptTextField.resignFirstResponder()
+        menuView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width*0.6, height: self.view.bounds.height)
+        if !menuActivated{
+            Animations.slideAnimateIn(viewToAnimate: menuView, blurView: menuBlurEffectView, view: self.view)
+        } else {
+            Animations.slideAnimateOut(viewToAnimate: menuView, blurView: menuBlurEffectView)
+        }
+        menuActivated = !menuActivated
+    }
+    func presetNumCupsPrompt(){
+        cupPromptTextField.becomeFirstResponder()
+        Animations.normalAnimateIn(viewToAnimate: cupPromptView, blurView: blurEffectView, view: self.view)
+        Animations.animateOut(viewToAnimate: winnerView, blurView: UIVisualEffectView())
+    }
     func getTurnNodes() -> [(Int, PongGame)]{  // Returns only turns that are makes or misses for the graph nodes
         var turnNodes = [(Int, PongGame)]()
         for turn in turns{
@@ -260,12 +276,13 @@ class PongGameVC: UIViewController {
     
     override func viewDidLoad() {
         
-        // Initializes whole-screen blur view (used in many pop-ups)
+        // Initializes whole-screen blur view (used in pop-ups)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        //blurEffectView.alpha = 0
+        menuBlurEffectView.frame = view.bounds
+        menuBlurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        // Gets the number of cups
+        // Gets the number of cups through a custom notification
         cupPromptView.center = self.view.center
         cupPromptView.center.y = (self.view.bounds.height - 170 - 35)/2
         cupPromptTextField.becomeFirstResponder()
@@ -278,18 +295,15 @@ class PongGameVC: UIViewController {
         // start a new game
         activeGame = PongGame()
         
-        // Set up table
+        // Sets up table
         tableView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width))
-        //tableView = UIView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
         self.view.addSubview(tableView)
         view.sendSubview(toBack: tableView)
         tableView.setSize()
         tableView.center.y = currentScoreLabel.center.y + (missedButton.center.y - currentScoreLabel.center.y)/2 - 65
-        numBase = Int(-1/2*(1 - (8.0*Double(numInitialCups) + 1.0).squareRoot())) // sets num cups on base of pyramid
-        setTable(tableArrangement: ReRacks.pyramid(numBase: numBase).tableArrangement)
         ChartSetup.setUpChart(chartView: chartView)
         
-        // Set the initial turn
+        // Set the initial turn so that the user can undo all the way to the begining
         activeGame.tableView = tableView
         turns.append(activeGame.copy() as! PongGame)
         
@@ -307,13 +321,10 @@ class PongGameVC: UIViewController {
         imageView.image = image
         navigationItem.titleView = imageView
         
-        
-        // Sets the times
+        // Sets the start time of the game (used to determind the date for the graphs)
         let date = Date()
         startGameTime = date
         
-        
-        //presentNumCupsAlert()
         super.viewDidLoad()
     }
 

@@ -48,7 +48,6 @@ class staticFunctions: NSObject{
 
 // Extensions
 extension UIView {
-    
     func clearView(){ // Removes every subview from the view
         for subview in self.subviews{
             if subview.tag != 99 {
