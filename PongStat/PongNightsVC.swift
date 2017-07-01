@@ -68,7 +68,7 @@ class PongNightsVC: UIViewController {
             chartDataSet.valueFont = UIFont(name: "HelveticaNeue-Bold", size: 14)!
             chartDataSet.lineWidth = 3
             chartDataSet.drawFilledEnabled = true
-            chart.leftAxis.axisMinimum = 0
+            chart.leftAxis.axisMinimum = -10
             chart.leftAxis.axisMaximum = 120.0
             chart.xAxis.axisMinimum = 0.8
             chart.xAxis.axisMaximum = (scores.last?.x)! + 0.2
