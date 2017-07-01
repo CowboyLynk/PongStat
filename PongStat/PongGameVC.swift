@@ -21,6 +21,7 @@ class PongGameVC: UIViewController {
     var turns = [PongGame]()
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
     var menuBlurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
+    var menuGestureRecognizer = UITapGestureRecognizer()
     var menuActivated = false
     
     // Outlets
@@ -30,6 +31,7 @@ class PongGameVC: UIViewController {
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet var menuView: UIView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     // Cup Prompt Outlets
     @IBOutlet var cupPromptView: UIView!
@@ -53,6 +55,7 @@ class PongGameVC: UIViewController {
     // Winner View Outlets
     @IBOutlet var winnerView: UIView!
     @IBOutlet weak var wvFinalScore: UILabel!
+    @IBOutlet weak var wvImage: UIImageView!
     // Winner View Actions
     @IBAction func wvUndoButtonPressed(_ sender: Any) {
         Animations.animateOut(viewToAnimate: winnerView, blurView: blurEffectView)
@@ -73,7 +76,7 @@ class PongGameVC: UIViewController {
 
     // Actions
     @IBAction func menuButtonTapped(_ sender: Any) {
-        presentMenu()
+        toggleMenu()
     }
     @IBAction func undoButtonTapped(_ sender: Any) {
         undo()
@@ -141,6 +144,18 @@ class PongGameVC: UIViewController {
         Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
     }
     
+    // Menu View Actions
+    @IBAction func statsButtonPressed(_ sender: Any) {
+        toggleMenu()
+    }
+    @IBAction func forfeitButtonPressed(_ sender: Any) {
+        toggleMenu()
+        cupPromptTextField.resignFirstResponder()
+        wvImage.image = #imageLiteral(resourceName: "SadBeer")
+        wvFinalScore.text = "Final Score: \(String(Int(activeGame.score)))"
+        Animations.springAnimateIn(viewToAnimate: winnerView, blurView: blurEffectView, view: self.view)
+    }
+    
     
     // Functions
     func takeTurn(turnType: Int, playedCup: Any) { // 0: User made the cup, 1: User missed a cup, 2: partner made a cup, 3: reRack
@@ -167,6 +182,7 @@ class PongGameVC: UIViewController {
         
         if activeGame.getCount(array: activeGame.cupConfig) == 0{
             wvFinalScore.text = "Final Score: \(String(Int(activeGame.score)))"
+            wvImage.image = #imageLiteral(resourceName: "HappyBeer")
             Animations.springAnimateIn(viewToAnimate: winnerView, blurView: blurEffectView, view: self.view)
         }
     }
@@ -248,13 +264,16 @@ class PongGameVC: UIViewController {
         self.turns.append(self.activeGame.copy() as! PongGame)
         self.updateVisuals()
     }
-    func presentMenu(){
-        cupPromptTextField.resignFirstResponder()
-        menuView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width*0.6, height: self.view.bounds.height)
+    func toggleMenu(){
+        menuView.frame = CGRect(x: 0, y: 0, width: 175, height: self.view.bounds.height)
         if !menuActivated{
             Animations.slideAnimateIn(viewToAnimate: menuView, blurView: menuBlurEffectView, view: self.view)
+            cupPromptTextField.resignFirstResponder()
+            menuButton.image = #imageLiteral(resourceName: "Close-white")
         } else {
             Animations.slideAnimateOut(viewToAnimate: menuView, blurView: menuBlurEffectView)
+            cupPromptTextField.becomeFirstResponder()
+            menuButton.image = #imageLiteral(resourceName: "Menu")
         }
         menuActivated = !menuActivated
     }
@@ -276,11 +295,13 @@ class PongGameVC: UIViewController {
     
     override func viewDidLoad() {
         
-        // Initializes whole-screen blur view (used in pop-ups)
+        // Initializes whole-screen blur view (used in pop-ups) and the menu gesture recognizer
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         menuBlurEffectView.frame = view.bounds
         menuBlurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        menuGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
+        menuBlurEffectView.addGestureRecognizer(menuGestureRecognizer)
         
         // Gets the number of cups through a custom notification
         cupPromptView.center = self.view.center
