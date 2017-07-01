@@ -145,8 +145,16 @@ class PongGameVC: UIViewController {
     }
     
     // Menu View Actions
+    @IBAction func homeButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Exit to Main Menu?", message: "Are you sure that you want to exit to the main menu? Your score for this game will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            self.performSegue(withIdentifier: "returnToHome", sender: self)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     @IBAction func statsButtonPressed(_ sender: Any) {
-        toggleMenu()
+        // I don't want to remove this because then Xcode will make me place the button again and I'm lazy
     }
     @IBAction func forfeitButtonPressed(_ sender: Any) {
         toggleMenu()
