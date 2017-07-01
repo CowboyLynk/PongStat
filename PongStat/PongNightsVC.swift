@@ -38,14 +38,20 @@ class PongNightsVC: UIViewController {
         var counter = 1.0
         for node in nodes{
             // Gets the TIME and SCORE
-            let index = node.characters.index(of: "%")
-            let scoreIndex = node.index(index!, offsetBy: 1)
-            let score = Int(Double(node.substring(from: scoreIndex))!)
+            print(node)
+            let scoreStartIndex = node.getIndex(of: "%") + 1
+            let scoreEndIndex = node.getIndex(of: "*")
+            let score = Int(Double(node[scoreStartIndex ..< scoreEndIndex])!)
+            let isWin = Bool(node[scoreEndIndex + 1 ..< node.characters.count])
             
             // Adds the nodes the graph
             scores.append(ChartDataEntry(x: counter, y: Double(score)))
             counter += 1.0
-            colors.append(UIColor.white)
+            if isWin! {
+                colors.append(UIColor.white)
+            } else {
+                colors.append(UIColor(red:1.00, green:0.40, blue:0.40, alpha:1.0))
+            }
             
             let chartDataSet = LineChartDataSet(values: scores, label: "Efficiency")
             

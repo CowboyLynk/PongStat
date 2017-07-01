@@ -23,6 +23,7 @@ class PongGameVC: UIViewController {
     var menuBlurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.light))
     var menuGestureRecognizer = UITapGestureRecognizer()
     var menuActivated = false
+    var isWin = true
     
     // Outlets
     @IBOutlet weak var missedButton: UIButton!
@@ -63,13 +64,13 @@ class PongGameVC: UIViewController {
     }
     @IBAction func wvPlayAgainButtonPressed(_ sender: Any) {
         // Adds the game to the night graph
-        activeNight.addGame(time: startGameTime, score: activeGame.score)
+        activeNight.addGame(time: startGameTime, score: activeGame.score, isWin: isWin)
         gameNumber += 1.0
         presetNumCupsPrompt()
         
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
-        activeNight.addGame(time: startGameTime, score: activeGame.score)
+        activeNight.addGame(time: startGameTime, score: activeGame.score, isWin: isWin)
         activeNight.removeLastNight()
         self.performSegue(withIdentifier: "returnToHome", sender: StartViewController())
     }
@@ -146,7 +147,7 @@ class PongGameVC: UIViewController {
     
     // Menu View Actions
     @IBAction func homeButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Exit to Main Menu?", message: "Are you sure that you want to exit to the main menu? Your score for this game will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Exit to Main Menu?", message: "Are you sure that you want to exit to the main menu? Your score for this game (not the whole night) will be deleted.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
             self.performSegue(withIdentifier: "returnToHome", sender: self)
@@ -157,6 +158,7 @@ class PongGameVC: UIViewController {
         // I don't want to remove this because then Xcode will make me place the button again and I'm lazy
     }
     @IBAction func forfeitButtonPressed(_ sender: Any) {
+        isWin = false
         toggleMenu()
         cupPromptTextField.resignFirstResponder()
         wvImage.image = #imageLiteral(resourceName: "SadBeer")
@@ -189,6 +191,7 @@ class PongGameVC: UIViewController {
         updateVisuals()
         
         if activeGame.getCount(array: activeGame.cupConfig) == 0{
+            isWin = true
             wvFinalScore.text = "Final Score: \(String(Int(activeGame.score)))"
             wvImage.image = #imageLiteral(resourceName: "HappyBeer")
             Animations.springAnimateIn(viewToAnimate: winnerView, blurView: blurEffectView, view: self.view)

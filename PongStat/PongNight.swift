@@ -20,9 +20,9 @@ class PongNight {
         pongNights.append([])
     }
     
-    func addGame(time: Date, score: Double){
+    func addGame(time: Date, score: Double, isWin: Bool){
         let last = pongNights.count
-        pongNights[last - 1].append("\(staticFunctions.formatTime(time: time))%\(score)")
+        pongNights[last - 1].append("\(staticFunctions.formatTime(time: time))%\(score)*\(isWin)")
         setDefaults()
     }
     

@@ -92,4 +92,36 @@ extension UIView {
     }
 }
 
+extension String {
+    
+    private subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound)
+        return self[Range(start ..< end)]
+    }
+    
+    func getLastChar() -> String {
+        return self[characters.count - 1] as String
+    }
+    
+    func getIndex(of: Character) -> Int{
+        var counter = 0
+        for character in self.characters {
+            if character == of{
+                return counter
+            }
+            counter += 1
+        }
+        return -1
+    }
+}
+
 
