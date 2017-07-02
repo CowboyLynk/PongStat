@@ -200,4 +200,83 @@ class ReRacks {
     static func marching() -> reRackOption{
         return createButton(name: "Marching", image: #imageLiteral(resourceName: "marching"), tableArrangement: ([[true, true], [true, true], [true,true], [true, true]], 2, 0))
     }
+    
+    // Custom
+    static func setCustomObjectTable(){
+        
+    }
+}
+
+class reRackTable: UIView {
+    var numBase: Int
+    var gridType: Int
+    var cupConfig: [[Bool]]
+    
+    func reRackSwitchTapped(sender: reRackSwitch){
+        sender.isPressed()
+        cupConfig[sender.location.0][sender.location.1] = sender.switchState
+    }
+    
+    func setReRackTable(){
+        
+        // DIMENSIONS and POSITIONS variables
+        var dimension = Double(self.bounds.width)/Double(numBase)
+        if dimension > 100{ // sets the max size that a cup can be
+            dimension = 100
+        }
+        var isNotGrid = 1.0 // 0: it is a square grid config, 1: it is not a square grid config
+        if gridType == 2 {
+            isNotGrid = 0.0
+        }
+        let rowLength = cupConfig[0].count
+        let colLength = cupConfig.count
+        let sidePadding = (Double(self.bounds.width) - Double(rowLength) * dimension)/2
+        var xPos = 0.0
+        var yPos = 0.0
+        yPos = (Double(self.bounds.height) - ((dimension*Double(colLength - 1) - dimension*Double(colLength - 1)*0.12*isNotGrid) + dimension))/2
+        
+        
+        // SETTING OF THE TABLE (placing the cups)
+        for row in 0..<cupConfig.count{
+            xPos = sidePadding + (dimension/2 * Double(row)) * isNotGrid // Sets the STARTING XPOS (stays 0 if the tableType is a grid)
+            // Cycles through the cupConfig array and sets the table accordingly
+            for col in 0..<cupConfig[0].count{
+                let newReRackSwitch = reRackSwitch(frame: CGRect(x: xPos, y: yPos, width: dimension*0.8, height: dimension*0.8))
+                if cupConfig[row][col]{
+                    newReRackSwitch.location = (row, col)
+                    newReRackSwitch.addTarget(self, action: #selector(reRackSwitchTapped(sender:)), for: .touchUpInside)
+                    self.addSubview(newReRackSwitch)
+                }
+                xPos += dimension + dimension*0.2/Double(numBase)
+            }
+            yPos += dimension - (0.12*dimension*isNotGrid)
+        }
+        
+        // ROTATES the table by the correct amount
+        /*
+        self.rotate(by: -CGFloat(tableArrangement.2)*CGFloat.pi/2)
+        if gridType == 1{
+            self.transform.tx = self.view.bounds.width * 0.05
+        } else{
+            self.transform.tx = 0
+        }*/
+    }
+    
+    init(frame: CGRect, numBase: Int, gridType: Int){
+        self.numBase = numBase
+        self.gridType = gridType
+        
+        if gridType == 2{
+            cupConfig = Array(repeating: Array(repeating: true, count: numBase), count: numBase)
+        } else {
+            cupConfig = ReRacks.pyramid(numBase: numBase).tableArrangement.0
+        }
+        
+        super.init(frame: frame)
+        self.setReRackTable()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

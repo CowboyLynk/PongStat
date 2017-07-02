@@ -172,7 +172,6 @@
                         <outlet property="wvFinalScore" destination="G68-wS-3Mn" id="yJl-Zl-INe"/>
                         <outlet property="wvImage" destination="nLw-Ti-yjq" id="W4s-s3-VCH"/>
                         <segue destination="P7f-ot-DmQ" kind="presentation" identifier="returnToHome" id="DZn-Fa-Qg5"/>
-                        <segue destination="P7f-ot-DmQ" kind="presentation" id="I6Z-2f-Ov7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -361,7 +360,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" id="oGx-sT-F2r" userLabel="ReRackView">
-                    <rect key="frame" x="0.0" y="0.0" width="325" height="389"/>
+                    <rect key="frame" x="0.0" y="0.0" width="325" height="401"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view tag="99" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-SG-uZc">
@@ -414,11 +413,11 @@
                         <viewControllerLayoutGuide type="bottom" id="BtW-UD-881"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="o2t-VF-Xf6">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6d-nz-4Kn">
-                                <rect key="frame" x="53" y="131" width="268" height="84"/>
+                                <rect key="frame" x="53" y="147" width="268" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -442,7 +441,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQw-do-cso">
-                                <rect key="frame" x="53" y="191.5" width="268" height="100"/>
+                                <rect key="frame" x="53" y="215.5" width="268" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -470,7 +469,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrl-AN-hzC">
-                                <rect key="frame" x="53" y="270.5" width="268" height="56"/>
+                                <rect key="frame" x="53" y="302" width="268" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -497,7 +496,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqa-97-4Ga">
-                                <rect key="frame" x="53" y="377.5" width="268" height="95"/>
+                                <rect key="frame" x="53" y="425" width="268" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -524,7 +523,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1O-Jh-Yhw">
-                                <rect key="frame" x="53" y="318" width="268" height="67"/>
+                                <rect key="frame" x="53" y="355.5" width="268" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -689,8 +688,7 @@
         <image name="Undo" width="125" height="125"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KkT-Dl-MB6"/>
-        <segue reference="DZn-Fa-Qg5"/>
+        <segue reference="ZK6-ny-XIi"/>
         <segue reference="MAM-bg-DNI"/>
     </inferredMetricsTieBreakers>
 </document>

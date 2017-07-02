@@ -57,6 +57,8 @@ class PongGame: NSObject, NSCopying {
             possibleReRacks.append(ReRacks.marching())
         default: break
         }
+        possibleReRacks.append(ReRacks.createButton(name: "Custom", image: #imageLiteral(resourceName: "customTriangle"), tableArrangement: ([], 0, 0)))
+        possibleReRacks.append(ReRacks.createButton(name: "Custom", image: #imageLiteral(resourceName: "customGrid"), tableArrangement: ([], 2, 0)))
         return possibleReRacks
     }
     

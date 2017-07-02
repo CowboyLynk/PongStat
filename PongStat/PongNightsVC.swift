@@ -38,7 +38,6 @@ class PongNightsVC: UIViewController {
         var counter = 1.0
         for node in nodes{
             // Gets the TIME and SCORE
-            print(node)
             let scoreStartIndex = node.getIndex(of: "%") + 1
             let scoreEndIndex = node.getIndex(of: "*")
             let score = Int(Double(node[scoreStartIndex ..< scoreEndIndex])!)

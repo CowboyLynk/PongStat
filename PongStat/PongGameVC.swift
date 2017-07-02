@@ -91,13 +91,7 @@ class PongGameVC: UIViewController {
         var counter = 1
         var rowCounter = 0
         // Adds all the buttons for remaining-cup-dependant reracks
-        var allReRacks = activeGame.getPossibleReRacks()
-        allReRacks.append(ReRacks.createButton(name: "Custom", image: #imageLiteral(resourceName: "customTriangle"), tableArrangement: ([], 0, 0)))
-        allReRacks.append(ReRacks.createButton(name: "Custom", image: #imageLiteral(resourceName: "customGrid"), tableArrangement: ([], 0, 0)))
-        //let view = UIView(frame: CGRect(x: 0, y: 0, width: 125, height: 125))
-        //view.backgroundColor = .black
-        //allReRacks.append(view)
-        for reRackOption in allReRacks{
+        for reRackOption in activeGame.getPossibleReRacks(){
             //Adds the button
             let reRack = reRackOption as! reRackOption
             reRackView.addSubview(reRack)
@@ -122,23 +116,54 @@ class PongGameVC: UIViewController {
         reRackView.center.y = self.view.bounds.height/2
         Animations.normalAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
     }
+    func reRackSwitchTapped(sender: reRackSwitch){
+        sender.isPressed()
+        //cupConfig[sender.location.0][sender.location.1] = sender.switchState
+    }
     func reRackOptionTapped(sender: reRackOption){
-        if (sender.newTableView != nil){ // runs if the user selects a non-grid-aligned reRack
-            activeGame.cupConfig = sender.tableArrangement.0
-            
-            // Takes all the cups from the new reRack and places them on the tableView
-            tableView.swapView(newView: sender.newTableView)
-            activeGame.tableView = tableView
-            tableView.setSize()
-            // Adds the delegate to each of the new cups so that they respond to taps
-            for subview in tableView.subviews{
-                let cup = subview as! Cup
-                cup.delegate = self
+        if sender.name == "Custom"{  // Runs if the user selects a custom reRack
+            // Adds the switches to the table
+            let reRackTableView = reRackTable(frame: CGRect(x: 0, y: 100, width: 250, height: 250), numBase: numBase, gridType: sender.tableArrangement.1)
+            reRackTableView.center.x = reRackView.frame.width/2
+            reRackTableView.alpha = 0
+            reRackTableView.tag = 98
+            reRackView.addSubview(reRackTableView)
+            UIView.animate(withDuration: 1, animations: {
+                //Fades in the reRack table view
+                reRackTableView.alpha = 1
+                
+                let reRackView = self.reRackView!
+                for subview in reRackView.subviews{
+                    if subview.tag != 99 && subview.tag != 98{  // clears all the other buttons
+                        subview.alpha = 0
+                    }
+                }
+                
+                // Re-centers and re-sizes the view
+                reRackView.frame = CGRect(origin: reRackView.frame.origin, size: CGSize(width: reRackView.frame.width, height: 539))
+                self.reRackView.center = self.view.center
+                self.reRackView.center.y = self.view.bounds.height/2
+                
+                
+            })
+        } else {
+            if (sender.newTableView != nil) { // runs if the user selects a non-grid-aligned reRack
+                activeGame.cupConfig = sender.tableArrangement.0
+                
+                // Takes all the cups from the new reRack and places them on the tableView
+                tableView.swapView(newView: sender.newTableView)
+                activeGame.tableView = tableView
+                tableView.setSize()
+                // Adds the delegate to each of the new cups so that they respond to taps
+                for subview in tableView.subviews{
+                    let cup = subview as! Cup
+                    cup.delegate = self
+                }
+            } else {  // runs if the user selects a reRack that can be placed on a grid configuration
+                setTable(tableArrangement: sender.tableArrangement)
             }
-        } else {  // runs if the user selects a reRack that can be placed on a grid configuration
-            setTable(tableArrangement: sender.tableArrangement)
+            Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
         }
-        Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
         takeTurn(turnType: 4, playedCup: false)
     }
     @IBAction func closeReRackButtonTapped(_ sender: Any) {
