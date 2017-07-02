@@ -12,6 +12,7 @@ class StartViewController: UIViewController {
     // Outlets
     @IBOutlet weak var newGameButton: UIButton!
     @IBOutlet weak var statsButton: UIButton!
+    @IBOutlet weak var instructionsButton: UIButton!
 
     override func viewDidLoad() {
         
@@ -27,6 +28,12 @@ class StartViewController: UIViewController {
         statsButton.layer.shadowRadius = 0
         statsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         statsButton.layer.cornerRadius = 15
+        
+        instructionsButton.layer.shadowColor = UIColor(red:0.5, green:0.5, blue:0.5, alpha: 1.0).cgColor
+        instructionsButton.layer.shadowOpacity = 1
+        instructionsButton.layer.shadowRadius = 0
+        instructionsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        instructionsButton.layer.cornerRadius = 15
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
