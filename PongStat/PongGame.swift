@@ -14,6 +14,8 @@ class PongGame: NSObject, NSCopying {
     var madeCounter: Double
     var missedCounter: Int
     var cupConfig: [[Bool]]!
+    var reRackConfig: [[Bool]]!
+    var reRackGridType: Int!
     var tableView: UIView!
     var turnType = 4 //0: user made, 1: user missed, 2: partner made, 3: reRack
     
@@ -117,5 +119,53 @@ class PongGame: NSObject, NSCopying {
             }
         }
         return largestRowCount
+    }
+    func removeEmptyEdges(){ // removes redundant rows and edges. Used when setting custom reracks
+        var colsToRemove: [Int] = []
+        var rowsToRemove: [Int] = []
+        
+        // finds empty columns
+        for col in 0..<cupConfig[0].count{
+            var foundCup = false
+            for row in 0..<cupConfig.count{
+                if cupConfig[row][col]{
+                    foundCup = true
+                }
+            }
+            if foundCup != true{
+                colsToRemove.append(col)
+            }
+        }
+        
+        // finds empty rows
+        for row in 0..<cupConfig.count {
+            var foundCup = false
+            for item in cupConfig[row]{
+                if item {
+                    foundCup = true
+                }
+            }
+            if foundCup != true {
+                rowsToRemove.append(row)
+            }
+        }
+        
+        // removes empty rows and cols
+        var counter = 0
+        for colIndex in colsToRemove{
+            removeCol(index: colIndex - counter)
+            counter += 1
+        }
+        counter = 0
+        for rowIndex in rowsToRemove{
+            cupConfig.remove(at: rowIndex - counter)
+            counter += 1
+        }
+        
+    }
+    func removeCol(index: Int){
+        for row in 0..<cupConfig.count{
+            cupConfig[row].remove(at: index)
+        }
     }
 }

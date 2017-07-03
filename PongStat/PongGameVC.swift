@@ -29,6 +29,9 @@ class PongGameVC: UIViewController {
     @IBOutlet weak var missedButton: UIButton!
     @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet var reRackView: UIView!
+    @IBOutlet weak var reRackScrollView: UIScrollView!
+    @IBOutlet weak var setRackButton: UIButton!
+    @IBOutlet weak var reRackTableView: UIView!
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet var menuView: UIView!
@@ -75,15 +78,20 @@ class PongGameVC: UIViewController {
         self.performSegue(withIdentifier: "returnToHome", sender: StartViewController())
     }
 
-    // Actions
+    // ACTIONS
     @IBAction func menuButtonTapped(_ sender: Any) {
         toggleMenu()
     }
     @IBAction func undoButtonTapped(_ sender: Any) {
         undo()
     }
+    // Re Rack Actions
     @IBAction func reRackButtonTapped(_ sender: Any) {  // The user pushed the button to re-rack the table
-        reRackView.clearView()
+        reRackScrollView.clearView()
+        setRackButton.alpha = 0
+        reRackTableView.alpha = 0
+        reRackTableView.clearView()
+        activeGame.reRackConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
         
         // Position variables
         var xPos = 25
@@ -94,7 +102,7 @@ class PongGameVC: UIViewController {
         for reRackOption in activeGame.getPossibleReRacks(){
             //Adds the button
             let reRack = reRackOption as! reRackOption
-            reRackView.addSubview(reRack)
+            reRackScrollView.addSubview(reRack)
             reRack.addTarget(self, action: #selector(reRackOptionTapped(sender:)), for: .touchUpInside)
             reRack.frame.origin = CGPoint(x: xPos, y: yPos)
             
@@ -116,54 +124,11 @@ class PongGameVC: UIViewController {
         reRackView.center.y = self.view.bounds.height/2
         Animations.normalAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
     }
-    func reRackSwitchTapped(sender: reRackSwitch){
-        sender.isPressed()
-        //cupConfig[sender.location.0][sender.location.1] = sender.switchState
-    }
-    func reRackOptionTapped(sender: reRackOption){
-        if sender.name == "Custom"{  // Runs if the user selects a custom reRack
-            // Adds the switches to the table
-            let reRackTableView = reRackTable(frame: CGRect(x: 0, y: 100, width: 250, height: 250), numBase: numBase, gridType: sender.tableArrangement.1)
-            reRackTableView.center.x = reRackView.frame.width/2
-            reRackTableView.alpha = 0
-            reRackTableView.tag = 98
-            reRackView.addSubview(reRackTableView)
-            UIView.animate(withDuration: 1, animations: {
-                //Fades in the reRack table view
-                reRackTableView.alpha = 1
-                
-                let reRackView = self.reRackView!
-                for subview in reRackView.subviews{
-                    if subview.tag != 99 && subview.tag != 98{  // clears all the other buttons
-                        subview.alpha = 0
-                    }
-                }
-                
-                // Re-centers and re-sizes the view
-                reRackView.frame = CGRect(origin: reRackView.frame.origin, size: CGSize(width: reRackView.frame.width, height: 539))
-                self.reRackView.center = self.view.center
-                self.reRackView.center.y = self.view.bounds.height/2
-                
-                
-            })
-        } else {
-            if (sender.newTableView != nil) { // runs if the user selects a non-grid-aligned reRack
-                activeGame.cupConfig = sender.tableArrangement.0
-                
-                // Takes all the cups from the new reRack and places them on the tableView
-                tableView.swapView(newView: sender.newTableView)
-                activeGame.tableView = tableView
-                tableView.setSize()
-                // Adds the delegate to each of the new cups so that they respond to taps
-                for subview in tableView.subviews{
-                    let cup = subview as! Cup
-                    cup.delegate = self
-                }
-            } else {  // runs if the user selects a reRack that can be placed on a grid configuration
-                setTable(tableArrangement: sender.tableArrangement)
-            }
-            Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
-        }
+    @IBAction func setRackButtonPressed(_ sender: Any) {
+        activeGame.cupConfig = activeGame.reRackConfig
+        activeGame.removeEmptyEdges()
+        setTable(tableArrangement: (activeGame.cupConfig, activeGame.reRackGridType, 0))
+        Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
         takeTurn(turnType: 4, playedCup: false)
     }
     @IBAction func closeReRackButtonTapped(_ sender: Any) {
@@ -192,7 +157,7 @@ class PongGameVC: UIViewController {
     }
     
     
-    // Functions
+    // Game-play Functions
     func takeTurn(turnType: Int, playedCup: Any) { // 0: User made the cup, 1: User missed a cup, 2: partner made a cup, 3: reRack
         activeGame.turnType = turnType
         switch turnType{
@@ -300,6 +265,98 @@ class PongGameVC: UIViewController {
         self.turns.append(self.activeGame.copy() as! PongGame)
         self.updateVisuals()
     }
+    
+    // Re Rack Functions
+    func reRackOptionTapped(sender: reRackOption){ // e.g. pyramid, custom pyramid, custom grid, etc...
+        if sender.name == "Custom"{  // Runs if the user selects a custom reRack
+            // Adds the switches to the table
+            activeGame.reRackGridType = sender.tableArrangement.1
+            var reRackConfiguration: [[Bool]]
+            var newHeight: Int
+            if activeGame.reRackGridType == 0{
+                reRackConfiguration = ReRacks.pyramid(numBase: numBase).tableArrangement.0
+                newHeight = 450
+            } else {
+                reRackConfiguration = Array(repeating: Array(repeating: true, count: numBase), count: numBase)
+                newHeight = 475
+            }
+            setReRackTable(cupConfig: reRackConfiguration, gridType: sender.tableArrangement.1)
+            
+            // Animates the changing view
+            UIView.animate(withDuration: 1, animations: {
+                //Fades in the reRack table view
+                self.reRackTableView.alpha = 1
+                self.setRackButton.alpha = 1
+                
+                let reRackView = self.reRackView!
+                for subview in self.reRackScrollView.subviews{
+                    subview.alpha = 0
+                }
+                
+                // Re-centers and re-sizes the view
+                reRackView.frame = CGRect(origin: reRackView.frame.origin, size: CGSize(width: reRackView.frame.width, height: CGFloat(newHeight)))
+                self.reRackView.center = self.view.center
+                self.reRackView.center.y = self.view.bounds.height/2
+            })
+        } else {
+            if (sender.newTableView != nil) { // runs if the user selects a non-grid-aligned reRack
+                activeGame.cupConfig = sender.tableArrangement.0
+                
+                // Takes all the cups from the new reRack and places them on the tableView
+                tableView.swapView(newView: sender.newTableView)
+                activeGame.tableView = tableView
+                tableView.setSize()
+                // Adds the delegate to each of the new cups so that they respond to taps
+                for subview in tableView.subviews{
+                    let cup = subview as! Cup
+                    cup.delegate = self
+                }
+            } else {  // runs if the user selects a reRack that can be placed on a grid configuration
+                setTable(tableArrangement: sender.tableArrangement)
+            }
+            Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
+            takeTurn(turnType: 4, playedCup: false)
+        }
+    }
+    func reRackSwitchTapped(sender: reRackSwitch){
+        sender.isPressed()
+        activeGame.reRackConfig[sender.location.0][sender.location.1] = sender.switchState
+    }
+    func setReRackTable(cupConfig: [[Bool]], gridType: Int){
+        
+        // DIMENSIONS and POSITIONS variables
+        var dimension = Double(reRackTableView.bounds.width)/Double(numBase)
+        if dimension > 100{ // sets the max size that a cup can be
+            dimension = 100
+        }
+        var isNotGrid = 1.0 // 0: it is a square grid config, 1: it is not a square grid config
+        if gridType == 2 {
+            isNotGrid = 0.0
+        }
+        let rowLength = cupConfig[0].count
+        let sidePadding = (Double(reRackTableView.bounds.width) - Double(rowLength) * dimension)/2
+        var xPos = 0.0
+        var yPos = 0.0
+        //yPos = (Double(reRackTableView.bounds.height) - ((dimension*Double(colLength - 1) - dimension*Double(colLength - 1)*0.12*isNotGrid) + dimension))/2
+        
+        // SETTING OF THE TABLE (placing the cups)
+        for row in 0..<cupConfig.count{
+            xPos = sidePadding + (dimension/2 * Double(row)) * isNotGrid // Sets the STARTING XPOS (stays 0 if the tableType is a grid)
+            // Cycles through the cupConfig array and sets the table accordingly
+            for col in 0..<cupConfig[0].count{
+                let newReRackSwitch = reRackSwitch(frame: CGRect(x: xPos, y: yPos, width: dimension*0.8, height: dimension*0.8))
+                if cupConfig[row][col]{
+                    newReRackSwitch.location = (row, col)
+                    newReRackSwitch.addTarget(self, action: #selector(reRackSwitchTapped(sender:)), for: .touchUpInside)
+                    reRackTableView.addSubview(newReRackSwitch)
+                }
+                xPos += dimension + dimension*0.2/Double(numBase)
+            }
+            yPos += dimension - (0.12*dimension*isNotGrid)
+        }
+    }
+    
+    // Miscellaneous Functions
     func toggleMenu(){
         menuView.frame = CGRect(x: 0, y: 0, width: 175, height: self.view.bounds.height)
         if !menuActivated{

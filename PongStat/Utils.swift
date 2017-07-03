@@ -26,41 +26,6 @@ class reRackOption: UIButton{
     }
 }
 
-class reRackSwitch: UIButton {
-    // Variables
-    var location = (Int(), Int())
-    var switchState = false
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        initialize()
-        
-    }
-    
-    required override init(frame: CGRect) {
-        super.init(frame: frame)
-        initialize()
-    }
-    
-    // All start code goes here
-    func initialize(){
-        self.backgroundColor = UIColor.gray
-        self.layer.cornerRadius = self.frame.width / 2
-    }
-    
-    func isPressed(){
-        self.switchState = !self.switchState
-        if switchState{
-            self.backgroundColor = UIColor(red:0.24, green:0.48, blue:0.35, alpha:1.0)
-        }
-        else {
-            self.backgroundColor = UIColor.gray
-        }
-        
-    }
-    
-}
-
 class CustomNav: UINavigationController {
     
     override func viewDidLoad() {
