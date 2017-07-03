@@ -170,6 +170,7 @@
                         <outlet property="noDataLabel" destination="i7E-jU-UzU" id="rdf-Wt-XjE"/>
                         <outlet property="reRackScrollView" destination="uT4-cA-E89" id="eND-0q-rsg"/>
                         <outlet property="reRackTableView" destination="dx5-tD-SXd" id="vTc-Z1-O6P"/>
+                        <outlet property="reRackTitleLabel" destination="kJ9-QM-Ri4" id="gyC-W2-LQL"/>
                         <outlet property="reRackView" destination="oGx-sT-F2r" id="If4-AY-QFW"/>
                         <outlet property="setRackButton" destination="DpO-le-TDA" id="WSL-kT-1Aa"/>
                         <outlet property="winnerView" destination="cac-MH-MiY" id="zoe-VS-VK0"/>
@@ -402,7 +403,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SELECT A RERACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJ9-QM-Ri4">
-                                    <rect key="frame" x="71" y="22" width="182" height="21"/>
+                                    <rect key="frame" x="35" y="20" width="254" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

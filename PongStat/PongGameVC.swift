@@ -32,6 +32,7 @@ class PongGameVC: UIViewController {
     @IBOutlet weak var reRackScrollView: UIScrollView!
     @IBOutlet weak var setRackButton: UIButton!
     @IBOutlet weak var reRackTableView: UIView!
+    @IBOutlet weak var reRackTitleLabel: UILabel!
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet var menuView: UIView!
@@ -92,6 +93,7 @@ class PongGameVC: UIViewController {
         reRackTableView.alpha = 0
         reRackTableView.clearView()
         activeGame.reRackConfig = Array(repeating: Array(repeating: false, count: numBase), count: numBase)
+        reRackTitleLabel.text = "SELECT A RERACK"
         
         // Position variables
         var xPos = 25
@@ -125,11 +127,13 @@ class PongGameVC: UIViewController {
         Animations.normalAnimateIn(viewToAnimate: reRackView, blurView: blurEffectView, view: self.view)
     }
     @IBAction func setRackButtonPressed(_ sender: Any) {
-        activeGame.cupConfig = activeGame.reRackConfig
-        activeGame.removeEmptyEdges()
-        setTable(tableArrangement: (activeGame.cupConfig, activeGame.reRackGridType, 0))
-        Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
-        takeTurn(turnType: 4, playedCup: false)
+        if activeGame.getCount(array: activeGame.reRackConfig) == activeGame.getCount(array: activeGame.cupConfig){
+            activeGame.cupConfig = activeGame.reRackConfig
+            activeGame.removeEmptyEdges()
+            setTable(tableArrangement: (activeGame.cupConfig, activeGame.reRackGridType, 0))
+            Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
+            takeTurn(turnType: 4, playedCup: false)
+        }
     }
     @IBAction func closeReRackButtonTapped(_ sender: Any) {
         Animations.animateOut(viewToAnimate: reRackView, blurView: blurEffectView)
@@ -298,6 +302,9 @@ class PongGameVC: UIViewController {
                 self.reRackView.center = self.view.center
                 self.reRackView.center.y = self.view.bounds.height/2
             })
+            //changes the title of the reRack View to show how many cups are left to be placed
+            let cupsLeftToPlace = activeGame.getCount(array: activeGame.cupConfig) - activeGame.getCount(array: activeGame.reRackConfig)
+            reRackTitleLabel.text = "LEFT TO PLACE: \(cupsLeftToPlace)"
         } else {
             if (sender.newTableView != nil) { // runs if the user selects a non-grid-aligned reRack
                 activeGame.cupConfig = sender.tableArrangement.0
@@ -321,6 +328,10 @@ class PongGameVC: UIViewController {
     func reRackSwitchTapped(sender: reRackSwitch){
         sender.isPressed()
         activeGame.reRackConfig[sender.location.0][sender.location.1] = sender.switchState
+        
+        // updates the title of the reRack View to show how many cups are left to be placed
+        let cupsLeftToPlace = activeGame.getCount(array: activeGame.cupConfig) - activeGame.getCount(array: activeGame.reRackConfig)
+        reRackTitleLabel.text = "LEFT TO PLACE: \(cupsLeftToPlace)"
     }
     func setReRackTable(cupConfig: [[Bool]], gridType: Int){
         
