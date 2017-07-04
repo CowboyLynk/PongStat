@@ -186,12 +186,6 @@ class PongGame: NSObject, NSCopying {
             }
         }
         
-        print(rowsToRemove)
-        print(colsToRemove)
-        print(reverseRowsToRemove)
-        print(reverseColsToRemove)
-        print()
-        
         var reverseColCounter = 0
         var reverseRowCounter = 0
         
