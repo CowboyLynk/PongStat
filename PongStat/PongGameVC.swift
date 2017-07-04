@@ -332,6 +332,15 @@ class PongGameVC: UIViewController {
         // updates the title of the reRack View to show how many cups are left to be placed
         let cupsLeftToPlace = activeGame.getCount(array: activeGame.cupConfig) - activeGame.getCount(array: activeGame.reRackConfig)
         reRackTitleLabel.text = "LEFT TO PLACE: \(cupsLeftToPlace)"
+        
+        // disables touch if the user has placed the right amount of cups
+        if cupsLeftToPlace == 0{
+            makeReRackSwitchTouchDisabled()
+        } else if cupsLeftToPlace > 0{
+            for subview in reRackTableView.subviews{
+                subview.isUserInteractionEnabled = true
+            }
+        }
     }
     func setReRackTable(cupConfig: [[Bool]], gridType: Int){
         
@@ -364,6 +373,14 @@ class PongGameVC: UIViewController {
                 xPos += dimension + dimension*0.2/Double(numBase)
             }
             yPos += dimension - (0.12*dimension*isNotGrid)
+        }
+    }
+    func makeReRackSwitchTouchDisabled(){
+        for subview in reRackTableView.subviews{
+            let reRackSwitch = subview as! reRackSwitch
+            if reRackSwitch.switchState != true{
+                reRackSwitch.isUserInteractionEnabled = false
+            }
         }
     }
     
