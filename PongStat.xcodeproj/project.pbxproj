@@ -18,6 +18,7 @@
 		857D2C7C1EFBEFD90010DCCF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D2C7B1EFBEFD90010DCCF /* Utils.swift */; };
 		858526CB1F07B03A009C9614 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858526CA1F07B03A009C9614 /* Main.storyboard */; };
 		85AFB5BD1EFEF5AB00745FCB /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AFB5BC1EFEF5AB00745FCB /* Animations.swift */; };
+		85CA43421F0C13900052B999 /* InstructionsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA43411F0C13900052B999 /* InstructionsPageViewController.swift */; };
 		85E6D9B11EFAD627009F2D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */; };
 		85E6D9B31EFAD627009F2D80 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E6D9B21EFAD627009F2D80 /* StartViewController.swift */; };
 		85E6D9B81EFAD627009F2D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E6D9B71EFAD627009F2D80 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		857D2C7B1EFBEFD90010DCCF /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		858526CA1F07B03A009C9614 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		85AFB5BC1EFEF5AB00745FCB /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		85CA43411F0C13900052B999 /* InstructionsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsPageViewController.swift; sourceTree = "<group>"; };
 		85E6D9AD1EFAD627009F2D80 /* PongStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E6D9B01EFAD627009F2D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E6D9B21EFAD627009F2D80 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				85E6D9B21EFAD627009F2D80 /* StartViewController.swift */,
 				85E6D9E21EFAD763009F2D80 /* PongGameVC.swift */,
 				8537FE0C1F03809400797765 /* PongNightsVC.swift */,
+				85CA43411F0C13900052B999 /* InstructionsPageViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85CA43421F0C13900052B999 /* InstructionsPageViewController.swift in Sources */,
 				8519FFF11F0164D000374430 /* ChartSetup.swift in Sources */,
 				85E6D9B31EFAD627009F2D80 /* StartViewController.swift in Sources */,
 				8526950F1F02FEEB00226ECD /* PongNight.swift in Sources */,

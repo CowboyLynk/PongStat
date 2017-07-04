@@ -71,6 +71,7 @@ class PongGameVC: UIViewController {
         activeNight.addGame(time: startGameTime, score: activeGame.score, isWin: isWin)
         gameNumber += 1.0
         presetNumCupsPrompt()
+        navigationItem.title = "Game \(Int(gameNumber))"
         
     }
     @IBAction func wvEndNightButtonPressed(_ sender: Any) {
@@ -416,6 +417,9 @@ class PongGameVC: UIViewController {
     
     override func viewDidLoad() {
         
+        // Sets the title
+        navigationItem.title = "Game 1"
+        
         // Initializes whole-screen blur view (used in pop-ups) and the menu gesture recognizer
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -457,11 +461,13 @@ class PongGameVC: UIViewController {
         missedButton.layer.cornerRadius = 15
         
         // Nav bar
+        /*
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         let image = UIImage(named: "Title")
         imageView.image = image
         navigationItem.titleView = imageView
+        */
         
         // Sets the start time of the game (used to determind the date for the graphs)
         let date = Date()

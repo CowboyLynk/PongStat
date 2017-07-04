@@ -35,6 +35,13 @@ class StartViewController: UIViewController {
         instructionsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         instructionsButton.layer.cornerRadius = 15
         
+        // Nav bar
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        let image = UIImage(named: "Title")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }

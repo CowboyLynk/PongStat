@@ -77,8 +77,24 @@ class PongNightsVC: UIViewController {
             chart.data = chartData
         }
     }
+    func clearNights(){
+        let alert = UIAlertController(title: "Reset all night graphs?", message: "Are you sure that you want to erase all night scores?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            UserDefaults.standard.set(nil, forKey: "PongNight")
+            self.viewDidLoad()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
+        // Clears the view
+        scrollView.clearView()
+        
+        //Adds bar button item
+        let restartButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Restart"), style: .plain, target: self, action: #selector(clearNights))
+        tabBarController?.navigationItem.setRightBarButtonItems([restartButton], animated: true)
+        
         var yPos = 15
         scrollView.contentSize.height = 0
         
@@ -124,9 +140,10 @@ class PongNightsVC: UIViewController {
                 yPos += 230
                 
             }
+        } else {
+            noGamesLabel.isHidden = false
         }
     
-        noGamesLabel.textColor = .gray
         super.viewDidLoad()
     }
 
