@@ -123,6 +123,8 @@ class PongGame: NSObject, NSCopying {
     func removeEmptyEdges(){ // removes redundant rows and edges. Used when setting custom reracks
         var colsToRemove: [Int] = []
         var rowsToRemove: [Int] = []
+        var reverseColsToRemove: [Int] = []
+        var reverseRowsToRemove: [Int] = []
         
         // finds empty columns
         for col in 0..<cupConfig[0].count{
@@ -148,7 +150,7 @@ class PongGame: NSObject, NSCopying {
                 }
             }
             if foundCup != true{
-                colsToRemove.append(cupConfig.count - 1 - col)
+                reverseColsToRemove.append(cupConfig.count - 1 - col)
             } else {
                 break
             }
@@ -178,22 +180,41 @@ class PongGame: NSObject, NSCopying {
                 }
             }
             if foundCup != true {
-                rowsToRemove.append(cupConfig.count - 1 - row)
+                reverseRowsToRemove.append(cupConfig.count - 1 - row)
             } else {
                 break
             }
         }
+        
+        print(rowsToRemove)
+        print(colsToRemove)
+        print(reverseRowsToRemove)
+        print(reverseColsToRemove)
+        print()
+        
+        var reverseColCounter = 0
+        var reverseRowCounter = 0
         
         // removes empty rows and cols
         var counter = 0
         for colIndex in colsToRemove{
             removeCol(index: colIndex - counter)
             counter += 1
+            reverseColCounter += 1
         }
         counter = 0
         for rowIndex in rowsToRemove{
             cupConfig.remove(at: rowIndex - counter)
             counter += 1
+            reverseRowCounter += 1
+        }
+        
+        // removes empty rows and cols from reverse side
+        for colIndex in reverseColsToRemove{
+            removeCol(index: colIndex - reverseColCounter)
+        }
+        for rowIndex in reverseRowsToRemove{
+            cupConfig.remove(at: rowIndex - reverseRowCounter)
         }
         
     }
