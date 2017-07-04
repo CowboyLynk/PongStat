@@ -92,7 +92,7 @@ class PongNightsVC: UIViewController {
         scrollView.clearView()
         
         //Adds bar button item
-        let restartButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Restart"), style: .plain, target: self, action: #selector(clearNights))
+        let restartButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(clearNights))
         tabBarController?.navigationItem.setRightBarButtonItems([restartButton], animated: true)
         
         var yPos = 15

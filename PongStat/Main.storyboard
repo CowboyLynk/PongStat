@@ -61,7 +61,7 @@
                                     <segue destination="Dz4-My-Php" kind="show" id="KkT-Dl-MB6"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="IfJ-WY-G7B">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Main Menu" translatesAutoresizingMaskIntoConstraints="NO" id="IfJ-WY-G7B">
                                 <rect key="frame" x="0.0" y="20" width="375" height="233"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -765,10 +765,10 @@
         <image name="Home" width="24" height="24"/>
         <image name="Instructions" width="24" height="24"/>
         <image name="LoadingScreen" width="611" height="200"/>
+        <image name="Main Menu" width="667" height="500"/>
         <image name="Menu" width="24" height="24"/>
         <image name="Re-rack" width="110" height="100"/>
         <image name="Undo" width="125" height="125"/>
-        <image name="test" width="667" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MAM-bg-DNI"/>
