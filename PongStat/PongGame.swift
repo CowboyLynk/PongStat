@@ -130,10 +130,27 @@ class PongGame: NSObject, NSCopying {
             for row in 0..<cupConfig.count{
                 if cupConfig[row][col]{
                     foundCup = true
+                    break
                 }
             }
             if foundCup != true{
                 colsToRemove.append(col)
+            } else {
+                break
+            }
+        }
+        for col in 0..<cupConfig[0].count{
+            var foundCup = false
+            for row in 0..<cupConfig.count{
+                if cupConfig[row][cupConfig.count - 1 - col]{
+                    foundCup = true
+                    break
+                }
+            }
+            if foundCup != true{
+                colsToRemove.append(cupConfig.count - 1 - col)
+            } else {
+                break
             }
         }
         
@@ -143,10 +160,27 @@ class PongGame: NSObject, NSCopying {
             for item in cupConfig[row]{
                 if item {
                     foundCup = true
+                    break
                 }
             }
             if foundCup != true {
                 rowsToRemove.append(row)
+            } else {
+                break
+            }
+        }
+        for row in 0..<cupConfig.count {
+            var foundCup = false
+            for item in cupConfig[cupConfig.count - 1 - row]{
+                if item {
+                    foundCup = true
+                    break
+                }
+            }
+            if foundCup != true {
+                rowsToRemove.append(cupConfig.count - 1 - row)
+            } else {
+                break
             }
         }
         
