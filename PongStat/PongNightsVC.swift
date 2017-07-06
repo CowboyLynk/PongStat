@@ -90,10 +90,36 @@ class PongNightsVC: UIViewController {
         let alert = UIAlertController(title: "Delete this night?", message: "Deleting a night is permanent and you will not be able to get back these scores.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { action in
+            //Gets all the views and tags
+            let infoView = sender.superview
+            let chartContainer = infoView?.superview!
+            let index = chartContainer?.tag
+            
+            // Removes the game from the stored data
             var allNightCharts = UserDefaults.standard.array(forKey: "PongNight")!
-            allNightCharts.remove(at: sender.tag)
+            allNightCharts.remove(at: index!)
             UserDefaults.standard.set(allNightCharts, forKey: "PongNight")
-            self.viewDidLoad()
+            
+            // Animates the changing view
+            UIView.animate(withDuration: 0.6, animations: {
+                chartContainer?.frame.origin = CGPoint(x: self.view.frame.width, y: (chartContainer?.frame.origin.y)!)
+            })
+            // Animates the rest of the charts up
+            UIView.animate(withDuration: 1, delay: 0.5, animations: {
+                for subview in self.scrollView.subviews {
+                    if subview.tag < index! {
+                        subview.center.y -= 230
+                    }
+                }
+            })
+            
+            // Changes the indexes of everything else to prevent index out of range errors
+            for subview in self.scrollView.subviews {
+                if subview.tag > index!{
+                    subview.tag -= 1
+                }
+            }
+            self.scrollView.contentSize.height -= 230
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -132,7 +158,6 @@ class PongNightsVC: UIViewController {
                 chartInfo.textColor = UIColor(red:0.56, green:0.59, blue:0.62, alpha:1.0)
                 chartInfo.text = "NIGHT OF: \(nightDate!)"
                 deleteChartButton.setImage(#imageLiteral(resourceName: "Delete"), for: .normal)
-                deleteChartButton.tag = index
                 deleteChartButton.addTarget(self, action: #selector(deleteChartButtonPressed(sender:)), for: .touchUpInside)
                 chartInfoView.backgroundColor = .white
                 chartInfoView.layer.cornerRadius = 5
@@ -141,6 +166,7 @@ class PongNightsVC: UIViewController {
                 view.layer.shadowOffset = CGSize(width: 0, height: 0)
                 view.layer.shadowOpacity = 0.2
                 view.layer.cornerRadius = 5
+                view.tag = index
                 view.backgroundColor = UIColor(colorLiteralRed: 0.36, green: 0.64, blue: 0.48, alpha: 1.0)
                 background.backgroundColor = UIColor(colorLiteralRed: 0.36, green: 0.64, blue: 0.48, alpha: 1.0)
                 
