@@ -119,7 +119,9 @@ class PongNightsVC: UIViewController {
                     subview.tag -= 1
                 }
             }
-            self.scrollView.contentSize.height -= 230
+            UIView.animate(withDuration: 1, delay: 0.6, animations: { 
+                self.scrollView.contentSize.height -= 230
+            })
         }))
         self.present(alert, animated: true, completion: nil)
     }
