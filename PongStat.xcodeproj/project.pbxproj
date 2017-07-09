@@ -301,7 +301,7 @@
 				TargetAttributes = {
 					85E6D9AC1EFAD627009F2D80 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 78T5GXP6Q3;
+						DevelopmentTeam = 4Y9W3Y2Z9W;
 						ProvisioningStyle = Automatic;
 					};
 					85E6D9C01EFAD628009F2D80 = {
@@ -555,12 +555,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 78T5GXP6Q3;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cowboy Lynk (4EX7479VHM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4Y9W3Y2Z9W;
 				INFOPLIST_FILE = PongStat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Cowboy.PongStat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cowboylynk.pongstat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -571,11 +575,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 78T5GXP6Q3;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4Y9W3Y2Z9W;
 				INFOPLIST_FILE = PongStat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Cowboy.PongStat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cowboylynk.pongstat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
